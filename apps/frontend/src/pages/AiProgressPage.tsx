@@ -1,0 +1,29 @@
+import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
+import { ArticleList } from "../components/ArticleList";
+import { SectionBlock } from "../components/SectionBlock";
+import { aiProgressContent } from "../content";
+
+export function AiProgressPage() {
+  return (
+    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">{aiProgressContent.tagline}</p>
+      <h1 className="mt-2 text-3xl font-bold text-slate-900">{aiProgressContent.name}</h1>
+      <p className="mt-4 text-lg text-slate-600">{aiProgressContent.heroSummary}</p>
+
+      <div className="mt-8">
+        <ArchitectureBulletList bullets={aiProgressContent.architectureBullets} />
+      </div>
+
+      {aiProgressContent.sections.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
+
+      <div className="border-t border-slate-200 py-8">
+        <h2 className="text-2xl font-semibold text-slate-900">Latest across Vertex AI, Azure AI Foundry & AWS Bedrock</h2>
+        <div className="mt-6">
+          <ArticleList articles={aiProgressContent.articles} />
+        </div>
+      </div>
+    </div>
+  );
+}

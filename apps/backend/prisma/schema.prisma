@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  MEMBER
+  ADMIN
+}
+
+enum EnrollmentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String
+  name         String
+  role         UserRole     @default(MEMBER)
+  createdAt    DateTime     @default(now())
+  enrollments  Enrollment[]
+}
+
+model Course {
+  id            String       @id @default(uuid())
+  title         String
+  description   String
+  priceCents    Int
+  currency      String       @default("usd")
+  stripePriceId String       @unique
+  isPublished   Boolean      @default(false)
+  createdAt     DateTime     @default(now())
+  enrollments   Enrollment[]
+}
+
+model Enrollment {
+  id                      String           @id @default(uuid())
+  userId                  String
+  user                    User             @relation(fields: [userId], references: [id])
+  courseId                String
+  course                  Course           @relation(fields: [courseId], references: [id])
+  stripeCheckoutSessionId String?          @unique
+  stripePaymentIntentId   String?          @unique
+  status                  EnrollmentStatus @default(PENDING)
+  purchasedAt             DateTime?
+  createdAt               DateTime         @default(now())
+
+  @@unique([userId, courseId])
+}
