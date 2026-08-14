@@ -5,7 +5,7 @@ import { allPlatforms } from "../content";
 export function LandingPage() {
   return (
     <div>
-      <section className="bg-gradient-to-b from-indigo-100 via-indigo-50 to-white py-20">
+      <section className="bg-gradient-to-b from-indigo-200 via-indigo-50 to-white py-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             Master the modern data & AI stack

@@ -98,7 +98,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+    <header className="sticky top-0 z-50 bg-indigo-200">
       {/* Slim contact bar */}
       <div className="hidden bg-indigo-600 text-indigo-50 sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm sm:px-6 lg:px-8">
