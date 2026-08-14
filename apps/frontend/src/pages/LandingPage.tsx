@@ -37,7 +37,7 @@ export function LandingPage() {
         <p className="mt-2 text-slate-600">
           Deep dives into the architectures that power today's data and AI platforms.
         </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {allPlatforms.map((platform) => (
             <PlatformSection key={platform.slug} content={platform} />
           ))}
