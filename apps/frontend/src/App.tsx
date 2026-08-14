@@ -10,7 +10,10 @@ import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { PlatformPage } from "./pages/PlatformPage";
+import { PrivacyPage } from "./pages/PrivacyPage";
+import { RefundPolicyPage } from "./pages/RefundPolicyPage";
 import { SignupPage } from "./pages/SignupPage";
+import { TermsPage } from "./pages/TermsPage";
 
 export default function App() {
   return (
@@ -32,6 +35,9 @@ export default function App() {
         />
         <Route path="about" element={<AboutPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="terms" element={<TermsPage />} />
+        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="refund-policy" element={<RefundPolicyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
