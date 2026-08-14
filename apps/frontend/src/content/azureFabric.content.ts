@@ -3,23 +3,22 @@ import type { PlatformContent } from "@aidatasense/shared";
 export const azureFabricContent: PlatformContent = {
   slug: "azure-fabric",
   name: "Microsoft Fabric",
-  tagline: "[Placeholder] The Unified Analytics Platform",
+  tagline: "The Unified Analytics Platform",
   heroSummary:
-    "[Placeholder] A short teaser summary of Azure/Microsoft Fabric's architecture goes here — replace with real copy.",
+    "Microsoft Fabric brings data engineering, warehousing, and business intelligence together on one SaaS platform, unified by OneLake as the common storage layer.",
   architectureBullets: [
-    "[Placeholder] OneLake unified storage bullet point",
-    "[Placeholder] Synapse Data Engineering bullet point",
-    "[Placeholder] Power BI integration bullet point",
-    "[Placeholder] Real-Time Intelligence bullet point",
+    "OneLake provides a single, organization-wide data lake — no more data silos across tools",
+    "Synapse Data Engineering enables large-scale data transformation with familiar Spark-based tooling",
+    "Deep, native integration with Power BI turns governed data directly into interactive dashboards",
   ],
   sections: [
     {
-      heading: "[Placeholder] Architecture Overview",
-      body: "[Placeholder] Replace this paragraph with a real explanation of Microsoft Fabric's architecture.",
+      heading: "Architecture Overview",
+      body: "Microsoft Fabric is built around OneLake, a single, tenant-wide data lake (built on ADLS Gen2 and the open Delta Parquet format) that every Fabric workload reads from and writes to by default. Rather than Data Factory, Synapse, and Power BI each keeping their own copy of data, they all operate on the same OneLake-managed tables — a dataset ingested once is immediately queryable, transformable, and reportable across the whole suite. This \"one copy of data, many engines\" model is the core idea that separates Fabric from a set of separately-integrated Azure services.",
     },
     {
-      heading: "[Placeholder] Key Technical Specs",
-      body: "[Placeholder] Replace this paragraph with real technical specification details.",
+      heading: "Key Technical Specs",
+      body: "Fabric is provisioned through Fabric Capacity Units (CUs), sold in SKUs (F2, F4, F8, and up) that pool compute across every workload in a tenant rather than billing each tool separately. Data lives in OneLake as open Delta Parquet, directly readable by non-Fabric engines and compatible with existing ADLS Gen2 tooling. As a native Azure service, Fabric integrates directly with Azure Active Directory for identity and Microsoft Purview for governance, and can virtually mount external Azure data (SQL, Cosmos DB) into OneLake via shortcuts without physically copying it.",
     },
   ],
   learnMoreUrl: "https://learn.microsoft.com/fabric/",

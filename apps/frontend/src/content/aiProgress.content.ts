@@ -3,23 +3,22 @@ import type { AiProgressContent } from "@aidatasense/shared";
 export const aiProgressContent: AiProgressContent = {
   slug: "ai-progress",
   name: "Agentic AI & Model Platforms",
-  tagline: "[Placeholder] The frontier of agentic AI",
+  tagline: "The frontier of agentic AI",
   heroSummary:
-    "[Placeholder] A short teaser summary about Agentic AI progress across Vertex AI, Azure AI Foundry, and AWS Bedrock — replace with real copy.",
+    "Agentic AI systems can plan, reason, and take action across tools and data sources — every major cloud now offers a platform for building them, from Vertex AI to Azure AI Foundry to AWS Bedrock.",
   architectureBullets: [
-    "[Placeholder] Agentic AI orchestration bullet point",
-    "[Placeholder] Vertex AI Agent Builder bullet point",
-    "[Placeholder] Azure AI Foundry agent service bullet point",
-    "[Placeholder] AWS Bedrock Agents bullet point",
+    "Google Vertex AI Agent Builder for building and deploying grounded, tool-using AI agents",
+    "Microsoft Azure AI Foundry's agent service for orchestrating multi-agent workflows in the enterprise",
+    "AWS Bedrock Agents for connecting foundation models to APIs, data, and multi-step tasks",
   ],
   sections: [
     {
-      heading: "[Placeholder] What Is Agentic AI",
-      body: "[Placeholder] Replace this paragraph with a real explanation of agentic AI concepts.",
+      heading: "What Is Agentic AI",
+      body: "Agentic AI systems extend a foundation model with capabilities beyond simple prompt-response: planning (breaking a goal into an ordered sequence of steps), tool use (calling external APIs, databases, or functions to gather information or take action), memory (retaining context across steps or sessions), and multi-step execution with self-correction (evaluating each action's outcome and revising the plan when something fails). This plan–act–observe–revise loop is what separates an \"agent\" from a standard chatbot, and it's the pattern every major agent-building platform is designed around.",
     },
     {
-      heading: "[Placeholder] Platform Comparison",
-      body: "[Placeholder] Replace this paragraph with a real comparison of Vertex AI, Azure AI Foundry, and AWS Bedrock.",
+      heading: "Platform Comparison",
+      body: "Google's Vertex AI Agent Builder is built around Gemini models and emphasizes grounding — connecting agents to Google Search, enterprise data via Vertex AI Search, and custom tools through function calling. Microsoft's Azure AI Foundry Agent Service supports OpenAI and open-weight models from its catalog, and focuses on multi-agent orchestration through Semantic Kernel and AutoGen, with deep ties into Microsoft 365 and Azure AD. AWS Bedrock Agents is model-agnostic across Bedrock's foundation models (Anthropic Claude, Meta Llama, Amazon Nova, and others), orchestrating tool use through action groups backed by AWS Lambda — a natural fit for teams already on AWS.",
     },
   ],
   learnMoreUrl: "https://cloud.google.com/vertex-ai",
