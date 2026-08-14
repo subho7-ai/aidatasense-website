@@ -24,25 +24,28 @@ export const aiProgressContent: AiProgressContent = {
   learnMoreUrl: "https://cloud.google.com/vertex-ai",
   articles: [
     {
-      title: "[Placeholder] Vertex AI progress article title",
+      title: "Google Consolidates Vertex AI Into the Gemini Enterprise Agent Platform",
       source: "Vertex AI",
-      url: "https://cloud.google.com/vertex-ai",
-      summary: "[Placeholder] Replace with a real article summary.",
-      publishedDate: "2026-01-01",
+      url: "https://cloud.google.com/blog/products/ai-machine-learning/more-ways-to-build-and-scale-ai-agents-with-vertex-ai-agent-builder",
+      summary:
+        "Google has folded Vertex AI Agent Builder and Agentspace into a unified Gemini Enterprise Agent Platform, adding a low-code Agent Designer plus agent-level tracing and evaluation tools for debugging production agents.",
+      publishedDate: "2026-02-01",
     },
     {
-      title: "[Placeholder] Azure AI Foundry progress article title",
+      title: "Microsoft Foundry Adds Agent Framework and Foundry IQ at Build 2026",
       source: "Azure AI Foundry",
-      url: "https://azure.microsoft.com/en-us/products/ai-foundry",
-      summary: "[Placeholder] Replace with a real article summary.",
-      publishedDate: "2026-01-01",
+      url: "https://devblogs.microsoft.com/foundry/agent-service-build2026/",
+      summary:
+        "At Build 2026, Microsoft shipped the Agent Framework — unifying Semantic Kernel and AutoGen into one orchestration layer — alongside Foundry IQ, a managed retrieval layer, and native publishing of Foundry agents directly into Teams and Microsoft 365 Copilot.",
+      publishedDate: "2026-05-01",
     },
     {
-      title: "[Placeholder] AWS Bedrock progress article title",
+      title: "Amazon Bedrock AgentCore Adds Web Search and a No-Code Managed Harness",
       source: "AWS Bedrock",
-      url: "https://aws.amazon.com/bedrock/",
-      summary: "[Placeholder] Replace with a real article summary.",
-      publishedDate: "2026-01-01",
+      url: "https://aws.amazon.com/blogs/aws/announcing-web-search-on-amazon-bedrock-agentcore-ground-your-ai-agents-in-current-accurate-web-knowledge/",
+      summary:
+        "AWS introduced Web Search on Bedrock AgentCore for grounding agents in live, cited web results, plus a managed harness that runs a full agent loop — reasoning, tool selection, execution — from just a model, prompt, and tool list, with no orchestration code required.",
+      publishedDate: "2026-04-01",
     },
   ],
 };
