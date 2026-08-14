@@ -19,34 +19,36 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <NavLink to="/" className="flex items-center">
-          <img src={logo} alt="aidatasense" className="h-14 w-auto" />
-        </NavLink>
-        <div className="hidden items-center gap-1 md:flex">
-          <NavLink to="/" className={navLinkClass} end>
-            Home
+        <div className="flex items-center gap-8">
+          <NavLink to="/" className="flex items-center py-1 pr-2">
+            <img src={logo} alt="aidatasense" className="h-12 w-auto" />
           </NavLink>
-          <NavLink to="/platforms/databricks" className={navLinkClass}>
-            Databricks
-          </NavLink>
-          <NavLink to="/platforms/snowflake" className={navLinkClass}>
-            Snowflake
-          </NavLink>
-          <NavLink to="/platforms/azure-fabric" className={navLinkClass}>
-            Azure Fabric
-          </NavLink>
-          <NavLink to="/ai-progress" className={navLinkClass}>
-            AI Progress
-          </NavLink>
-          <NavLink to="/courses" className={navLinkClass}>
-            Courses
-          </NavLink>
-          <NavLink to="/about" className={navLinkClass}>
-            About
-          </NavLink>
-          <NavLink to="/contact" className={navLinkClass}>
-            Contact
-          </NavLink>
+          <div className="hidden items-center gap-1 md:flex">
+            <NavLink to="/" className={navLinkClass} end>
+              Home
+            </NavLink>
+            <NavLink to="/platforms/databricks" className={navLinkClass}>
+              Databricks
+            </NavLink>
+            <NavLink to="/platforms/snowflake" className={navLinkClass}>
+              Snowflake
+            </NavLink>
+            <NavLink to="/platforms/azure-fabric" className={navLinkClass}>
+              Azure Fabric
+            </NavLink>
+            <NavLink to="/ai-progress" className={navLinkClass}>
+              AI Progress
+            </NavLink>
+            <NavLink to="/courses" className={navLinkClass}>
+              Courses
+            </NavLink>
+            <NavLink to="/about" className={navLinkClass}>
+              About
+            </NavLink>
+            <NavLink to="/contact" className={navLinkClass}>
+              Contact
+            </NavLink>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           {user ? (
