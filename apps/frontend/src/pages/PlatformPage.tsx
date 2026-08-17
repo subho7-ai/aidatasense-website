@@ -1,6 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { SectionBlock } from "../components/SectionBlock";
+import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
 
 export function PlatformPage() {
@@ -24,6 +25,8 @@ export function PlatformPage() {
       {content.sections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+
+      {content.videos && <VideoSection videos={content.videos} />}
 
       <a
         href={content.learnMoreUrl}

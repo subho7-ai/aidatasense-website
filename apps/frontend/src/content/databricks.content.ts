@@ -22,4 +22,17 @@ export const databricksContent: PlatformContent = {
     },
   ],
   learnMoreUrl: "https://docs.databricks.com/",
+  videos: [
+    {
+      title: "Intro to Databricks Lakehouse Platform Architecture and Security",
+      youtubeId: "5oz5dwHU_mM",
+      description: "An overview of how the lakehouse platform is structured and secured.",
+    },
+    {
+      title: "Intro to Databricks Lakehouse Platform",
+      youtubeId: "CfubH7XpRVw",
+      description:
+        "Learn the origins of Databricks and how the Lakehouse Platform solves data challenges for engineers, analysts, and scientists.",
+    },
+  ],
 };

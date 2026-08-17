@@ -3,6 +3,12 @@ export interface ContentSection {
   body: string;
 }
 
+export interface VideoResource {
+  title: string;
+  youtubeId: string;
+  description?: string;
+}
+
 export interface PlatformContent {
   slug: string;
   name: string;
@@ -12,6 +18,7 @@ export interface PlatformContent {
   sections: ContentSection[];
   learnMoreUrl: string;
   logoUrl?: string;
+  videos?: VideoResource[];
 }
 
 export interface NewsArticle {
