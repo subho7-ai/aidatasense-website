@@ -1,8 +1,10 @@
 import type { PlatformContent } from "@aidatasense/shared";
+import microsoftFabricLogo from "../assets/microsoft-fabric-logo.png";
 
 export const azureFabricContent: PlatformContent = {
   slug: "azure-fabric",
   name: "Microsoft Fabric",
+  logoUrl: microsoftFabricLogo,
   tagline: "The Unified Analytics Platform",
   heroSummary:
     "Microsoft Fabric brings data engineering, warehousing, and business intelligence together on one SaaS platform, unified by OneLake as the common storage layer.",

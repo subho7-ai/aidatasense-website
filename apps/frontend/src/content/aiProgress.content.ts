@@ -1,8 +1,10 @@
 import type { AiProgressContent } from "@aidatasense/shared";
+import agenticAiLogo from "../assets/agentic-ai-logo.png";
 
 export const aiProgressContent: AiProgressContent = {
   slug: "ai-progress",
   name: "Agentic AI & Model Platforms",
+  logoUrl: agenticAiLogo,
   tagline: "The frontier of agentic AI",
   heroSummary:
     "Agentic AI systems can plan, reason, and take action across tools and data sources — every major cloud now offers a platform for building them, from Vertex AI to Azure AI Foundry to AWS Bedrock.",

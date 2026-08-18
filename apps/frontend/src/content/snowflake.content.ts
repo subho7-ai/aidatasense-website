@@ -3,6 +3,7 @@ import type { PlatformContent } from "@aidatasense/shared";
 export const snowflakeContent: PlatformContent = {
   slug: "snowflake",
   name: "Snowflake",
+  logoUrl: "https://cdn.simpleicons.org/snowflake",
   tagline: "The AI Data Cloud",
   heroSummary:
     "Snowflake is a cloud-native data platform built on a multi-cluster shared architecture that separates storage and compute, so teams can scale each independently.",

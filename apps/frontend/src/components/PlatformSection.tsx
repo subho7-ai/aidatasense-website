@@ -6,7 +6,13 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
 
   return (
     <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-      <h3 className="text-xl font-semibold text-slate-900">{content.name}</h3>
+      <h3 className="flex items-center text-xl font-semibold text-slate-900">
+        {content.logoUrl ? (
+          <img src={content.logoUrl} alt={content.name} className="h-7 w-auto" />
+        ) : (
+          content.name
+        )}
+      </h3>
       <Link to={to} className="mt-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
         {content.tagline}
       </Link>

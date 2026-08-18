@@ -3,6 +3,7 @@ import type { PlatformContent } from "@aidatasense/shared";
 export const databricksContent: PlatformContent = {
   slug: "databricks",
   name: "Databricks",
+  logoUrl: "https://cdn.simpleicons.org/databricks",
   tagline: "The Lakehouse Platform",
   heroSummary:
     "Databricks unifies data warehousing and data lakes into a single lakehouse architecture, giving teams one platform for analytics, data engineering, and AI.",
