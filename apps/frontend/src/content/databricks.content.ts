@@ -12,16 +12,55 @@ export const databricksContent: PlatformContent = {
     "Delta Lake provides an open, transactional storage layer for reliable, high-performance data pipelines",
     "Unity Catalog delivers centralized governance and fine-grained access control across all data and AI assets",
   ],
+  architectureDiagram: {
+    layers: [
+      {
+        title: "Control Plane",
+        description:
+          "The Databricks-managed backend — the web app, job scheduler, and cluster manager. Runs in Databricks' own account, not yours.",
+      },
+      {
+        title: "Compute Plane",
+        description:
+          "Where your data actually gets processed — Spark clusters and SQL warehouses. Runs in your own cloud account (classic) or a Databricks-managed layer (serverless).",
+      },
+      {
+        title: "Your Cloud Storage",
+        description:
+          "Your data lives here as Delta tables (open Parquet format) in ADLS, S3, or GCS. Databricks never owns or copies your data.",
+      },
+    ],
+  },
   sections: [
     {
-      heading: "Architecture Overview",
-      body: "Databricks is built on three logical layers: a cloud object storage layer (S3, ADLS, or GCS) holding data in the open Delta Lake format; a set of compute engines — including Spark-based clusters, Photon (Databricks' native vectorized query engine), and SQL warehouses — that read and process that data; and Unity Catalog as the unified metadata and governance layer tracking schemas, lineage, and permissions across every workspace. Because compute is decoupled from storage, teams can scale clusters independently of where the data lives, and multiple engines can read the same underlying Delta tables without duplicating data.",
+      heading: "What Is a Data Lake",
+      body: "A data lake is a repository that stores raw data in its native format — structured, semi-structured, or unstructured — on cheap cloud object storage. That flexibility is also its weakness: data lakes have no built-in transaction support, no schema enforcement, and no data quality guarantees, so they tend to degrade into unreliable, hard-to-trust \"data swamps\" over time.",
     },
     {
-      heading: "Key Technical Specs",
-      body: "Databricks supports SQL, Python, Scala, and R as first-class languages across notebooks and jobs, with native support for Spark DataFrames and Spark SQL. Compute comes in several cluster types — all-purpose clusters for interactive development, job clusters for scheduled production workloads, and serverless SQL warehouses for BI-style queries — each independently sized and auto-scaling. The platform integrates with the broader ecosystem through connectors for cloud storage, ingestion tools (Fivetran, Kafka, Auto Loader), BI tools (Power BI, Tableau, Looker), and MLOps via MLflow and Mosaic AI.",
+      heading: "What Is a Lakehouse",
+      body: "A lakehouse is a single architecture that adds the reliability and management features of a data warehouse directly on top of low-cost data lake storage. Instead of running separate systems for BI, data science, and ML — and moving data between them — teams query one copy of the data with warehouse-grade guarantees.",
+    },
+    {
+      heading: "What Is a Delta Table",
+      body: "A Delta table is the open storage format that makes the lakehouse possible: a set of Parquet files plus a transaction log that together add database-like guarantees to data sitting in ordinary cloud storage, with no separate database required.",
+      bullets: [
+        "ACID transactions — safe concurrent reads and writes, no partial or corrupted data",
+        "Schema enforcement — bad or mismatched data gets rejected, not silently written",
+        "Time travel — query or roll back to a previous version of a table",
+      ],
     },
   ],
+  comparisonTable: {
+    title: "Data Lake vs. Lakehouse",
+    headers: ["Capability", "Data Lake", "Lakehouse"],
+    rows: [
+      ["Transactions", "None", "ACID-compliant"],
+      ["Schema enforcement", "None", "Enforced, with governance"],
+      ["Data quality", "Unmanaged", "Enforced by the platform"],
+      ["File format", "Any format, often proprietary", "Open format (Parquet via Delta Lake)"],
+      ["Concurrent reads & writes", "Prone to conflicts", "Reliable, isolated transactions"],
+    ],
+  },
   learnMoreUrl: "https://docs.databricks.com/",
   videos: [
     {

@@ -1,5 +1,7 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
+import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
+import { ComparisonTable } from "../components/ComparisonTable";
 import { SectionBlock } from "../components/SectionBlock";
 import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
@@ -23,6 +25,15 @@ export function PlatformPage() {
       </h1>
       <p className="mt-4 text-lg text-slate-600">{content.heroSummary}</p>
 
+      {content.architectureDiagram && (
+        <div className="border-t border-slate-200 py-8">
+          <h2 className="text-2xl font-semibold text-slate-900">Architecture</h2>
+          <div className="mt-6 max-w-md">
+            <ArchitectureDiagram layers={content.architectureDiagram.layers} />
+          </div>
+        </div>
+      )}
+
       <div className="mt-8">
         <ArchitectureBulletList bullets={content.architectureBullets} />
       </div>
@@ -30,6 +41,8 @@ export function PlatformPage() {
       {content.sections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+
+      {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
 
       {content.videos && <VideoSection videos={content.videos} />}
 

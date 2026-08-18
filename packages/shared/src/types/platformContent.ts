@@ -1,6 +1,7 @@
 export interface ContentSection {
   heading: string;
   body: string;
+  bullets?: string[];
 }
 
 export interface VideoResource {
@@ -9,13 +10,30 @@ export interface VideoResource {
   description?: string;
 }
 
+export interface ArchitectureLayer {
+  title: string;
+  description: string;
+}
+
+export interface ArchitectureDiagramData {
+  layers: ArchitectureLayer[];
+}
+
+export interface ComparisonTableData {
+  title: string;
+  headers: string[];
+  rows: string[][];
+}
+
 export interface PlatformContent {
   slug: string;
   name: string;
   tagline: string;
   heroSummary: string;
   architectureBullets: string[];
+  architectureDiagram?: ArchitectureDiagramData;
   sections: ContentSection[];
+  comparisonTable?: ComparisonTableData;
   learnMoreUrl: string;
   logoUrl?: string;
   videos?: VideoResource[];
