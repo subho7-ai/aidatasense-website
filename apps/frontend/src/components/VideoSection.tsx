@@ -6,9 +6,9 @@ export function VideoSection({ videos }: { videos: VideoResource[] }) {
   }
 
   return (
-    <div className="border-t border-slate-200 py-8">
+    <div>
       <h2 className="text-2xl font-semibold text-slate-900">Training Videos</h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2">
+      <div className="mt-6 grid gap-6">
         {videos.map((video) => (
           <div key={video.youtubeId}>
             <div className="aspect-video overflow-hidden rounded-xl border border-slate-200">

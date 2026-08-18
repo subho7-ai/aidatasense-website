@@ -14,8 +14,8 @@ export function PlatformPage() {
     return <Navigate to="/" replace />;
   }
 
-  return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+  const mainContent = (
+    <>
       <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
         {content.tagline}
       </Link>
@@ -44,8 +44,6 @@ export function PlatformPage() {
 
       {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
 
-      {content.videos && <VideoSection videos={content.videos} />}
-
       <a
         href={content.learnMoreUrl}
         target="_blank"
@@ -54,6 +52,21 @@ export function PlatformPage() {
       >
         Read the official docs →
       </a>
-    </div>
+    </>
   );
+
+  if (content.videos) {
+    return (
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">{mainContent}</div>
+          <div className="lg:col-span-1">
+            <VideoSection videos={content.videos} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">{mainContent}</div>;
 }
