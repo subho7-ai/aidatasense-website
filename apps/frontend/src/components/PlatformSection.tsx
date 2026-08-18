@@ -7,7 +7,9 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
       <h3 className="text-xl font-semibold text-slate-900">{content.name}</h3>
-      <p className="mt-1 text-sm font-medium text-indigo-600">{content.tagline}</p>
+      <Link to={to} className="mt-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        {content.tagline}
+      </Link>
       <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>
       <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
         {content.architectureBullets.slice(0, 3).map((bullet) => (
