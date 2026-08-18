@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { SectionBlock } from "../components/SectionBlock";
 import { VideoSection } from "../components/VideoSection";
@@ -14,7 +14,9 @@ export function PlatformPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">{content.tagline}</p>
+      <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
+        {content.tagline}
+      </Link>
       <h1 className="mt-2 text-3xl font-bold text-slate-900">{content.name}</h1>
       <p className="mt-4 text-lg text-slate-600">{content.heroSummary}</p>
 
