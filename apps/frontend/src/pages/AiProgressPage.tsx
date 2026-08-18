@@ -10,7 +10,10 @@ export function AiProgressPage() {
       <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
         {aiProgressContent.tagline}
       </Link>
-      <h1 className="mt-2 text-3xl font-bold text-slate-900">{aiProgressContent.name}</h1>
+      <h1 className="mt-2 flex items-center gap-3 text-3xl font-bold text-slate-900">
+        {aiProgressContent.logoUrl && <img src={aiProgressContent.logoUrl} alt="" className="h-10 w-auto" />}
+        {aiProgressContent.name}
+      </h1>
       <p className="mt-4 text-lg text-slate-600">{aiProgressContent.heroSummary}</p>
 
       <div className="mt-8">

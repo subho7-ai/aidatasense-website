@@ -17,7 +17,10 @@ export function PlatformPage() {
       <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
         {content.tagline}
       </Link>
-      <h1 className="mt-2 text-3xl font-bold text-slate-900">{content.name}</h1>
+      <h1 className="mt-2 flex items-center gap-3 text-3xl font-bold text-slate-900">
+        {content.logoUrl && <img src={content.logoUrl} alt="" className="h-10 w-auto" />}
+        {content.name}
+      </h1>
       <p className="mt-4 text-lg text-slate-600">{content.heroSummary}</p>
 
       <div className="mt-8">
