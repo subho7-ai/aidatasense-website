@@ -47,9 +47,11 @@ export function PlatformPage() {
         </div>
       )}
 
-      <div className="mt-8">
-        <ArchitectureBulletList bullets={content.architectureBullets} />
-      </div>
+      {content.architectureBullets.length > 0 && !content.architectureDiagram && (
+        <div className="mt-8">
+          <ArchitectureBulletList bullets={content.architectureBullets} />
+        </div>
+      )}
 
       {content.sections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
