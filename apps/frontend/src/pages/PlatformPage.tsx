@@ -29,9 +29,13 @@ export function PlatformPage() {
       {content.architectureDiagram && (
         <div className="border-t border-slate-200 py-8">
           <h2 className="text-2xl font-semibold text-slate-900">Architecture</h2>
-          {content.references &&
-            content.references.map((reference) => <ReferenceLinkCard key={reference.url} {...reference} />)}
-          <div className="mt-6 max-w-md">
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            <div>
+              {content.references &&
+                content.references.map((reference) => (
+                  <ReferenceLinkCard key={reference.url} {...reference} className="mt-0 max-w-none" />
+                ))}
+            </div>
             <ArchitectureDiagram layers={content.architectureDiagram.layers} />
           </div>
         </div>

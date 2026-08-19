@@ -1,9 +1,15 @@
 import type { ReferenceLink } from "@aidatasense/shared";
 
-export function ReferenceLinkCard({ title, description, url, imageUrl }: ReferenceLink) {
+export function ReferenceLinkCard({
+  title,
+  description,
+  url,
+  imageUrl,
+  className = "mt-6 max-w-md",
+}: ReferenceLink & { className?: string }) {
   if (imageUrl) {
     return (
-      <div className="mt-6 max-w-md rounded-xl border border-slate-200 p-4">
+      <div className={`${className} rounded-xl border border-slate-200 p-4`}>
         <img src={imageUrl} alt={title} className="w-full rounded-lg border border-slate-200" />
         <p className="mt-3 text-sm font-semibold text-slate-900">{title}</p>
         <p className="mt-1 text-sm text-slate-600">{description}</p>
@@ -24,7 +30,7 @@ export function ReferenceLinkCard({ title, description, url, imageUrl }: Referen
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="mt-6 flex items-start gap-4 rounded-xl border border-slate-200 p-4 transition-shadow hover:shadow-md"
+      className={`${className} flex items-start gap-4 rounded-xl border border-slate-200 p-4 transition-shadow hover:shadow-md`}
     >
       <svg
         viewBox="0 0 48 48"
