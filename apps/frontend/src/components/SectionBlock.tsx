@@ -25,6 +25,28 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           ))}
         </ul>
       )}
+      {section.integrations && (
+        <>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {section.integrations.categories.map((category) => (
+              <span
+                key={category}
+                className="rounded-full border border-indigo-200 bg-white px-4 py-1.5 text-sm font-semibold text-indigo-700 shadow-sm"
+              >
+                {category}
+              </span>
+            ))}
+          </div>
+          <a
+            href={section.integrations.viewAllUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+          >
+            View all integrations →
+          </a>
+        </>
+      )}
     </div>
   );
 }

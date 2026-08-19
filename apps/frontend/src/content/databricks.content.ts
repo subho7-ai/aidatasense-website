@@ -53,6 +53,22 @@ export const databricksContent: PlatformContent = {
         "Time travel — query or roll back to a previous version of a table",
       ],
     },
+    {
+      heading: "Integrations",
+      body: "Databricks connects seamlessly with a broad ecosystem of technology partners — from data ingestion tools like Fivetran, to BI platforms like Tableau and Power BI, to governance tools like Monte Carlo. Partner Connect makes these integrations fast to set up, often with just a few clicks.",
+      integrations: {
+        categories: [
+          "Data Ingestion",
+          "Data Preparation & Transformation",
+          "Machine Learning",
+          "BI & Visualization",
+          "Reverse ETL",
+          "Data Governance",
+          "Semantic Layer",
+        ],
+        viewAllUrl: "https://docs.databricks.com/gcp/en/integrations/",
+      },
+    },
   ],
   comparisonTable: {
     title: "Data Lake vs. Lakehouse",

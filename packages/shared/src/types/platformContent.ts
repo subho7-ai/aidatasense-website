@@ -1,3 +1,8 @@
+export interface IntegrationsData {
+  categories: string[];
+  viewAllUrl: string;
+}
+
 export interface ContentSection {
   heading: string;
   body: string;
@@ -5,6 +10,7 @@ export interface ContentSection {
   imageUrl?: string;
   diagram?: ReferenceLink;
   diagramBrief?: string;
+  integrations?: IntegrationsData;
 }
 
 export interface VideoResource {
