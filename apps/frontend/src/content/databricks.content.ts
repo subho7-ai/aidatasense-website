@@ -53,6 +53,8 @@ export const databricksContent: PlatformContent = {
         "Time travel — query or roll back to a previous version of a table",
       ],
     },
+  ],
+  sidebarSections: [
     {
       heading: "Integrations",
       body: "Databricks connects seamlessly with a broad ecosystem of technology partners — from data ingestion tools like Fivetran, to BI platforms like Tableau and Power BI, to governance tools like Monte Carlo. Partner Connect makes these integrations fast to set up, often with just a few clicks.",

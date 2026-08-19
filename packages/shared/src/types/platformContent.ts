@@ -50,6 +50,7 @@ export interface PlatformContent {
   architectureBullets: string[];
   architectureDiagram?: ArchitectureDiagramData;
   sections: ContentSection[];
+  sidebarSections?: ContentSection[];
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];
   learnMoreUrl: string;

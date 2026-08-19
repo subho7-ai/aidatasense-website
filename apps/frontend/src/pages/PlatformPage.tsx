@@ -77,6 +77,9 @@ export function PlatformPage() {
           <div className="lg:col-span-2">{mainContent}</div>
           <div className="lg:col-span-1">
             <VideoSection videos={content.videos} />
+            {content.sidebarSections?.map((section) => (
+              <SectionBlock key={section.heading} section={section} />
+            ))}
           </div>
         </div>
       </div>
