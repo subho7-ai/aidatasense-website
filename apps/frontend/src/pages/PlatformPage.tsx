@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
+import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
 import { SectionBlock } from "../components/SectionBlock";
 import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
@@ -31,6 +32,8 @@ export function PlatformPage() {
           <div className="mt-6 max-w-md">
             <ArchitectureDiagram layers={content.architectureDiagram.layers} />
           </div>
+          {content.references &&
+            content.references.map((reference) => <ReferenceLinkCard key={reference.url} {...reference} />)}
         </div>
       )}
 

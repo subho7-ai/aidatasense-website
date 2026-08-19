@@ -25,6 +25,12 @@ export interface ComparisonTableData {
   rows: string[][];
 }
 
+export interface ReferenceLink {
+  title: string;
+  description: string;
+  url: string;
+}
+
 export interface PlatformContent {
   slug: string;
   name: string;
@@ -34,6 +40,7 @@ export interface PlatformContent {
   architectureDiagram?: ArchitectureDiagramData;
   sections: ContentSection[];
   comparisonTable?: ComparisonTableData;
+  references?: ReferenceLink[];
   learnMoreUrl: string;
   logoUrl?: string;
   videos?: VideoResource[];

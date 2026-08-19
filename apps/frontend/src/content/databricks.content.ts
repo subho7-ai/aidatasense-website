@@ -31,6 +31,14 @@ export const databricksContent: PlatformContent = {
       },
     ],
   },
+  references: [
+    {
+      title: "Databricks Lakehouse Architecture Reference",
+      description:
+        "Databricks' own reference architecture library for GCP — 12 downloadable diagrams covering ingestion (batch, streaming, CDC), ETL pipelines, ML workflows, AI agent applications, BI patterns, and data sharing, all mapped to real GCP services.",
+      url: "https://docs.databricks.com/gcp/en/lakehouse-architecture/reference",
+    },
+  ],
   sections: [
     {
       heading: "What Is a Data Lake",
