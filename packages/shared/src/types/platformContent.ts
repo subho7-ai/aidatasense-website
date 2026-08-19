@@ -2,6 +2,7 @@ export interface ContentSection {
   heading: string;
   body: string;
   bullets?: string[];
+  imageUrl?: string;
 }
 
 export interface VideoResource {

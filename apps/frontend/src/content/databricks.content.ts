@@ -1,5 +1,6 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import architectureDiagramImage from "../assets/databricks-architecture-diagram.png";
+import lakehouseComparisonImage from "../assets/lakehouse-comparison-diagram.png";
 
 export const databricksContent: PlatformContent = {
   slug: "databricks",
@@ -49,6 +50,7 @@ export const databricksContent: PlatformContent = {
     {
       heading: "What Is a Lakehouse",
       body: "A lakehouse is a single architecture that adds the reliability and management features of a data warehouse directly on top of low-cost data lake storage. Instead of running separate systems for BI, data science, and ML — and moving data between them — teams query one copy of the data with warehouse-grade guarantees.",
+      imageUrl: lakehouseComparisonImage,
     },
     {
       heading: "What Is a Delta Table",
