@@ -1,4 +1,5 @@
 import type { PlatformContent } from "@aidatasense/shared";
+import architectureDiagramImage from "../assets/databricks-architecture-diagram.png";
 
 export const databricksContent: PlatformContent = {
   slug: "databricks",
@@ -33,10 +34,11 @@ export const databricksContent: PlatformContent = {
   },
   references: [
     {
-      title: "Databricks Lakehouse Architecture Reference",
+      title: "Databricks Data Intelligence Platform — GCP Reference Architecture",
       description:
-        "Databricks' own reference architecture library for GCP — 12 downloadable diagrams covering ingestion (batch, streaming, CDC), ETL pipelines, ML workflows, AI agent applications, BI patterns, and data sharing, all mapped to real GCP services.",
+        "The full platform overview: how sources, ingestion, transformation, processing, serving, and analytics connect end-to-end on Google Cloud.",
       url: "https://docs.databricks.com/gcp/en/lakehouse-architecture/reference",
+      imageUrl: architectureDiagramImage,
     },
   ],
   sections: [

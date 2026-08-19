@@ -29,6 +29,7 @@ export interface ReferenceLink {
   title: string;
   description: string;
   url: string;
+  imageUrl?: string;
 }
 
 export interface PlatformContent {

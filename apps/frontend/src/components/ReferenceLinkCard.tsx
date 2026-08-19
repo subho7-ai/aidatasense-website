@@ -1,6 +1,24 @@
 import type { ReferenceLink } from "@aidatasense/shared";
 
-export function ReferenceLinkCard({ title, description, url }: ReferenceLink) {
+export function ReferenceLinkCard({ title, description, url, imageUrl }: ReferenceLink) {
+  if (imageUrl) {
+    return (
+      <div className="mt-6 max-w-md rounded-xl border border-slate-200 p-4">
+        <img src={imageUrl} alt={title} className="w-full rounded-lg border border-slate-200" />
+        <p className="mt-3 text-sm font-semibold text-slate-900">{title}</p>
+        <p className="mt-1 text-sm text-slate-600">{description}</p>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+        >
+          View the full reference →
+        </a>
+      </div>
+    );
+  }
+
   return (
     <a
       href={url}
