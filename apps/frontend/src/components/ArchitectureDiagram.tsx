@@ -1,6 +1,6 @@
-import type { ArchitectureDiagramData } from "@aidatasense/shared";
+import type { ArchitectureLayer } from "@aidatasense/shared";
 
-export function ArchitectureDiagram({ layers }: ArchitectureDiagramData) {
+export function ArchitectureDiagram({ layers }: { layers: ArchitectureLayer[] }) {
   return (
     <div className="flex flex-col items-stretch">
       {layers.map((layer, index) => (

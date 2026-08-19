@@ -17,7 +17,8 @@ export interface ArchitectureLayer {
 }
 
 export interface ArchitectureDiagramData {
-  layers: ArchitectureLayer[];
+  layers?: ArchitectureLayer[];
+  summary?: string;
 }
 
 export interface ComparisonTableData {

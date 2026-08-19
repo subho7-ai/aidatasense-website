@@ -36,7 +36,13 @@ export function PlatformPage() {
                   <ReferenceLinkCard key={reference.url} {...reference} className="mt-0 max-w-none" />
                 ))}
             </div>
-            <ArchitectureDiagram layers={content.architectureDiagram.layers} />
+            {content.architectureDiagram.summary ? (
+              <p className="text-slate-600">{content.architectureDiagram.summary}</p>
+            ) : (
+              content.architectureDiagram.layers && (
+                <ArchitectureDiagram layers={content.architectureDiagram.layers} />
+              )
+            )}
           </div>
         </div>
       )}

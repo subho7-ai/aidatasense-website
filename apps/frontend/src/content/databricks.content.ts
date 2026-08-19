@@ -15,23 +15,8 @@ export const databricksContent: PlatformContent = {
     "Unity Catalog delivers centralized governance and fine-grained access control across all data and AI assets",
   ],
   architectureDiagram: {
-    layers: [
-      {
-        title: "Control Plane",
-        description:
-          "The Databricks-managed backend — the web app, job scheduler, and cluster manager. Runs in Databricks' own account, not yours.",
-      },
-      {
-        title: "Compute Plane",
-        description:
-          "Where your data actually gets processed — Spark clusters and SQL warehouses. Runs in your own cloud account (classic) or a Databricks-managed layer (serverless).",
-      },
-      {
-        title: "Your Cloud Storage",
-        description:
-          "Your data lives here as Delta tables (open Parquet format) in ADLS, S3, or GCS. Databricks never owns or copies your data.",
-      },
-    ],
+    summary:
+      "This reference diagram traces data end-to-end across seven stages. Sources (files, IoT, databases, business apps) flow into Ingest (Lakeflow Connect, Auto Loader) for batch, streaming, and CDC loads. Transform (Pipelines, Spark/Photon) cleans and reshapes the data, which Query/Process (data warehousing, ML, GenAI apps via Mosaic AI) then works with, all under one Unity Catalog governance layer. Results reach users through Serve (SQL, AI/BI, operational databases) and Analyse (dashboards, business apps), while a separate Integrate lane covers identity, governance, AI services, and orchestration wrapping around every stage — with Google Cloud Storage as the common foundation underneath.",
   },
   references: [
     {
