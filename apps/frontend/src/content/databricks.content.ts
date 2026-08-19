@@ -35,7 +35,14 @@ export const databricksContent: PlatformContent = {
     {
       heading: "What Is a Lakehouse",
       body: "A lakehouse is a single architecture that adds the reliability and management features of a data warehouse directly on top of low-cost data lake storage. Instead of running separate systems for BI, data science, and ML — and moving data between them — teams query one copy of the data with warehouse-grade guarantees.",
-      imageUrl: lakehouseComparisonImage,
+      diagram: {
+        title: "Data Warehouse vs. Data Lake vs. Lakehouse",
+        description: "How each architecture routes data to BI, data science, and ML — and why the lakehouse needs one less hop.",
+        url: "https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html",
+        imageUrl: lakehouseComparisonImage,
+      },
+      diagramBrief:
+        "This diagram compares the three approaches side by side. A data warehouse serves BI and reporting from structured data through ETL alone. A data lake adds data science and machine learning on top of raw, multi-format data, but still routes BI and reporting through a separate data warehouse layer fed by that same ETL step. A lakehouse collapses that: BI, reports, data science, and ML all read directly from one data lake, governed by a single metadata and governance layer — no separate warehouse copy, no extra hop.",
     },
     {
       heading: "What Is a Delta Table",

@@ -3,6 +3,8 @@ export interface ContentSection {
   body: string;
   bullets?: string[];
   imageUrl?: string;
+  diagram?: ReferenceLink;
+  diagramBrief?: string;
 }
 
 export interface VideoResource {
