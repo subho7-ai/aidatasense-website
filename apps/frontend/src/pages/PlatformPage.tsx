@@ -19,6 +19,7 @@ export function PlatformPage() {
   }
 
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
+  const isDatabricks = content.slug === "databricks";
 
   // Sections whose heading is about architecture become the "Architecture" nav
   // target; everything else is "Overview". Only matters for platforms that
@@ -30,6 +31,12 @@ export function PlatformPage() {
   const overviewSections = content.sections.filter(
     (section) => !section.heading.toLowerCase().includes("architecture"),
   );
+
+  // Databricks wants its first Overview section (Data Intelligence Platform)
+  // to appear before Architecture, with the rest after — a different flow
+  // than Snowflake/Fabric, where all Overview content precedes Architecture.
+  const preArchitectureSections = isDatabricks ? overviewSections.slice(0, 1) : overviewSections;
+  const postArchitectureSections = isDatabricks ? overviewSections.slice(1) : [];
 
   const header = (
     <>
@@ -84,7 +91,15 @@ export function PlatformPage() {
         </div>
       )}
 
-      {overviewSections.map((section) => (
+      {preArchitectureSections.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
+    </>
+  );
+
+  const postArchitectureBlock = (
+    <>
+      {postArchitectureSections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
 
@@ -133,6 +148,7 @@ export function PlatformPage() {
               {overviewBlock}
             </div>
             {architectureBlock}
+            {postArchitectureBlock}
             {useCaseBlock}
             {docsLink}
           </div>
@@ -147,6 +163,7 @@ export function PlatformPage() {
       {header}
       {architectureBlock}
       {overviewBlock}
+      {postArchitectureBlock}
       {docsLink}
     </>
   );

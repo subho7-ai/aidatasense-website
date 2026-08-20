@@ -31,10 +31,6 @@ export const databricksContent: PlatformContent = {
   ],
   sections: [
     {
-      heading: "What Is a Data Lake",
-      body: "A data lake is a repository that stores raw data in its native format — structured, semi-structured, or unstructured — on cheap cloud object storage. That flexibility is also its weakness: data lakes have no built-in transaction support, no schema enforcement, and no data quality guarantees, so they tend to degrade into unreliable, hard-to-trust \"data swamps\" over time.",
-    },
-    {
       heading: "Data Intelligence Platform",
       body: "A Data Intelligence Platform is a lakehouse with a Data Intelligence Engine layered on top — using generative AI to understand the actual semantics of your specific data, not just its schema. That understanding lets the platform automatically optimize performance for your workloads, enable natural-language data discovery and development so people can query and build without only relying on SQL or code, and apply governance and security consistently, without giving up control over data privacy or IP.",
       diagram: {
@@ -46,6 +42,10 @@ export const databricksContent: PlatformContent = {
       },
       diagramBrief:
         "This diagram stacks the platform from the ground up. An Open Data Lake holds all raw data — logs, text, audio, video, images. Delta Lake sits on top as the unified, reliable storage layer, governed by Unity Catalog for security and cataloging. Wrapping around both is the Data Intelligence Engine, which uses generative AI to understand your data's semantics — and it powers four capabilities at the top: Databricks AI for building and serving custom LLMs, Delta Live Tables for automated data quality, Workflows that optimize job cost from past runs, and Databricks SQL for text-to-SQL querying.",
+    },
+    {
+      heading: "What Is a Data Lake",
+      body: "A data lake is a repository that stores raw data in its native format — structured, semi-structured, or unstructured — on cheap cloud object storage. That flexibility is also its weakness: data lakes have no built-in transaction support, no schema enforcement, and no data quality guarantees, so they tend to degrade into unreliable, hard-to-trust \"data swamps\" over time.",
     },
     {
       heading: "What Is a Delta Table",
