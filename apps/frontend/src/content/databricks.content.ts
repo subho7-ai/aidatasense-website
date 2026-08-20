@@ -1,6 +1,6 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import architectureDiagramImage from "../assets/databricks-architecture-diagram.png";
-import lakehouseComparisonImage from "../assets/lakehouse-comparison-diagram.png";
+import dataIntelligencePlatformDiagram from "../assets/data-intelligence-platform-diagram.png";
 
 export const databricksContent: PlatformContent = {
   slug: "databricks",
@@ -36,13 +36,14 @@ export const databricksContent: PlatformContent = {
       heading: "What Is a Lakehouse",
       body: "A lakehouse is a single architecture that adds the reliability and management features of a data warehouse directly on top of low-cost data lake storage. Instead of running separate systems for BI, data science, and ML — and moving data between them — teams query one copy of the data with warehouse-grade guarantees.",
       diagram: {
-        title: "Data Warehouse vs. Data Lake vs. Lakehouse",
-        description: "How each architecture routes data to BI, data science, and ML — and why the lakehouse needs one less hop.",
-        url: "https://www.databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html",
-        imageUrl: lakehouseComparisonImage,
+        title: "What Is a Data Intelligence Platform",
+        description:
+          "How Databricks layers a Data Intelligence Engine — generative AI plus lakehouse unification — on top of the lakehouse to add natural-language data discovery and unified governance.",
+        url: "https://www.databricks.com/blog/what-is-a-data-intelligence-platform",
+        imageUrl: dataIntelligencePlatformDiagram,
       },
       diagramBrief:
-        "This diagram compares the three approaches side by side. A data warehouse serves BI and reporting from structured data through ETL alone. A data lake adds data science and machine learning on top of raw, multi-format data, but still routes BI and reporting through a separate data warehouse layer fed by that same ETL step. A lakehouse collapses that: BI, reports, data science, and ML all read directly from one data lake, governed by a single metadata and governance layer — no separate warehouse copy, no extra hop.",
+        "This diagram stacks the platform from the ground up. An Open Data Lake holds all raw data — logs, text, audio, video, images. Delta Lake sits on top as the unified, reliable storage layer, governed by Unity Catalog for security and cataloging. Wrapping around both is the Data Intelligence Engine, which uses generative AI to understand your data's semantics — and it powers four capabilities at the top: Databricks AI for building and serving custom LLMs, Delta Live Tables for automated data quality, Workflows that optimize job cost from past runs, and Databricks SQL for text-to-SQL querying.",
     },
     {
       heading: "What Is a Delta Table",
