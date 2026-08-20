@@ -19,7 +19,7 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
       <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>
       {content.architectureBullets.length > 0 && (
         <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-          {content.architectureBullets.slice(0, 3).map((bullet) => (
+          {content.architectureBullets.map((bullet) => (
             <li key={bullet} className="flex gap-2">
               <span className="text-indigo-500">•</span>
               <span>{bullet}</span>
@@ -29,7 +29,9 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
       )}
       <Link
         to={to}
-        className="mt-auto pt-5 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+        className={`inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500 ${
+          content.slug === "databricks" ? "mt-5" : "mt-auto pt-5"
+        }`}
       >
         Learn more →
       </Link>

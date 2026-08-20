@@ -10,9 +10,11 @@ export const databricksContent: PlatformContent = {
   heroSummary:
     "Databricks unifies data warehousing and data lakes into a single lakehouse architecture, giving teams one platform for analytics, data engineering, and AI.",
   architectureBullets: [
-    "Unified architecture that combines the reliability of a data warehouse with the scale and flexibility of a data lake",
-    "Delta Lake provides an open, transactional storage layer for reliable, high-performance data pipelines",
-    "Unity Catalog delivers centralized governance and fine-grained access control across all data and AI assets",
+    "Lakehouse Foundation: Uses open storage layers like Delta Lake and Apache Iceberg for ACID transactions directly on cloud storage.",
+    "Processing Engines: Powered by Apache Spark and the high-performance Photon query engine for large-scale data processing.",
+    "Unity Catalog: Provides centralized, cross-cloud governance, data lineage, and security.",
+    "AI & Machine Learning: Integrates MLflow and Mosaic AI tools to build, fine-tune, and deploy custom language models and compound AI systems.",
+    "Multi-Cloud Support: Runs natively across major cloud providers including AWS, Microsoft Azure, and Google Cloud.",
   ],
   architectureDiagram: {
     summary:
