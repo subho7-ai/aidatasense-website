@@ -17,8 +17,38 @@ export const databricksContent: PlatformContent = {
     "Multi-Cloud Support: Runs natively across major cloud providers including AWS, Microsoft Azure, and Google Cloud.",
   ],
   architectureDiagram: {
-    summary:
-      "This reference diagram traces data end-to-end across seven stages. Sources (files, IoT, databases, business apps) flow into Ingest (Lakeflow Connect, Auto Loader) for batch, streaming, and CDC loads. Transform (Pipelines, Spark/Photon) cleans and reshapes the data, which Query/Process (data warehousing, ML, GenAI apps via Mosaic AI) then works with, all under one Unity Catalog governance layer. Results reach users through Serve (SQL, AI/BI, operational databases) and Analyse (dashboards, business apps), while a separate Integrate lane covers identity, governance, AI services, and orchestration wrapping around every stage — with Google Cloud Storage as the common foundation underneath.",
+    summaryBullets: [
+      "Sources — files, IoT devices, databases, and business apps generate the raw data that feeds the platform.",
+      "Ingest — Lakeflow Connect and Auto Loader bring that data in via batch, streaming, or CDC (Change Data Capture) loads.",
+      "Transform — Pipelines and the Spark/Photon engine clean and reshape the ingested data.",
+      "Query/Process — data warehousing, ML, and GenAI apps (via Mosaic AI) work with the transformed data, all governed by one Unity Catalog layer.",
+      "Serve — results reach users through SQL, AI/BI, and operational databases.",
+      "Analyse — dashboards and business apps consume the served data for reporting and decisions.",
+      "Integrate — a separate lane covering identity, governance, AI services, and orchestration wraps around every stage, with Google Cloud Storage underlying all of it as the common foundation.",
+    ],
+    accordion: {
+      heading: "ETL Breakdown",
+      items: [
+        {
+          title: "Extract",
+          body: "Pulling data from its original sources — files, IoT devices, databases, and business applications — using tools like Lakeflow Connect for batch, streaming, and CDC (Change Data Capture) loads.",
+        },
+        {
+          title: "Transform",
+          body: "Cleaning and reshaping raw data using Pipelines and the Spark/Photon processing engine, preparing it for downstream use in warehousing, ML, and AI applications.",
+        },
+        {
+          title: "Load",
+          body: "Delivering the processed data to where it's consumed — via Query/Process (data warehousing, ML, and GenAI apps through Mosaic AI), then out to end users through Serve (SQL, AI/BI, operational databases) and Analyse (dashboards, business apps).",
+        },
+      ],
+    },
+    extraSection: {
+      heading: "Zero-Copy Data Sharing",
+      body: "Large organizations often spread data across multiple lakes, sometimes totaling terabytes. Sharing that data the traditional way — physically copying it to another location — is slow, costly, and hard to keep secure once it leaves its original home. Databricks avoids this with Delta Sharing: instead of copying data, you grant time-limited access to it directly, wherever it already lives. Access is automatically revoked when it expires, and the data itself never moves. That cuts down on duplicate storage and data-transfer (egress) costs, and it works across cloud providers — data sitting in Azure, for example, can be securely queried by a partner on GCP or consumed in AWS without ever leaving Azure, making the approach cloud-agnostic.",
+      linkLabel: "Learn more →",
+      linkUrl: "https://www.databricks.com/product/delta-sharing",
+    },
   },
   references: [
     {

@@ -1,4 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
+import { Accordion } from "../components/Accordion";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
@@ -66,7 +67,16 @@ export function PlatformPage() {
                   <ReferenceLinkCard key={reference.url} {...reference} className="mt-0 max-w-none" />
                 ))}
             </div>
-            {content.architectureDiagram.summary ? (
+            {content.architectureDiagram.summaryBullets ? (
+              <ul className="space-y-2 text-slate-600">
+                {content.architectureDiagram.summaryBullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="text-indigo-500">•</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : content.architectureDiagram.summary ? (
               <p className="text-slate-600">{content.architectureDiagram.summary}</p>
             ) : (
               content.architectureDiagram.layers && (
@@ -74,6 +84,34 @@ export function PlatformPage() {
               )
             )}
           </div>
+
+          {content.architectureDiagram.accordion && (
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {content.architectureDiagram.accordion.heading}
+              </h3>
+              <Accordion items={content.architectureDiagram.accordion.items} />
+            </div>
+          )}
+
+          {content.architectureDiagram.extraSection && (
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {content.architectureDiagram.extraSection.heading}
+              </h3>
+              <p className="mt-3 text-slate-600">{content.architectureDiagram.extraSection.body}</p>
+              {content.architectureDiagram.extraSection.linkUrl && (
+                <a
+                  href={content.architectureDiagram.extraSection.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                >
+                  {content.architectureDiagram.extraSection.linkLabel ?? "Learn more →"}
+                </a>
+              )}
+            </div>
+          )}
         </div>
       )}
 

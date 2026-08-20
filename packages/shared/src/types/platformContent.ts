@@ -29,9 +29,25 @@ export interface ArchitectureLayer {
   description: string;
 }
 
+export interface AccordionItem {
+  title: string;
+  body: string;
+}
+
 export interface ArchitectureDiagramData {
   layers?: ArchitectureLayer[];
   summary?: string;
+  summaryBullets?: string[];
+  accordion?: {
+    heading: string;
+    items: AccordionItem[];
+  };
+  extraSection?: {
+    heading: string;
+    body: string;
+    linkLabel?: string;
+    linkUrl?: string;
+  };
 }
 
 export interface ComparisonTableData {
