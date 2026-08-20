@@ -16,7 +16,7 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
       <Link to={to} className="mt-1 text-sm font-medium text-indigo-600 hover:text-indigo-500">
         {content.tagline}
       </Link>
-      <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>
+      {content.slug !== "databricks" && <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>}
       {content.architectureBullets.length > 0 && (
         <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
           {content.architectureBullets.map((bullet) => (
