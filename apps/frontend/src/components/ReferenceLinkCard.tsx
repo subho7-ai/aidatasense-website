@@ -9,7 +9,7 @@ export function ReferenceLinkCard({
 }: ReferenceLink & { className?: string }) {
   if (imageUrl) {
     return (
-      <div className={`${className} rounded-xl border border-slate-200 p-4`}>
+      <div className={`${className} flex h-full flex-col rounded-xl border border-slate-200 p-4`}>
         <img src={imageUrl} alt={title} className="w-full rounded-lg border border-slate-200" />
         <p className="mt-3 text-sm font-semibold text-slate-900">{title}</p>
         <p className="mt-1 text-sm text-slate-600">{description}</p>
@@ -17,7 +17,7 @@ export function ReferenceLinkCard({
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+          className="mt-auto pt-2 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
         >
           View the full reference →
         </a>
