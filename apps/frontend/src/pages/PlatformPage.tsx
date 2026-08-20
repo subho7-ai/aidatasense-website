@@ -64,8 +64,21 @@ export function PlatformPage() {
             <div>
               {content.references &&
                 content.references.map((reference) => (
-                  <ReferenceLinkCard key={reference.url} {...reference} className="mt-0 max-w-none" />
+                  <ReferenceLinkCard
+                    key={reference.url}
+                    {...reference}
+                    className="mt-0 max-w-none"
+                    fillHeight={!content.architectureDiagram?.accordion}
+                  />
                 ))}
+              {content.architectureDiagram.accordion && (
+                <div className="mt-6">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    {content.architectureDiagram.accordion.heading}
+                  </h3>
+                  <Accordion items={content.architectureDiagram.accordion.items} />
+                </div>
+              )}
             </div>
             {content.architectureDiagram.summaryBullets ? (
               <ul className="space-y-2 text-slate-600">
@@ -84,15 +97,6 @@ export function PlatformPage() {
               )
             )}
           </div>
-
-          {content.architectureDiagram.accordion && (
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold text-slate-900">
-                {content.architectureDiagram.accordion.heading}
-              </h3>
-              <Accordion items={content.architectureDiagram.accordion.items} />
-            </div>
-          )}
 
           {content.architectureDiagram.extraSection && (
             <div className="mt-8">
