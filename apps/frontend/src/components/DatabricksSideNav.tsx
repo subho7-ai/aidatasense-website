@@ -10,14 +10,38 @@ export function DatabricksSideNav() {
   const [activeId, setActiveId] = useState(NAV_ITEMS[0].id);
 
   useEffect(() => {
+    const READING_LINE = 180;
+    const intersecting = new Set<string>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting);
-        if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            intersecting.add(entry.target.id);
+          } else {
+            intersecting.delete(entry.target.id);
+          }
+        });
+
+        // Among currently-intersecting sections, pick whichever one's top edge
+        // sits closest to the reading line — avoids misfiring when two
+        // adjacent sections' edges both graze the observed band at once.
+        let closestId: string | null = null;
+        let closestDistance = Infinity;
+        for (const id of intersecting) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          const distance = Math.abs(el.getBoundingClientRect().top - READING_LINE);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestId = id;
+          }
+        }
+        if (closestId) {
+          setActiveId(closestId);
         }
       },
-      { rootMargin: "-180px 0px -70% 0px" },
+      { rootMargin: `-${READING_LINE}px 0px -70% 0px` },
     );
 
     const elements = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(

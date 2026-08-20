@@ -32,7 +32,10 @@ export function PlatformPage() {
   );
 
   const architectureBlock = content.architectureDiagram && (
-    <div id={isDatabricks ? "architecture" : undefined} className="border-t border-slate-200 py-8">
+    <div
+      id={isDatabricks ? "architecture" : undefined}
+      className={`border-t border-slate-200 py-8 ${isDatabricks ? "scroll-mt-[180px]" : ""}`}
+    >
       <h2 className="text-2xl font-semibold text-slate-900">Architecture</h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <div>
@@ -67,7 +70,7 @@ export function PlatformPage() {
   );
 
   const useCaseBlock = isDatabricks && (
-    <div id="use-case" className="border-t border-slate-200 py-8">
+    <div id="use-case" className="scroll-mt-[180px] border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">Use case</h2>
       <p className="mt-3 text-slate-600">
         [Placeholder] Real-world Databricks use cases will go here — replace with real content.
@@ -102,7 +105,9 @@ export function PlatformPage() {
           <DatabricksSideNav />
           <div>
             {header}
-            <div id="overview">{overviewBlock}</div>
+            <div id="overview" className="scroll-mt-[180px]">
+              {overviewBlock}
+            </div>
             {architectureBlock}
             {useCaseBlock}
             {docsLink}
