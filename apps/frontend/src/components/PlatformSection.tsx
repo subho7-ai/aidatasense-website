@@ -19,12 +19,20 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
       {content.slug !== "databricks" && <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>}
       {content.architectureBullets.length > 0 && (
         <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-          {content.architectureBullets.map((bullet) => (
-            <li key={bullet} className="flex gap-2">
-              <span className="text-indigo-500">•</span>
-              <span>{bullet}</span>
-            </li>
-          ))}
+          {content.architectureBullets.map((bullet) => {
+            const colonIndex = bullet.indexOf(":");
+            const label = colonIndex !== -1 ? bullet.slice(0, colonIndex) : null;
+            const rest = colonIndex !== -1 ? bullet.slice(colonIndex + 1) : bullet;
+            return (
+              <li key={bullet} className="flex gap-2">
+                <span className="text-indigo-500">•</span>
+                <span>
+                  {label && <strong className="font-semibold text-slate-900">{label}:</strong>}
+                  {rest}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       )}
       <Link

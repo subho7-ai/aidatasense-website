@@ -6,7 +6,7 @@ const NAV_ITEMS = [
   { id: "use-case", label: "Use case" },
 ];
 
-export function DatabricksSideNav() {
+export function PlatformSideNav() {
   const [activeId, setActiveId] = useState(NAV_ITEMS[0].id);
 
   useEffect(() => {

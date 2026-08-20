@@ -35,8 +35,8 @@ export const databricksContent: PlatformContent = {
       body: "A data lake is a repository that stores raw data in its native format — structured, semi-structured, or unstructured — on cheap cloud object storage. That flexibility is also its weakness: data lakes have no built-in transaction support, no schema enforcement, and no data quality guarantees, so they tend to degrade into unreliable, hard-to-trust \"data swamps\" over time.",
     },
     {
-      heading: "What Is a Lakehouse",
-      body: "A lakehouse is a single architecture that adds the reliability and management features of a data warehouse directly on top of low-cost data lake storage. Instead of running separate systems for BI, data science, and ML — and moving data between them — teams query one copy of the data with warehouse-grade guarantees.",
+      heading: "Data Intelligence Platform",
+      body: "A Data Intelligence Platform is a lakehouse with a Data Intelligence Engine layered on top — using generative AI to understand the actual semantics of your specific data, not just its schema. That understanding lets the platform automatically optimize performance for your workloads, enable natural-language data discovery and development so people can query and build without only relying on SQL or code, and apply governance and security consistently, without giving up control over data privacy or IP.",
       diagram: {
         title: "What Is a Data Intelligence Platform",
         description:
