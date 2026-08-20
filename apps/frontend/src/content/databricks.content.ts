@@ -61,13 +61,16 @@ export const databricksContent: PlatformContent = {
       body: "Databricks connects seamlessly with a broad ecosystem of technology partners — from data ingestion tools like Fivetran, to BI platforms like Tableau and Power BI, to governance tools like Monte Carlo. Partner Connect makes these integrations fast to set up, often with just a few clicks.",
       integrations: {
         categories: [
-          "Data Ingestion",
-          "Data Preparation & Transformation",
-          "Machine Learning",
-          "BI & Visualization",
-          "Reverse ETL",
-          "Data Governance",
-          "Semantic Layer",
+          { label: "Data Ingestion", url: "https://docs.databricks.com/gcp/en/integrations/#data-ingestion" },
+          {
+            label: "Data Preparation & Transformation",
+            url: "https://docs.databricks.com/gcp/en/integrations/#data-preparation-and-transformation",
+          },
+          { label: "Machine Learning", url: "https://docs.databricks.com/gcp/en/integrations/#machine-learning" },
+          { label: "BI & Visualization", url: "https://docs.databricks.com/gcp/en/integrations/#bi-and-visualization" },
+          { label: "Reverse ETL", url: "https://docs.databricks.com/gcp/en/integrations/#reverse-etl" },
+          { label: "Data Governance", url: "https://docs.databricks.com/gcp/en/integrations/#data-governance" },
+          { label: "Semantic Layer", url: "https://docs.databricks.com/gcp/en/integrations/#semantic-layer" },
         ],
         viewAllUrl: "https://docs.databricks.com/gcp/en/integrations/",
       },

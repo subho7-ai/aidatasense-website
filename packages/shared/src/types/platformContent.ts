@@ -1,5 +1,10 @@
+export interface IntegrationCategory {
+  label: string;
+  url: string;
+}
+
 export interface IntegrationsData {
-  categories: string[];
+  categories: IntegrationCategory[];
   viewAllUrl: string;
 }
 

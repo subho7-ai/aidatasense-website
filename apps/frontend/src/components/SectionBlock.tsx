@@ -29,12 +29,15 @@ export function SectionBlock({ section }: { section: ContentSection }) {
         <>
           <div className="mt-4 flex flex-wrap gap-2">
             {section.integrations.categories.map((category) => (
-              <span
-                key={category}
-                className="rounded-full border border-indigo-200 bg-white px-4 py-1.5 text-sm font-semibold text-indigo-700 shadow-sm"
+              <a
+                key={category.label}
+                href={category.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-indigo-200 bg-white px-4 py-1.5 text-sm font-semibold text-indigo-700 shadow-sm transition-colors hover:bg-indigo-50"
               >
-                {category}
-              </span>
+                {category.label}
+              </a>
             ))}
           </div>
           <a
