@@ -30,12 +30,12 @@ export function DatabricksSideNav() {
 
   return (
     <nav className="sticky top-[180px] hidden self-start lg:block">
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {NAV_ITEMS.map((item) => (
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className={`block border-l-2 py-1.5 pl-4 text-sm transition-colors ${
+              className={`block border-l-[3px] py-2 pl-4 text-base transition-colors ${
                 activeId === item.id
                   ? "border-indigo-600 font-semibold text-indigo-600"
                   : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-indigo-600"
