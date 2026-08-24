@@ -37,6 +37,12 @@ export const snowflakeContent: PlatformContent = {
         "The takeaway: both platforms recognized the same gap — a normal API gateway isn't enough for AI — and built a dedicated governance layer to close it.",
       ],
     },
+    {
+      heading: "The Bigger Picture: The LLM Mesh",
+      body: [
+        "This pattern isn't unique to any one vendor. In \"The LLM Mesh\" (O'Reilly, 2026), author Kurt Muehmel describes it as an industry-wide architecture: a unified gateway that governs every AI agent, tool, and model in an organization — enforcing security, tracking cost, and providing central discovery, all through one abstraction layer instead of scattered, one-off integrations. Databricks' Unity AI Gateway and Snowflake's Cortex AI Gateway are both real-world implementations of this same idea.",
+      ],
+    },
   ],
   learnMoreUrl: "https://docs.snowflake.com/",
 };

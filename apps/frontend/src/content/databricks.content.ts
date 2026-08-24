@@ -127,6 +127,12 @@ export const databricksContent: PlatformContent = {
         "Behind the scenes, Unity AI Gateway governs all of this. It's Databricks' centralized control plane for AI — managing cost, security, and access across every model, agent, and tool your organization uses, whether it's Genie, a custom AI agent, or an external model. It answers a different question than data governance: not \"who can access this data,\" but \"what is this AI system allowed to do right now.\"",
       ],
     },
+    {
+      heading: "The Bigger Picture: The LLM Mesh",
+      body: [
+        "This pattern isn't unique to any one vendor. In \"The LLM Mesh\" (O'Reilly, 2026), author Kurt Muehmel describes it as an industry-wide architecture: a unified gateway that governs every AI agent, tool, and model in an organization — enforcing security, tracking cost, and providing central discovery, all through one abstraction layer instead of scattered, one-off integrations. Databricks' Unity AI Gateway and Snowflake's Cortex AI Gateway are both real-world implementations of this same idea.",
+      ],
+    },
   ],
   comparisonTable: {
     title: "Data Lake vs. Lakehouse",
