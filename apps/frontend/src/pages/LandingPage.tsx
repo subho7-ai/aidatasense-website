@@ -11,9 +11,29 @@ export function LandingPage() {
             Master the modern data & AI stack
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            aidatasense is an education platform for technically skilled employees and students —
-            explore the architectures behind Databricks, Snowflake, and Microsoft Fabric, track the
-            frontier of agentic AI, and take courses that build real skill.
+            Your data holds real value — but only if you know how to unlock it. Left unused, it's
+            not an asset; it's a recurring cost. Storage bills stack up, maintenance never stops,
+            and untapped data quietly becomes clutter instead of insight.
+          </p>
+          <p className="mt-4 text-lg text-slate-600">
+            aidatasense helps you change that. We set up and integrate your enterprise data
+            platform with AI, turning scattered, underused data into a real competitive advantage
+            — the gold hiding in your pile.
+          </p>
+          <p className="mt-4 text-lg text-slate-600">
+            Whether you're modernizing a data lake, adopting a lakehouse architecture, or tracking
+            the frontier of agentic AI, we help you design a platform that actually works for your
+            team, not against it.
+          </p>
+          <p className="mt-4 text-lg text-slate-600">
+            But we don't stop at the enterprise side. aidatasense also provides remote educational
+            classes for students of all ages — anyone who can run a keyboard and mouse can start
+            learning. From foundational concepts to hands-on platform skills, we make modern data
+            and AI education accessible to everyone, no matter where you're starting from.
+          </p>
+          <p className="mt-4 text-lg text-slate-600">
+            Ready to see what's possible? Browse our courses and peek inside — your next skill, or
+            your next breakthrough, starts here.
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Link
