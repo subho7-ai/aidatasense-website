@@ -160,9 +160,22 @@ export function PlatformPage() {
   const useCaseBlock = hasSideNav && (
     <div id="use-case" className="scroll-mt-[180px] border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">Use case</h2>
-      <p className="mt-3 text-slate-600">
-        [Placeholder] Real-world {content.name} use cases will go here — replace with real content.
-      </p>
+      {content.useCase ? (
+        <>
+          <h3 className="mt-6 text-lg font-semibold text-slate-900">{content.useCase.title}</h3>
+          {(Array.isArray(content.useCase.body) ? content.useCase.body : [content.useCase.body]).map(
+            (paragraph, index) => (
+              <p key={index} className="mt-3 text-slate-600">
+                {paragraph}
+              </p>
+            ),
+          )}
+        </>
+      ) : (
+        <p className="mt-3 text-slate-600">
+          [Placeholder] Real-world {content.name} use cases will go here — replace with real content.
+        </p>
+      )}
     </div>
   );
 

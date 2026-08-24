@@ -3,9 +3,15 @@ export interface IntegrationCategory {
   url: string;
 }
 
+export interface IntegrationsCallout {
+  title: string;
+  body: string;
+}
+
 export interface IntegrationsData {
   categories: IntegrationCategory[];
   viewAllUrl: string;
+  callout?: IntegrationsCallout;
 }
 
 export interface ContentSection {
@@ -73,6 +79,10 @@ export interface PlatformContent {
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
   aiSections?: ContentSection[];
+  useCase?: {
+    title: string;
+    body: string | string[];
+  };
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];
   learnMoreUrl: string;

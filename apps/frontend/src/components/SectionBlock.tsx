@@ -54,6 +54,12 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           >
             View all integrations →
           </a>
+          {section.integrations.callout && (
+            <div className="mt-4 rounded-xl border border-indigo-200 bg-indigo-50/50 p-4">
+              <p className="text-sm font-semibold text-slate-900">{section.integrations.callout.title}</p>
+              <p className="mt-1 text-sm text-slate-600">{section.integrations.callout.body}</p>
+            </div>
+          )}
         </>
       )}
     </div>

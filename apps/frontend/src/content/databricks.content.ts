@@ -105,6 +105,10 @@ export const databricksContent: PlatformContent = {
           { label: "Semantic Layer", url: "https://docs.databricks.com/gcp/en/integrations/#semantic-layer" },
         ],
         viewAllUrl: "https://docs.databricks.com/gcp/en/integrations/",
+        callout: {
+          title: "Power BI Integration",
+          body: "Databricks connects natively to Power BI, letting analysts build live reports and dashboards directly on lakehouse data — no exports, no stale copies, just real-time governed access.",
+        },
       },
     },
   ],
@@ -134,6 +138,10 @@ export const databricksContent: PlatformContent = {
       ["File format", "Any format, often proprietary", "Open format (Parquet via Delta Lake)"],
       ["Concurrent reads & writes", "Prone to conflicts", "Reliable, isolated transactions"],
     ],
+  },
+  useCase: {
+    title: "Customer Analytics at Scale",
+    body: "A retail company collects customer data from its website, mobile app, in-store POS systems, and loyalty program — each in a different format, spread across separate databases. Using Databricks, the company ingests all of this into a single lakehouse, where data engineers clean and unify it with Delta Live Tables. Data scientists then build a customer segmentation model using MLflow, identifying high-value shopper groups. Marketing teams query these segments directly through Databricks SQL to launch targeted campaigns, while executives track results on live dashboards — all from one governed platform, with Unity Catalog ensuring only the right teams see the right data.",
   },
   learnMoreUrl: "https://docs.databricks.com/",
   videos: [
