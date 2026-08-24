@@ -108,6 +108,22 @@ export const databricksContent: PlatformContent = {
       },
     },
   ],
+  aiSections: [
+    {
+      heading: "What Is a Gateway?",
+      body: [
+        "In cloud and API architecture, a gateway is a common, well-established pattern — a single entry point that receives requests, applies policies, and routes traffic to the right backend service. Tools like Apigee (API management) or HL7 gateways (healthcare data integration) are classic examples: they're built to route, authenticate, and manage traffic between systems.",
+        "But a traditional gateway isn't built for AI. It can route a request and check a login — but it can't count tokens, manage streaming responses, track which AI model answered a question, or enforce spending limits on an LLM call. AI workloads need something purpose-built: an AI Gateway — a control layer designed specifically to govern models, agents, and AI tool usage, not just generic network traffic.",
+      ],
+    },
+    {
+      heading: "Databricks: Genie + Unity AI Gateway",
+      body: [
+        "Genie is Databricks' AI assistant for talking to your data in plain language. Instead of writing SQL, you ask a question — Genie translates it into a query, grounded in your governed Unity Catalog data, and returns an answer.",
+        "Behind the scenes, Unity AI Gateway governs all of this. It's Databricks' centralized control plane for AI — managing cost, security, and access across every model, agent, and tool your organization uses, whether it's Genie, a custom AI agent, or an external model. It answers a different question than data governance: not \"who can access this data,\" but \"what is this AI system allowed to do right now.\"",
+      ],
+    },
+  ],
   comparisonTable: {
     title: "Data Lake vs. Lakehouse",
     headers: ["Capability", "Data Lake", "Lakehouse"],

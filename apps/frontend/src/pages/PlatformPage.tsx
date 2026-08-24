@@ -21,6 +21,14 @@ export function PlatformPage() {
 
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
   const isDatabricks = content.slug === "databricks";
+  const hasAiSection = Boolean(content.aiSections?.length);
+
+  const navItems = [
+    ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
+    { id: "overview", label: "Overview" },
+    { id: "architecture", label: "Architecture" },
+    { id: "use-case", label: "Use case" },
+  ];
 
   // Sections whose heading is about architecture become the "Architecture" nav
   // target; everything else is "Overview". Only matters for platforms that
@@ -158,6 +166,14 @@ export function PlatformPage() {
     </div>
   );
 
+  const aiBlock = hasAiSection && (
+    <div id="ai" className="scroll-mt-[180px]">
+      {content.aiSections!.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
+    </div>
+  );
+
   const docsLink = (
     <a
       href={content.learnMoreUrl}
@@ -183,9 +199,10 @@ export function PlatformPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_320px]" : "lg:grid-cols-[180px_1fr]"}`}>
-          <PlatformSideNav />
+          <PlatformSideNav items={navItems} />
           <div>
             {header}
+            {aiBlock}
             <div id="overview" className="scroll-mt-[180px]">
               {overviewBlock}
             </div>

@@ -5,7 +5,15 @@ export function SectionBlock({ section }: { section: ContentSection }) {
   return (
     <div className="border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>
-      <p className="mt-3 text-slate-600">{section.body}</p>
+      {Array.isArray(section.body) ? (
+        section.body.map((paragraph, index) => (
+          <p key={index} className="mt-3 text-slate-600">
+            {paragraph}
+          </p>
+        ))
+      ) : (
+        <p className="mt-3 text-slate-600">{section.body}</p>
+      )}
       {section.diagram && (
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
           <ReferenceLinkCard {...section.diagram} className="mt-0 max-w-none" />

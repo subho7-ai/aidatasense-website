@@ -10,7 +10,7 @@ export interface IntegrationsData {
 
 export interface ContentSection {
   heading: string;
-  body: string;
+  body: string | string[];
   bullets?: string[];
   imageUrl?: string;
   diagram?: ReferenceLink;
@@ -72,6 +72,7 @@ export interface PlatformContent {
   architectureDiagram?: ArchitectureDiagramData;
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
+  aiSections?: ContentSection[];
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];
   learnMoreUrl: string;

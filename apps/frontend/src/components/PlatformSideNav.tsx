@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
-const NAV_ITEMS = [
-  { id: "overview", label: "Overview" },
-  { id: "architecture", label: "Architecture" },
-  { id: "use-case", label: "Use case" },
-];
+export interface PlatformNavItem {
+  id: string;
+  label: string;
+}
 
-export function PlatformSideNav() {
-  const [activeId, setActiveId] = useState(NAV_ITEMS[0].id);
+export function PlatformSideNav({ items }: { items: PlatformNavItem[] }) {
+  const [activeId, setActiveId] = useState(items[0].id);
 
   useEffect(() => {
     const READING_LINE = 180;
@@ -44,18 +43,18 @@ export function PlatformSideNav() {
       { rootMargin: `-${READING_LINE}px 0px -70% 0px` },
     );
 
-    const elements = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(
+    const elements = items.map((item) => document.getElementById(item.id)).filter(
       (el): el is HTMLElement => el !== null,
     );
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [items]);
 
   return (
     <nav className="sticky top-[180px] hidden self-start lg:block">
       <ul className="space-y-2">
-        {NAV_ITEMS.map((item) => (
+        {items.map((item) => (
           <li key={item.id}>
             <a
               href={`#${item.id}`}
