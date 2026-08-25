@@ -200,10 +200,10 @@ export function PlatformPage() {
   const sidebarContent = (
     <>
       {content.videos && <VideoSection videos={content.videos} />}
-      {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
       {content.sidebarSections?.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+      {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
     </>
   );
 

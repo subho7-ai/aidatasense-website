@@ -5,6 +5,7 @@ import dataIntelligencePlatformDiagram from "../assets/data-intelligence-platfor
 export function PlatformSection({ content }: { content: PlatformContent }) {
   const to = content.slug === "ai-progress" ? "/ai-progress" : `/platforms/${content.slug}`;
   const isDatabricks = content.slug === "databricks";
+  const isSnowflake = content.slug === "snowflake";
   // Fabric's logo is a much lighter pastel teal than Snowflake's/agentic AI's icons, so it
   // needs a higher opacity to read as equally visible at a glance.
   const logoWatermarkOpacity = content.slug === "azure-fabric" ? 0.22 : 0.1;
@@ -30,7 +31,11 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
           src={content.logoUrl}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-3 right-3 -z-10 h-auto w-[130px]"
+          className={`pointer-events-none absolute -z-10 h-auto ${
+            isSnowflake
+              ? "left-1/2 top-1/2 w-[190px] -translate-x-1/2 -translate-y-1/2"
+              : "bottom-3 right-3 w-[130px]"
+          }`}
           style={{ opacity: logoWatermarkOpacity, mixBlendMode: "multiply" }}
         />
       )}
