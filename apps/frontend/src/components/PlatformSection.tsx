@@ -15,13 +15,13 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
       {isDatabricks && (
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10"
+          className="absolute inset-6 -z-10 rounded-xl"
           style={{
             backgroundImage: `linear-gradient(135deg, rgba(99,102,241,0.4), rgba(255,255,255,0.1)), url(${dataIntelligencePlatformDiagram})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "multiply",
-            opacity: 0.3,
+            opacity: 0.18,
             filter: "grayscale(60%) blur(14px)",
           }}
         />
