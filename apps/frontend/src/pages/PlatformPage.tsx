@@ -48,13 +48,7 @@ export function PlatformPage() {
   const postArchitectureSections = isDatabricks ? overviewSections.slice(1) : [];
 
   const header = (
-    <div className={isDatabricks ? "relative isolate overflow-hidden" : undefined}>
-      {isDatabricks && (
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/assets/hero-network-pattern.svg')] bg-cover bg-center opacity-[0.14]"
-        />
-      )}
+    <>
       <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
         {content.tagline}
       </Link>
@@ -63,7 +57,7 @@ export function PlatformPage() {
         {content.name}
       </h1>
       <p className="mt-4 text-lg text-slate-600">{content.heroSummary}</p>
-    </div>
+    </>
   );
 
   const architectureBlock = (
@@ -72,15 +66,7 @@ export function PlatformPage() {
       className={hasSideNav ? "scroll-mt-[180px]" : undefined}
     >
       {content.architectureDiagram && (
-        <div
-          className={`border-t border-slate-200 py-8 ${isDatabricks ? "relative isolate overflow-hidden" : ""}`}
-        >
-          {isDatabricks && (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 -z-10 bg-[url('/assets/platforms-blueprint-pattern.svg')] bg-cover bg-center opacity-[0.18]"
-            />
-          )}
+        <div className="border-t border-slate-200 py-8">
           <h2 className="text-2xl font-semibold text-slate-900">Architecture</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <div>
