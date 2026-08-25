@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArticleList } from "../components/ArticleList";
+import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { SectionBlock } from "../components/SectionBlock";
 import { aiProgressContent } from "../content";
 
 export function AiProgressPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="relative isolate mx-auto max-w-4xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
+      <NetworkPatternBackground />
       <Link to="/" className="text-sm font-semibold uppercase tracking-wide text-indigo-600 hover:text-indigo-500">
         {aiProgressContent.tagline}
       </Link>

@@ -2,6 +2,7 @@ import type { Course } from "@aidatasense/shared";
 import { useEffect, useState } from "react";
 import { listCourses } from "../api/courses";
 import { CourseCard } from "../components/CourseCard";
+import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 
 export function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -14,7 +15,8 @@ export function CoursesPage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="relative isolate mx-auto max-w-6xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
+      <NetworkPatternBackground />
       <h1 className="text-3xl font-bold text-slate-900">Courses</h1>
       <p className="mt-2 text-slate-600">Build real skill in the modern data & AI stack.</p>
 
