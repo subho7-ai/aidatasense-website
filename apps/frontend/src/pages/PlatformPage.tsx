@@ -5,6 +5,7 @@ import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
+import { SectionBackground } from "../components/SectionBackground";
 import { SectionBlock } from "../components/SectionBlock";
 import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
@@ -63,8 +64,9 @@ export function PlatformPage() {
   const architectureBlock = (
     <div
       id={hasSideNav ? "architecture" : undefined}
-      className={hasSideNav ? "scroll-mt-[180px]" : undefined}
+      className={hasSideNav ? "relative isolate scroll-mt-[180px] overflow-hidden" : undefined}
     >
+      {hasSideNav && <SectionBackground platformSlug={content.slug} sectionId="architecture" />}
       {content.architectureDiagram && (
         <div className="border-t border-slate-200 py-8">
           <h2 className="text-2xl font-semibold text-slate-900">Architecture</h2>
@@ -158,7 +160,8 @@ export function PlatformPage() {
   );
 
   const useCaseBlock = hasSideNav && (
-    <div id="use-case" className="scroll-mt-[180px] border-t border-slate-200 py-8">
+    <div id="use-case" className="relative isolate scroll-mt-[180px] overflow-hidden border-t border-slate-200 py-8">
+      <SectionBackground platformSlug={content.slug} sectionId="use-case" />
       <h2 className="text-2xl font-semibold text-slate-900">Use case</h2>
       {content.useCase ? (
         <>
@@ -180,7 +183,8 @@ export function PlatformPage() {
   );
 
   const aiBlock = hasAiSection && (
-    <div id="ai" className="scroll-mt-[180px]">
+    <div id="ai" className="relative isolate scroll-mt-[180px] overflow-hidden">
+      <SectionBackground platformSlug={content.slug} sectionId="ai" />
       {content.aiSections!.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
@@ -216,7 +220,8 @@ export function PlatformPage() {
           <div>
             {header}
             {aiBlock}
-            <div id="overview" className="scroll-mt-[180px]">
+            <div id="overview" className="relative isolate scroll-mt-[180px] overflow-hidden">
+              <SectionBackground platformSlug={content.slug} sectionId="overview" />
               {overviewBlock}
             </div>
             {architectureBlock}
