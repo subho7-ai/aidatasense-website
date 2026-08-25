@@ -55,8 +55,12 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
             style={{ transform: "translateZ(20px)" }}
           />
         )}
-        <p className="text-xs font-semibold uppercase tracking-wider text-sky-600">{content.name}</p>
-        <h3 className="mt-1 text-xl font-bold text-slate-900">{content.tagline}</h3>
+        {content.logoUrl && <img src={content.logoUrl} alt={content.name} className="h-7 w-auto self-start" />}
+        <h3 className="mt-1 text-xl font-bold text-[#29B5E8]">
+          <Link to={to} className="transition-colors hover:text-sky-600">
+            {content.tagline}
+          </Link>
+        </h3>
         <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>
         {content.architectureBullets.length > 0 && (
           <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
