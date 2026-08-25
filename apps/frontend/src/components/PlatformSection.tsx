@@ -23,17 +23,12 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
         />
       )}
       {!isDatabricks && content.logoUrl && (
-        <div
+        <img
+          src={content.logoUrl}
+          alt=""
           aria-hidden="true"
-          className="absolute inset-0 -z-10"
-          style={{
-            backgroundImage: `url(${content.logoUrl})`,
-            backgroundSize: "220%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: 0.4,
-            filter: "blur(18px)",
-          }}
+          className="pointer-events-none absolute bottom-3 right-3 -z-10 h-auto w-[130px]"
+          style={{ opacity: 0.1, mixBlendMode: "multiply" }}
         />
       )}
       <h3 className="flex items-center text-xl font-semibold text-slate-900">

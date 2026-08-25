@@ -210,8 +210,10 @@ export function PlatformPage() {
   if (hasSideNav) {
     const hasSidebar = Boolean(content.videos || content.sidebarSections?.length || content.comparisonTable);
     return (
-      <div className="relative isolate mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
-        <NetworkPatternBackground />
+      <div className="relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <NetworkPatternBackground />
+        </div>
         <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_320px]" : "lg:grid-cols-[180px_1fr]"}`}>
           <PlatformSideNav items={navItems} />
           <div>
