@@ -17,7 +17,7 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "multiply",
-            opacity: 0.07,
+            opacity: 0.18,
             filter: "grayscale(60%) blur(14px)",
           }}
         />

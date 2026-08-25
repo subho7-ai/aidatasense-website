@@ -24,9 +24,9 @@ export function PlatformPage() {
   const hasAiSection = Boolean(content.aiSections?.length);
 
   const navItems = [
-    ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
     { id: "overview", label: "Overview" },
     { id: "architecture", label: "Architecture" },
+    ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
     { id: "use-case", label: "Use case" },
   ];
 
@@ -215,12 +215,12 @@ export function PlatformPage() {
           <PlatformSideNav items={navItems} />
           <div>
             {header}
-            {aiBlock}
             <div id="overview" className="scroll-mt-[180px]">
               {overviewBlock}
             </div>
             {architectureBlock}
             {postArchitectureBlock}
+            {aiBlock}
             {useCaseBlock}
             {docsLink}
           </div>
