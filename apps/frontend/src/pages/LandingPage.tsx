@@ -5,11 +5,7 @@ import { allPlatforms } from "../content";
 export function LandingPage() {
   return (
     <div>
-      <section className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-200 via-indigo-50 to-white pb-20 pt-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/assets/hero-network-pattern.svg')] bg-cover bg-center opacity-[0.14]"
-        />
+      <section className="bg-gradient-to-b from-indigo-200 via-indigo-50 to-white pb-20 pt-8">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             Master the modern data & AI stack
@@ -56,21 +52,15 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/assets/platforms-blueprint-pattern.svg')] bg-cover bg-center opacity-[0.18]"
-        />
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-slate-900">Platforms & Architectures</h2>
-          <p className="mt-2 text-slate-600">
-            Deep dives into the architectures that power today's data and AI platforms.
-          </p>
-          <div className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {allPlatforms.map((platform) => (
-              <PlatformSection key={platform.slug} content={platform} />
-            ))}
-          </div>
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-bold text-slate-900">Platforms & Architectures</h2>
+        <p className="mt-2 text-slate-600">
+          Deep dives into the architectures that power today's data and AI platforms.
+        </p>
+        <div className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {allPlatforms.map((platform) => (
+            <PlatformSection key={platform.slug} content={platform} />
+          ))}
         </div>
       </section>
     </div>
