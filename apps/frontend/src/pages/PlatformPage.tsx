@@ -3,6 +3,7 @@ import { Accordion } from "../components/Accordion";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
+import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
 import { SectionBlock } from "../components/SectionBlock";
@@ -152,8 +153,6 @@ export function PlatformPage() {
       {postArchitectureSections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
-
-      {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
     </>
   );
 
@@ -201,6 +200,7 @@ export function PlatformPage() {
   const sidebarContent = (
     <>
       {content.videos && <VideoSection videos={content.videos} />}
+      {content.comparisonTable && <ComparisonTable {...content.comparisonTable} />}
       {content.sidebarSections?.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
@@ -208,9 +208,10 @@ export function PlatformPage() {
   );
 
   if (hasSideNav) {
-    const hasSidebar = Boolean(content.videos || content.sidebarSections?.length);
+    const hasSidebar = Boolean(content.videos || content.sidebarSections?.length || content.comparisonTable);
     return (
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative isolate mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
+        <NetworkPatternBackground />
         <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_320px]" : "lg:grid-cols-[180px_1fr]"}`}>
           <PlatformSideNav items={navItems} />
           <div>

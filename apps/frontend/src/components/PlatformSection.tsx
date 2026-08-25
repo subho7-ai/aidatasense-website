@@ -17,8 +17,22 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "multiply",
-            opacity: 0.18,
+            opacity: 0.3,
             filter: "grayscale(60%) blur(14px)",
+          }}
+        />
+      )}
+      {!isDatabricks && content.logoUrl && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `url(${content.logoUrl})`,
+            backgroundSize: "220%",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: 0.4,
+            filter: "blur(18px)",
           }}
         />
       )}
