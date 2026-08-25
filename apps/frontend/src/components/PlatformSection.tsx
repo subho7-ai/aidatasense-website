@@ -1,11 +1,27 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import { Link } from "react-router-dom";
+import dataIntelligencePlatformDiagram from "../assets/data-intelligence-platform-diagram.png";
 
 export function PlatformSection({ content }: { content: PlatformContent }) {
   const to = content.slug === "ai-progress" ? "/ai-progress" : `/platforms/${content.slug}`;
+  const isDatabricks = content.slug === "databricks";
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+    <div className="relative isolate flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+      {isDatabricks && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(99,102,241,0.4), rgba(255,255,255,0.1)), url(${dataIntelligencePlatformDiagram})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundBlendMode: "multiply",
+            opacity: 0.07,
+            filter: "grayscale(60%) blur(14px)",
+          }}
+        />
+      )}
       <h3 className="flex items-center text-xl font-semibold text-slate-900">
         {content.logoUrl ? (
           <img src={content.logoUrl} alt={content.name} className="h-7 w-auto" />
