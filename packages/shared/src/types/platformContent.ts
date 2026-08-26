@@ -22,6 +22,7 @@ export interface ContentSection {
   diagram?: ReferenceLink;
   diagramBrief?: string;
   diagramAttribution?: { label: string; url: string };
+  internalLink?: { label: string; to: string };
   integrations?: IntegrationsData;
 }
 

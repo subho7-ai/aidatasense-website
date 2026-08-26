@@ -1,4 +1,5 @@
 import type { ContentSection } from "@aidatasense/shared";
+import { Link } from "react-router-dom";
 import { ReferenceLinkCard } from "./ReferenceLinkCard";
 
 export function SectionBlock({ section }: { section: ContentSection }) {
@@ -19,6 +20,14 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           <ReferenceLinkCard {...section.diagram} className="mt-0 max-w-none" />
           {section.diagramBrief && <p className="text-slate-600">{section.diagramBrief}</p>}
         </div>
+      )}
+      {section.internalLink && (
+        <Link
+          to={section.internalLink.to}
+          className="mt-3 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+        >
+          {section.internalLink.label}
+        </Link>
       )}
       {section.diagramAttribution && (
         <a

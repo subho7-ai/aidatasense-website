@@ -37,10 +37,11 @@ export const snowflakeContent: PlatformContent = {
   aiSections: [
     {
       heading: "What Is a Gateway?",
-      body: [
-        "In cloud and API architecture, a gateway is a common, well-established pattern — a single entry point that receives requests, applies policies, and routes traffic to the right backend service. Tools like Apigee (API management) or HL7 gateways (healthcare data integration) are classic examples: they're built to route, authenticate, and manage traffic between systems.",
-        "But a traditional gateway isn't built for AI. It can route a request and check a login — but it can't count tokens, manage streaming responses, track which AI model answered a question, or enforce spending limits on an LLM call. AI workloads need something purpose-built: an AI Gateway — a control layer designed specifically to govern models, agents, and AI tool usage, not just generic network traffic.",
-      ],
+      body: "A gateway is a common cloud/API pattern — but traditional gateways aren't built for AI.",
+      internalLink: {
+        label: "Read the full explanation on the Databricks page →",
+        to: "/platforms/databricks#ai",
+      },
     },
     {
       heading: "Snowflake: Cortex + Cortex AI Gateway",
