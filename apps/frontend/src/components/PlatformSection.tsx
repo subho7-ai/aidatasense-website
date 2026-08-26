@@ -46,9 +46,17 @@ const CARD_THEME: Record<string, CardTheme> = {
   },
 };
 
+const CARD_TITLE: Record<string, string> = {
+  databricks: "Databricks",
+  snowflake: "Snowflake",
+  "azure-fabric": "Azure Fabric",
+  "ai-progress": "AI Progress",
+};
+
 export function PlatformSection({ content }: { content: PlatformContent }) {
   const to = content.slug === "ai-progress" ? "/ai-progress" : `/platforms/${content.slug}`;
   const theme = CARD_THEME[content.slug];
+  const title = CARD_TITLE[content.slug] ?? content.tagline;
   const tiltCardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, active: false });
 
@@ -86,14 +94,14 @@ export function PlatformSection({ content }: { content: PlatformContent }) {
           src={content.logoUrl}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-8 -right-8 -z-10 h-auto w-[220px] opacity-[0.14]"
+          className="pointer-events-none absolute bottom-2 right-2 -z-10 h-[170px] w-[170px] object-contain opacity-[0.14]"
           style={{ transform: "translateZ(20px)" }}
         />
       )}
       {content.logoUrl && <img src={content.logoUrl} alt={content.name} className="h-7 w-auto self-start" />}
       <h3 className="mt-1 text-xl font-semibold" style={{ color: theme.hex }}>
         <Link to={to} className={`transition-colors ${theme.hoverText}`}>
-          {content.tagline}
+          {title}
         </Link>
       </h3>
       <p className="mt-3 text-sm text-slate-600">{content.heroSummary}</p>
