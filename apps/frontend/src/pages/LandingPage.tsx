@@ -5,7 +5,7 @@ import { allPlatforms } from "../content";
 export function LandingPage() {
   return (
     <div>
-      <section className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-200 via-indigo-50 to-white pb-20 pt-8">
+      <section className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-200 via-indigo-50 to-white pb-40 pt-8">
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-repeat opacity-[0.1] [background-image:url('/assets/hero-network-pattern.svg')] [background-size:800px_600px]"
