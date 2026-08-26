@@ -8,7 +8,7 @@ export function LandingPage() {
       <section className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-200 via-indigo-50 to-white pb-20 pt-8">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[url('/assets/hero-network-pattern.svg')] bg-cover bg-center opacity-[0.1]"
+          className="absolute inset-0 -z-10 bg-repeat opacity-[0.1] [background-image:url('/assets/hero-network-pattern.svg')] [background-size:800px_600px]"
         />
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
