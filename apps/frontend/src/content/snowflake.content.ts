@@ -1,4 +1,5 @@
 import type { PlatformContent } from "@aidatasense/shared";
+import snowflakeArchitectureOverview from "../assets/snowflake-architecture-overview.png";
 
 export const snowflakeContent: PlatformContent = {
   slug: "snowflake",
@@ -16,6 +17,17 @@ export const snowflakeContent: PlatformContent = {
     {
       heading: "Architecture Overview",
       body: "Snowflake's architecture splits into three independently scalable layers. The storage layer holds all data in a compressed, columnar format managed entirely by Snowflake, with a single copy shared across every workload. The compute layer consists of virtual warehouses — independent clusters that resize or suspend in seconds — so multiple teams can query the same data without competing for resources. Above both sits the cloud services layer, handling authentication, query optimization, and metadata management, which is what gives the platform its \"no tuning required\" feel.",
+      diagram: {
+        title: "Snowflake's Official Architecture Overview",
+        description:
+          "Cloud Services, Compute (Virtual Warehouses), and Database Storage supporting structured, semi-structured, and unstructured data.",
+        url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+        imageUrl: snowflakeArchitectureOverview,
+      },
+      diagramAttribution: {
+        label: "Source: Snowflake Documentation",
+        url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+      },
     },
     {
       heading: "Key Technical Specs",

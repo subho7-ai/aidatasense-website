@@ -21,6 +21,7 @@ export interface ContentSection {
   imageUrl?: string;
   diagram?: ReferenceLink;
   diagramBrief?: string;
+  diagramAttribution?: { label: string; url: string };
   integrations?: IntegrationsData;
 }
 

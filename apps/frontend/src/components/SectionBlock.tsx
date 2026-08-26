@@ -20,6 +20,16 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           {section.diagramBrief && <p className="text-slate-600">{section.diagramBrief}</p>}
         </div>
       )}
+      {section.diagramAttribution && (
+        <a
+          href={section.diagramAttribution.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+        >
+          {section.diagramAttribution.label}
+        </a>
+      )}
       {!section.diagram && section.imageUrl && (
         <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
       )}
