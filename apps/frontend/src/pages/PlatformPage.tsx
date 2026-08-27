@@ -23,12 +23,14 @@ export function PlatformPage() {
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
   const isDatabricks = content.slug === "databricks";
   const hasAiSection = Boolean(content.aiSections?.length);
+  const hasDeepDive = Boolean(content.deepDiveSections?.length);
 
   const navItems = [
     { id: "overview", label: "Overview" },
     { id: "architecture", label: "Architecture" },
     ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
     { id: "use-case", label: "Use case" },
+    ...(hasDeepDive ? [{ id: "deep-dive", label: "Deep Dive" }] : []),
   ];
 
   // Sections whose heading is about architecture become the "Architecture" nav
@@ -186,6 +188,14 @@ export function PlatformPage() {
     </div>
   );
 
+  const deepDiveBlock = hasDeepDive && (
+    <div id="deep-dive" className="scroll-mt-[180px]">
+      {content.deepDiveSections!.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
+    </div>
+  );
+
   const docsLink = (
     <a
       href={content.learnMoreUrl}
@@ -225,6 +235,7 @@ export function PlatformPage() {
             {postArchitectureBlock}
             {aiBlock}
             {useCaseBlock}
+            {deepDiveBlock}
             {docsLink}
           </div>
           {hasSidebar && <div>{sidebarContent}</div>}

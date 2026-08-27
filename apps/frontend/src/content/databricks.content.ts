@@ -1,6 +1,8 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import architectureDiagramImage from "../assets/databricks-architecture-diagram.png";
 import dataIntelligencePlatformDiagram from "../assets/data-intelligence-platform-diagram.png";
+import databricksHierarchy from "../assets/databricks-hierarchy.png";
+import databricksWorkedExample from "../assets/databricks-worked-example.png";
 
 export const databricksContent: PlatformContent = {
   slug: "databricks",
@@ -149,6 +151,34 @@ export const databricksContent: PlatformContent = {
     title: "Customer Analytics at Scale",
     body: "A retail company collects customer data from its website, mobile app, in-store POS systems, and loyalty program — each in a different format, spread across separate databases. Using Databricks, the company ingests all of this into a single lakehouse, where data engineers clean and unify it with Delta Live Tables. Data scientists then build a customer segmentation model using MLflow, identifying high-value shopper groups. Marketing teams query these segments directly through Databricks SQL to launch targeted campaigns, while executives track results on live dashboards — all from one governed platform, with Unity Catalog ensuring only the right teams see the right data.",
   },
+  deepDiveSections: [
+    {
+      heading: "Object Hierarchy",
+      body: "Every Databricks account contains one or more workspaces. Each workspace organizes data through a Catalog (Schema → Table, View, Materialized View, Function), Compute (SQL Warehouse, Cluster), and Notebooks/Jobs/Pipelines — all governed centrally by Unity Catalog (Catalogs, External Locations, Storage Credentials, Access Control).",
+      imageUrl: databricksHierarchy,
+    },
+    {
+      heading: "A Worked Example",
+      body: "Here's how that hierarchy plays out in practice: a Production workspace containing a Finance catalog, with a Sales schema holding Customer, Orders, and Products tables, plus a Customer_Order_Summary view.",
+      imageUrl: databricksWorkedExample,
+    },
+    {
+      heading: "Materialized Views",
+      body: "When querying frequently-accessed data, materialized views are typically the best choice for performance on both Databricks and Snowflake — they pre-compute and store query results, refreshing automatically as underlying data changes, so repeated queries don't have to reprocess raw data every time.",
+    },
+    {
+      heading: "A Note on Terminology",
+      body: "Unity Catalog is also referred to as a metastore — this is the underlying technical term for the object that stores all catalog metadata, storage credentials, external locations, and access rules. \"Unity Catalog\" is the product name; \"metastore\" is what it's actually called under the hood.",
+    },
+    {
+      heading: "Data Skew vs. Time Skew",
+      body: "Data skew happens when data is unevenly distributed across partitions — some partitions end up with far more data than others, often caused by low-cardinality join keys, null-heavy columns, or a few \"celebrity\" values dominating a dataset. Time skew is the resulting performance symptom: certain tasks take substantially longer to finish than others, either because of that underlying data skew or because of uneven computational complexity between tasks. Since a Spark stage only completes when its slowest task finishes, a handful of skewed tasks can stall an entire job — engineers detect this by watching for tasks running 5-10x longer than the median, or a stage stuck at 99% completion. Fixes include enabling Adaptive Query Execution (AQE) to auto-split skewed partitions, salting skewed join keys, handling nulls explicitly, and pre-aggregating data before joins.",
+    },
+    {
+      heading: "The Engine Underneath",
+      body: "Both Databricks and Microsoft Fabric run on Apache Spark, but each adds its own acceleration layer. Databricks uses Photon, a proprietary C++ rewrite of Spark's execution engine, delivering some of the fastest SQL performance available. Fabric uses its own Native Execution Engine, built on the open-source Gluten/Velox stack, which has closed much of the performance gap while staying vendor-neutral.",
+    },
+  ],
   learnMoreUrl: "https://docs.databricks.com/",
   videos: [
     {

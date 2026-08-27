@@ -81,6 +81,7 @@ export interface PlatformContent {
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
   aiSections?: ContentSection[];
+  deepDiveSections?: ContentSection[];
   useCase?: {
     title: string;
     body: string | string[];

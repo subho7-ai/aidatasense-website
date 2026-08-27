@@ -1,5 +1,6 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import snowflakeArchitectureOverview from "../assets/snowflake-architecture-overview.png";
+import snowflakeHierarchy from "../assets/snowflake-hierarchy.png";
 
 export const snowflakeContent: PlatformContent = {
   slug: "snowflake",
@@ -55,6 +56,21 @@ export const snowflakeContent: PlatformContent = {
       body: [
         "This pattern isn't unique to any one vendor. In \"The LLM Mesh\" (O'Reilly, 2026), author Kurt Muehmel describes it as an industry-wide architecture: a unified gateway that governs every AI agent, tool, and model in an organization — enforcing security, tracking cost, and providing central discovery, all through one abstraction layer instead of scattered, one-off integrations. Databricks' Unity AI Gateway and Snowflake's Cortex AI Gateway are both real-world implementations of this same idea.",
       ],
+    },
+  ],
+  deepDiveSections: [
+    {
+      heading: "Object Hierarchy",
+      body: "Every Snowflake organization contains one or more accounts. Each account organizes data through a Database (Schema → Table, View, Materialized View, Stored Procedure, Function) and Warehouses for compute, with a separate Access & Sharing layer covering Users/Roles and cross-account Shares.",
+      imageUrl: snowflakeHierarchy,
+    },
+    {
+      heading: "Materialized Views",
+      body: "When querying frequently-accessed data, materialized views are typically the best choice for performance on both Databricks and Snowflake — they pre-compute and store query results, refreshing automatically as underlying data changes, so repeated queries don't have to reprocess raw data every time.",
+    },
+    {
+      heading: "Data Skew vs. Time Skew",
+      body: "Data skew happens when data is unevenly distributed across partitions — some partitions end up with far more data than others, often caused by low-cardinality join keys, null-heavy columns, or a few \"celebrity\" values dominating a dataset. Time skew is the resulting performance symptom: certain tasks take substantially longer to finish than others, either because of that underlying data skew or because of uneven computational complexity between tasks. Since a Spark stage only completes when its slowest task finishes, a handful of skewed tasks can stall an entire job — engineers detect this by watching for tasks running 5-10x longer than the median, or a stage stuck at 99% completion. Fixes include enabling Adaptive Query Execution (AQE) to auto-split skewed partitions, salting skewed join keys, handling nulls explicitly, and pre-aggregating data before joins.",
     },
   ],
   learnMoreUrl: "https://docs.snowflake.com/",
