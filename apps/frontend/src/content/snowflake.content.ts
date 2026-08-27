@@ -17,7 +17,7 @@ export const snowflakeContent: PlatformContent = {
   sections: [
     {
       heading: "Architecture Overview",
-      body: "Snowflake's architecture splits into three independently scalable layers. The storage layer holds all data in a compressed, columnar format managed entirely by Snowflake, with a single copy shared across every workload. The compute layer consists of virtual warehouses — independent clusters that resize or suspend in seconds — so multiple teams can query the same data without competing for resources. Above both sits the cloud services layer, handling authentication, query optimization, and metadata management, which is what gives the platform its \"no tuning required\" feel.",
+      body: "",
       diagram: {
         title: "Snowflake's Official Architecture Overview",
         description:
@@ -25,6 +25,8 @@ export const snowflakeContent: PlatformContent = {
         url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
         imageUrl: snowflakeArchitectureOverview,
       },
+      diagramBrief:
+        "Snowflake's architecture splits into three independently scalable layers. The storage layer holds all data in a compressed, columnar format managed entirely by Snowflake, with a single copy shared across every workload. The compute layer consists of virtual warehouses — independent clusters that resize or suspend in seconds — so multiple teams can query the same data without competing for resources. Above both sits the cloud services layer, handling authentication, query optimization, and metadata management, which is what gives the platform its \"no tuning required\" feel.",
       diagramAttribution: {
         label: "Source: Snowflake Documentation",
         url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
@@ -63,6 +65,7 @@ export const snowflakeContent: PlatformContent = {
       heading: "Object Hierarchy",
       body: "Every Snowflake organization contains one or more accounts. Each account organizes data through a Database (Schema → Table, View, Materialized View, Stored Procedure, Function) and Warehouses for compute, with a separate Access & Sharing layer covering Users/Roles and cross-account Shares.",
       imageUrl: snowflakeHierarchy,
+      imageSideBySide: true,
     },
     {
       heading: "Materialized Views",

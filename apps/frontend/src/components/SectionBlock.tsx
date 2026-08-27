@@ -3,17 +3,31 @@ import { Link } from "react-router-dom";
 import { ReferenceLinkCard } from "./ReferenceLinkCard";
 
 export function SectionBlock({ section }: { section: ContentSection }) {
+  const bodyContent = Array.isArray(section.body) ? (
+    section.body.map((paragraph, index) => (
+      <p key={index} className="mt-3 text-slate-600">
+        {paragraph}
+      </p>
+    ))
+  ) : (
+    section.body && <p className="mt-3 text-slate-600">{section.body}</p>
+  );
+
+  const sideBySideImage = section.imageSideBySide && section.imageUrl;
+
   return (
     <div className="border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>
-      {Array.isArray(section.body) ? (
-        section.body.map((paragraph, index) => (
-          <p key={index} className="mt-3 text-slate-600">
-            {paragraph}
-          </p>
-        ))
-      ) : (
-        <p className="mt-3 text-slate-600">{section.body}</p>
+      {!sideBySideImage && bodyContent}
+      {sideBySideImage && (
+        <div className="mt-4 grid gap-6 sm:grid-cols-2">
+          <img
+            src={section.imageUrl}
+            alt={section.heading}
+            className="w-full rounded-xl border border-slate-200"
+          />
+          <div className="[&>p:first-child]:mt-0">{bodyContent}</div>
+        </div>
       )}
       {section.diagram && (
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
@@ -39,7 +53,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           {section.diagramAttribution.label}
         </a>
       )}
-      {!section.diagram && section.imageUrl && (
+      {!section.diagram && !sideBySideImage && section.imageUrl && (
         <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
       )}
       {section.bullets && (

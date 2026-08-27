@@ -156,11 +156,13 @@ export const databricksContent: PlatformContent = {
       heading: "Object Hierarchy",
       body: "Every Databricks account contains one or more workspaces. Each workspace organizes data through a Catalog (Schema → Table, View, Materialized View, Function), Compute (SQL Warehouse, Cluster), and Notebooks/Jobs/Pipelines — all governed centrally by Unity Catalog (Catalogs, External Locations, Storage Credentials, Access Control).",
       imageUrl: databricksHierarchy,
+      imageSideBySide: true,
     },
     {
       heading: "A Worked Example",
       body: "Here's how that hierarchy plays out in practice: a Production workspace containing a Finance catalog, with a Sales schema holding Customer, Orders, and Products tables, plus a Customer_Order_Summary view.",
       imageUrl: databricksWorkedExample,
+      imageSideBySide: true,
     },
     {
       heading: "Materialized Views",

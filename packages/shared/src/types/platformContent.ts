@@ -19,6 +19,7 @@ export interface ContentSection {
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;
+  imageSideBySide?: boolean;
   diagram?: ReferenceLink;
   diagramBrief?: string;
   diagramAttribution?: { label: string; url: string };
