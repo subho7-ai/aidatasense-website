@@ -20,7 +20,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
       <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>
       {!sideBySideImage && bodyContent}
       {sideBySideImage && (
-        <div className="mt-4 grid gap-6 sm:grid-cols-2">
+        <div className="mt-4 flex flex-col gap-4">
           <img
             src={section.imageUrl}
             alt={section.heading}
