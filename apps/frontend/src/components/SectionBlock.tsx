@@ -1,6 +1,7 @@
 import type { ContentSection } from "@aidatasense/shared";
 import { Link } from "react-router-dom";
 import { ReferenceLinkCard } from "./ReferenceLinkCard";
+import { ZoomableImage } from "./ZoomableImage";
 
 export function SectionBlock({ section }: { section: ContentSection }) {
   const bodyContent = Array.isArray(section.body) ? (
@@ -20,9 +21,9 @@ export function SectionBlock({ section }: { section: ContentSection }) {
       <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>
       {!sideBySideImage && bodyContent}
       {sideBySideImage && (
-        <div className="mt-4 flex flex-col gap-4">
-          <img
-            src={section.imageUrl}
+        <div className="mt-4 grid gap-6 sm:grid-cols-2">
+          <ZoomableImage
+            src={section.imageUrl!}
             alt={section.heading}
             className="w-full rounded-xl border border-slate-200"
           />
