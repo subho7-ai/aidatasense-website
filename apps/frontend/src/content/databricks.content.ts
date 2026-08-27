@@ -3,6 +3,7 @@ import architectureDiagramImage from "../assets/databricks-architecture-diagram.
 import dataIntelligencePlatformDiagram from "../assets/data-intelligence-platform-diagram.png";
 import databricksHierarchy from "../assets/databricks-hierarchy.png";
 import databricksWorkedExample from "../assets/databricks-worked-example.png";
+import azureDevopsArchitecture from "../assets/azure-devops-architecture.png";
 
 export const databricksContent: PlatformContent = {
   slug: "databricks",
@@ -147,10 +148,24 @@ export const databricksContent: PlatformContent = {
       ["Concurrent reads & writes", "Prone to conflicts", "Reliable, isolated transactions"],
     ],
   },
-  useCase: {
-    title: "Customer Analytics at Scale",
-    body: "A retail company collects customer data from its website, mobile app, in-store POS systems, and loyalty program — each in a different format, spread across separate databases. Using Databricks, the company ingests all of this into a single lakehouse, where data engineers clean and unify it with Delta Live Tables. Data scientists then build a customer segmentation model using MLflow, identifying high-value shopper groups. Marketing teams query these segments directly through Databricks SQL to launch targeted campaigns, while executives track results on live dashboards — all from one governed platform, with Unity Catalog ensuring only the right teams see the right data.",
-  },
+  useCases: [
+    {
+      title: "Customer Analytics at Scale",
+      body: "A retail company collects customer data from its website, mobile app, in-store POS systems, and loyalty program — each in a different format, spread across separate databases. Using Databricks, the company ingests all of this into a single lakehouse, where data engineers clean and unify it with Delta Live Tables. Data scientists then build a customer segmentation model using MLflow, identifying high-value shopper groups. Marketing teams query these segments directly through Databricks SQL to launch targeted campaigns, while executives track results on live dashboards — all from one governed platform, with Unity Catalog ensuring only the right teams see the right data.",
+    },
+    {
+      title: "Rolling Out Databricks on Azure with DevOps",
+      body: "A growing organization is standardizing its Databricks workspaces on Azure and wants deployments to be safe, repeatable, and auditable — not manual clicks in a portal. Engineers push infrastructure and pipeline changes to a Git repository, where a pull request triggers automated testing and an approval gate before anything merges. Once approved, a CI/CD pipeline deploys the changes to Azure, provisioning and configuring resources like managed identities and secrets through Key Vault, while a separate scheduled process continuously checks for configuration drift — catching any manual changes that fall out of sync with what's defined in code. This same DevOps pattern, illustrated below, extends naturally to Databricks workspace and pipeline deployments: version-controlled notebooks and jobs, automated testing before promotion, and consistent environments from development through production.",
+      image: {
+        url: azureDevopsArchitecture,
+        caption: "Azure DevOps Architecture",
+        attribution: {
+          label: "Source: Microsoft Azure Architecture Center",
+          url: "https://learn.microsoft.com/en-us/azure/architecture/guide/devops/devops-get-started",
+        },
+      },
+    },
+  ],
   deepDiveSections: [
     {
       heading: "Object Hierarchy",

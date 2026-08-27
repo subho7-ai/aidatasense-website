@@ -83,10 +83,15 @@ export interface PlatformContent {
   sidebarSections?: ContentSection[];
   aiSections?: ContentSection[];
   deepDiveSections?: ContentSection[];
-  useCase?: {
+  useCases?: {
     title: string;
     body: string | string[];
-  };
+    image?: {
+      url: string;
+      caption: string;
+      attribution?: { label: string; url: string };
+    };
+  }[];
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];
   learnMoreUrl: string;

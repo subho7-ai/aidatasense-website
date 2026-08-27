@@ -161,17 +161,37 @@ export function PlatformPage() {
   const useCaseBlock = hasSideNav && (
     <div id="use-case" className="scroll-mt-[180px] border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">Use case</h2>
-      {content.useCase ? (
-        <>
-          <h3 className="mt-6 text-lg font-semibold text-slate-900">{content.useCase.title}</h3>
-          {(Array.isArray(content.useCase.body) ? content.useCase.body : [content.useCase.body]).map(
-            (paragraph, index) => (
+      {content.useCases && content.useCases.length > 0 ? (
+        content.useCases.map((useCase, useCaseIndex) => (
+          <div key={useCase.title} className={useCaseIndex > 0 ? "mt-8 border-t border-slate-200 pt-8" : undefined}>
+            <h3 className="mt-6 text-lg font-semibold text-slate-900">{useCase.title}</h3>
+            {(Array.isArray(useCase.body) ? useCase.body : [useCase.body]).map((paragraph, index) => (
               <p key={index} className="mt-3 text-slate-600">
                 {paragraph}
               </p>
-            ),
-          )}
-        </>
+            ))}
+            {useCase.image && (
+              <>
+                <img
+                  src={useCase.image.url}
+                  alt={useCase.image.caption}
+                  className="mt-4 w-full rounded-xl border border-slate-200"
+                />
+                <p className="mt-2 text-sm font-semibold text-slate-900">{useCase.image.caption}</p>
+                {useCase.image.attribution && (
+                  <a
+                    href={useCase.image.attribution.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    {useCase.image.attribution.label}
+                  </a>
+                )}
+              </>
+            )}
+          </div>
+        ))
       ) : (
         <p className="mt-3 text-slate-600">
           [Placeholder] Real-world {content.name} use cases will go here — replace with real content.
