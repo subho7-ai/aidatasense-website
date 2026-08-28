@@ -64,12 +64,20 @@ export function SectionBlock({ section }: { section: ContentSection }) {
       )}
       {section.bullets && (
         <ul className="mt-3 space-y-1.5 text-slate-600">
-          {section.bullets.map((bullet) => (
-            <li key={bullet} className="flex gap-2">
-              <span className="text-indigo-500">•</span>
-              <span>{bullet}</span>
-            </li>
-          ))}
+          {section.bullets.map((bullet) => {
+            const dashIndex = bullet.indexOf(" — ");
+            const term = dashIndex !== -1 ? bullet.slice(0, dashIndex) : null;
+            const rest = dashIndex !== -1 ? bullet.slice(dashIndex) : bullet;
+            return (
+              <li key={bullet} className="flex gap-2">
+                <span className="text-indigo-500">•</span>
+                <span>
+                  {term && <strong className="font-semibold text-slate-900">{term}</strong>}
+                  {rest}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       )}
       {section.integrations && (
