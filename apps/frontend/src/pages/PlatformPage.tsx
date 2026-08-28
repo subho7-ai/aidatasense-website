@@ -133,6 +133,9 @@ export function PlatformPage() {
       {architectureSections.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+      {content.architectureExtraSections?.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
     </div>
   );
 

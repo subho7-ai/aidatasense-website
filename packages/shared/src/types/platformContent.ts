@@ -19,6 +19,7 @@ export interface ContentSection {
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;
+  imageCaption?: string;
   imageSideBySide?: boolean;
   diagram?: ReferenceLink;
   diagramBrief?: string;
@@ -79,6 +80,7 @@ export interface PlatformContent {
   heroSummary: string;
   architectureBullets: string[];
   architectureDiagram?: ArchitectureDiagramData;
+  architectureExtraSections?: ContentSection[];
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
   aiSections?: ContentSection[];

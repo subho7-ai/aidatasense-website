@@ -36,6 +36,12 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           {section.diagramBrief && <p className="text-slate-600">{section.diagramBrief}</p>}
         </div>
       )}
+      {!section.diagram && !sideBySideImage && section.imageUrl && (
+        <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
+      )}
+      {!section.diagram && !sideBySideImage && section.imageCaption && (
+        <p className="mt-2 text-sm font-semibold text-slate-900">{section.imageCaption}</p>
+      )}
       {section.internalLink && (
         <Link
           to={section.internalLink.to}
@@ -49,13 +55,12 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           href={section.diagramAttribution.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+          className={`inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500 ${
+            section.imageCaption ? "mt-1" : "mt-3"
+          }`}
         >
           {section.diagramAttribution.label}
         </a>
-      )}
-      {!section.diagram && !sideBySideImage && section.imageUrl && (
-        <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
       )}
       {section.bullets && (
         <ul className="mt-3 space-y-1.5 text-slate-600">
