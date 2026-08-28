@@ -123,14 +123,9 @@ export function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-widest text-white">Locations</h3>
             <div className="mt-5 space-y-5 text-sm">
               <p className="leading-relaxed text-slate-400">
-                300 Colonial Center Parkway STE 100N
+                7286 Fiddlers Glen Dr
                 <br />
-                Roswell, GA 30076
-              </p>
-              <p className="leading-relaxed text-slate-400">
-                101, Gillespie Dr., Unit 14301
-                <br />
-                Franklin, Tennessee 37067
+                Arrington, TN 37014
               </p>
             </div>
           </div>
