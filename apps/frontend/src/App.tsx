@@ -14,6 +14,7 @@ import { PlatformPage } from "./pages/PlatformPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { RefundPolicyPage } from "./pages/RefundPolicyPage";
 import { SignupPage } from "./pages/SignupPage";
+import { SnowflakeCaseStudyPage } from "./pages/SnowflakeCaseStudyPage";
 import { TermsPage } from "./pages/TermsPage";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
+        <Route path="case-studies/snowflake-ingestion" element={<SnowflakeCaseStudyPage />} />
         <Route element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="platforms/:slug" element={<PlatformPage />} />
