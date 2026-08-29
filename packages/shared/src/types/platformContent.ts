@@ -88,6 +88,8 @@ export interface PlatformContent {
   useCases?: {
     title: string;
     body: string | string[];
+    bulletsHeading?: string;
+    bullets?: string[];
     image?: {
       url: string;
       caption: string;

@@ -60,6 +60,26 @@ export const snowflakeContent: PlatformContent = {
       ],
     },
   ],
+  useCases: [
+    {
+      title: "Multi-Source Ingestion: Batch SFTP + Real-Time Kinesis Streaming",
+      body: [
+        "A client needs the same downstream tables fed from two very different sources, both within a 30-minute SLA from the moment data is received. Batch files arrive over SFTP twice a day, each under 1 GB compressed; a Kinesis stream delivers the same JSON-formatted records in near real time. Both need to land in the same final, transformed Snowflake tables through one consistent pipeline, not two parallel one-off builds.",
+        "For the SFTP path, an intermediary service (such as AWS Transfer Family) lands each incoming file into a cloud storage stage. Snowpipe's auto-ingest picks files up the moment they arrive — no polling schedule, no manual COPY INTO — and loads them into a raw landing table. For the Kinesis stream, Snowpipe Streaming writes records directly into an equivalent raw table within seconds of being published, skipping the file-staging step entirely.",
+        "Because both sources deliver the same JSON structure, both raw tables feed one shared Stream-and-Task (or Dynamic Table) transformation pipeline. The business logic that shapes the final tables — parsing, validation, deduplication, merges — is written once and applied identically regardless of which path the data took. With Snowpipe's typical sub-minute file-ingestion latency, near-instant streaming ingestion, and a Task cadence of a few minutes, the 30-minute SLA has comfortable margin on both paths under normal conditions.",
+      ],
+      bulletsHeading: "Key considerations to validate in testing and production",
+      bullets: [
+        "Idempotency and deduplication — SFTP files can be re-delivered and Kinesis guarantees at-least-once delivery, so the merge logic needs to be tested against replayed and duplicate records, not just the happy path.",
+        "Snowpipe and streaming failure visibility — a stalled pipe, a failed cloud storage event notification, or a paused streaming channel can silently stop new data from landing; needs active monitoring (e.g. SYSTEM$PIPE_STATUS) and alerting, not just an assumption that ingestion is always running.",
+        "SFTP-to-stage dependency — the intermediary service that moves files from SFTP into cloud storage is outside Snowflake entirely; its own reliability, file-naming consistency, and handling of partial or interrupted transfers all need to be verified independently.",
+        "Kinesis backpressure — a burst of records beyond normal volume could outrun the streaming client's throughput or trigger Snowflake-side throttling, risking the 30-minute SLA specifically during traffic spikes rather than steady-state load.",
+        "Schema drift — VARIANT columns absorb structural changes at ingestion without erroring, but the transformation logic downstream can break silently if an expected field disappears or changes type, so schema validation and alerting need to sit in the pipeline, not just at load time.",
+        "Stream staleness — a Stream that isn't consumed within its retention window goes stale and needs to be recreated, which would create a silent gap in the transformed data if a Task fails repeatedly without being noticed.",
+        "End-to-end SLA monitoring — the 30-minute clock starts at \"data received,\" not \"file landed in Snowflake,\" so verifying the SLA in production requires timestamps captured at the true point of receipt, not just component-level ingestion metrics that look fast in isolation.",
+      ],
+    },
+  ],
   deepDiveSections: [
     {
       heading: "Object Hierarchy",
