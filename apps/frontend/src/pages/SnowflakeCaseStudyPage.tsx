@@ -219,11 +219,11 @@ export function SnowflakeCaseStudyPage() {
           <div className={styles.outcome}>
             <div className={styles.statBlock}>
               <div className={styles.statNumber}>
-                ~5<span className={styles.of}>min actual · of 30 min SLA</span>
+                30<span className={styles.of}>min SLA · built to consistently land within it</span>
               </div>
               <div className={styles.statLabel}>
-                Typical time from data receipt to availability in final Snowflake tables, across
-                both ingestion paths.
+                Both ingestion paths — batch and streaming — are designed to land comfortably
+                inside this window.
               </div>
             </div>
             <p style={{ color: "var(--muted)", fontSize: "15px" }}>
@@ -242,7 +242,7 @@ export function SnowflakeCaseStudyPage() {
               <h3>Want the full technical breakdown?</h3>
               <p>Architecture diagrams, Snowpipe/Task configuration, and the private-networking setup, in one PDF.</p>
             </div>
-            <a className={styles.btn} href="#" data-note="Replace with the hosted PDF URL">
+            <a className={styles.btn} href="/downloads/snowflake-case-study.pdf" download>
               → Download full case study
             </a>
           </div>
