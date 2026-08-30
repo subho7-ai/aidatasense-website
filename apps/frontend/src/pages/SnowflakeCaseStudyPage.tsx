@@ -26,7 +26,7 @@ export function SnowflakeCaseStudyPage() {
           role="img"
           aria-label="Diagram showing SFTP batch files and Kinesis streaming data converging through Snowflake into unified analytics tables in under 30 minutes"
         >
-          <svg viewBox="0 0 960 220" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
             {/* batch path (dashed, amber) */}
             <path
               d="M 40 60 C 260 60, 320 118, 460 118"
@@ -75,26 +75,6 @@ export function SnowflakeCaseStudyPage() {
             <text x="735" y="131" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10" fill="var(--muted)">
               Tableau · Power BI
             </text>
-
-            {/* SLA ring */}
-            <g transform="translate(895,120)">
-              <circle r="26" fill="none" stroke="var(--line)" strokeWidth="5" />
-              <circle
-                r="26"
-                fill="none"
-                stroke="var(--good)"
-                strokeWidth="5"
-                strokeDasharray="163.36"
-                strokeDashoffset="130.7"
-                transform="rotate(-90)"
-              />
-              <text y="-2" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="12" fontWeight="700" fill="var(--good)">
-                ~5m
-              </text>
-              <text y="12" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="var(--muted)">
-                of 30m SLA
-              </text>
-            </g>
           </svg>
           <div className={styles.flowLegend}>
             <span>

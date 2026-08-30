@@ -373,8 +373,8 @@ table.decision tr:last-child td {
   font-size: 13.5px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: var(--navy);
-  color: #fff;
+  background: var(--stream);
+  color: #06232a;
   border: none;
   padding: 14px 22px;
   border-radius: 9px;
@@ -388,7 +388,7 @@ table.decision tr:last-child td {
     background 0.15s ease;
 }
 .btn:hover {
-  background: #0e2233;
+  background: #0d97b0;
   transform: translateY(-1px);
 }
 
