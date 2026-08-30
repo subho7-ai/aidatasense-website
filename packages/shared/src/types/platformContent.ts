@@ -95,6 +95,7 @@ export interface PlatformContent {
       caption: string;
       attribution?: { label: string; url: string };
     };
+    internalLink?: { label: string; to: string };
   }[];
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];

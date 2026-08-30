@@ -78,6 +78,10 @@ export const snowflakeContent: PlatformContent = {
         "Stream staleness — a Stream that isn't consumed within its retention window goes stale and needs to be recreated, which would create a silent gap in the transformed data if a Task fails repeatedly without being noticed.",
         "End-to-end SLA monitoring — the 30-minute clock starts at \"data received,\" not \"file landed in Snowflake,\" so verifying the SLA in production requires timestamps captured at the true point of receipt, not just component-level ingestion metrics that look fast in isolation.",
       ],
+      internalLink: {
+        label: "Read the full case study →",
+        to: "/case-studies/snowflake-ingestion",
+      },
     },
   ],
   deepDiveSections: [
