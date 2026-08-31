@@ -3,7 +3,7 @@ import gatewayIcon from "../assets/gateway-icon.svg";
 
 export const gatewayContent: PlatformContent = {
   slug: "gateway",
-  name: "AI Gateway",
+  name: "Gateway",
   logoUrl: gatewayIcon,
   tagline: "The AI Control Plane",
   heroSummary:
@@ -31,6 +31,21 @@ export const gatewayContent: PlatformContent = {
       ],
     },
   ],
+  aiSections: [
+    {
+      heading: "What Gets Governed That a Normal Gateway Misses",
+      body: [
+        "AI traffic needs to be metered and audited differently than ordinary API traffic. A request/response pair isn't the unit that matters — token counts are, since that's what usage actually costs. The identity that matters isn't just \"which user is logged in\" but \"which agent, acting on whose behalf, called which model, using which tools, on which data\" — a chain that a normal API gateway has no concept of.",
+        "That's why every platform's AI gateway sits as its own layer rather than being bolted onto the existing API gateway: it has to understand tokens, models, agents, and tool calls as first-class things to govern, not just routes and rate limits.",
+      ],
+    },
+    {
+      heading: "The Bigger Picture: The LLM Mesh",
+      body: [
+        "This pattern isn't unique to any one vendor. In \"The LLM Mesh\" (O'Reilly, 2026), author Kurt Muehmel describes it as an industry-wide architecture: a unified gateway that governs every AI agent, tool, and model in an organization — enforcing security, tracking cost, and providing central discovery, all through one abstraction layer instead of scattered, one-off integrations. Databricks' Unity AI Gateway and Snowflake's Cortex AI Gateway are both real-world implementations of this same idea.",
+      ],
+    },
+  ],
   comparisonTable: {
     title: "AI Gateway, Vendor by Vendor",
     headers: ["Capability", "Databricks", "Snowflake", "Microsoft Fabric"],
@@ -54,6 +69,20 @@ export const gatewayContent: PlatformContent = {
         "Cost attribution — usage needs to be traceable back to the specific agent or user that triggered it, not just aggregated at the workspace level.",
         "Cross-platform consistency — three separate gateways means three separate places policy can drift out of sync unless it's reviewed together, not per platform in isolation.",
       ],
+    },
+  ],
+  deepDiveSections: [
+    {
+      heading: "Token-Level Metering",
+      body: "Unlike a normal API gateway, which typically meters by request count, an AI gateway meters by token — input tokens and output tokens are priced differently and vary by model, so \"how much did this call cost\" can't be answered without knowing the model, the token counts, and the current rate card at the same time. That's why cost tracking lives in the AI gateway itself rather than in generic API analytics.",
+    },
+    {
+      heading: "Agent Identity vs. User Identity",
+      body: "An AI gateway has to track two identities per call, not one: the human or process that ultimately requested the action, and the agent or service identity making the actual model/tool call on their behalf. Losing that distinction in the audit log makes it impossible to answer \"who is actually responsible for this,\" which is exactly the question compliance and security teams ask first after an incident.",
+    },
+    {
+      heading: "Enforcement Point: Proxy vs. SDK",
+      body: "AI gateways are generally implemented one of two ways: as a network proxy that every model call is routed through (centralized, but requires all traffic to actually go through it), or as an SDK-level interceptor embedded in the calling code (harder to bypass accidentally, but requires every language/framework in use to have a supported SDK). Which approach a given vendor uses under the hood matters less than the guarantee it produces: governance that's enforced centrally, not opt-in per client.",
     },
   ],
   learnMoreUrl: "https://docs.databricks.com/",
