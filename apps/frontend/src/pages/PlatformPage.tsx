@@ -248,14 +248,14 @@ export function PlatformPage() {
 
   const deepDiveBlock = hasDeepDive && (
     <div id="deep-dive" className="scroll-mt-[180px]">
-      {content.deepDiveSections!.map((section) => (
-        <SectionBlock key={section.heading} section={section} />
-      ))}
       {isGateway && (
         <div className="border-t border-slate-200 py-8">
           <ApimTokenGovernanceDeepDive />
         </div>
       )}
+      {content.deepDiveSections!.map((section) => (
+        <SectionBlock key={section.heading} section={section} />
+      ))}
     </div>
   );
 
