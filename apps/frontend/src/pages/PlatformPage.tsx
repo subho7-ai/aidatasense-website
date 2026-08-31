@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Accordion } from "../components/Accordion";
+import { ApimTokenGovernanceDeepDive } from "../components/ApimTokenGovernanceDeepDive";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
@@ -22,6 +23,7 @@ export function PlatformPage() {
 
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
   const isDatabricks = content.slug === "databricks";
+  const isGateway = content.slug === "gateway";
   const hasAiSection = Boolean(content.aiSections?.length);
   const hasDeepDive = Boolean(content.deepDiveSections?.length);
 
@@ -249,6 +251,11 @@ export function PlatformPage() {
       {content.deepDiveSections!.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+      {isGateway && (
+        <div className="border-t border-slate-200 py-8">
+          <ApimTokenGovernanceDeepDive />
+        </div>
+      )}
     </div>
   );
 
