@@ -285,20 +285,6 @@ export function EtlMigrationCaseStudyPage() {
         </div>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.wrap}>
-          <div className={styles.cta}>
-            <div>
-              <h3>Want the full migration plan?</h3>
-              <p>NFR-by-NFR mapping, source system inventory, and the phased rollout timeline, in one document.</p>
-            </div>
-            <a className={styles.btn} href="#" download>
-              ↓ Download full case study
-            </a>
-          </div>
-        </div>
-      </section>
-
       <footer className={styles.footer}>
         <div className={styles.wrap}>LEGACY ETL MIGRATION CASE STUDY — PHASED CLOUD MODERNIZATION</div>
       </footer>
