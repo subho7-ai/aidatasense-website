@@ -438,3 +438,17 @@ table.decision tr:last-child td {
   font-size: 13px;
   font-family: "IBM Plex Mono", monospace;
 }
+
+.crosslink {
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.crosslink a {
+  color: var(--stream);
+  font-weight: 600;
+  text-decoration: none;
+}
+.crosslink a:hover {
+  text-decoration: underline;
+}

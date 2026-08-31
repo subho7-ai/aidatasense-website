@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "./SnowflakeCaseStudyPage.module.css";
 
 export function SnowflakeCaseStudyPage() {
@@ -267,6 +268,10 @@ export function SnowflakeCaseStudyPage() {
               → Download full case study
             </a>
           </div>
+          <p className={styles.crosslink}>
+            See how we evaluated Snowflake against Databricks and Azure in a real migration decision{" "}
+            <Link to="/case-studies/legacy-etl-migration">→</Link>
+          </p>
         </div>
       </section>
 

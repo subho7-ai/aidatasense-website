@@ -7,6 +7,7 @@ import { AccountPage } from "./pages/AccountPage";
 import { AiProgressPage } from "./pages/AiProgressPage";
 import { ContactPage } from "./pages/ContactPage";
 import { CoursesPage } from "./pages/CoursesPage";
+import { EtlMigrationCaseStudyPage } from "./pages/EtlMigrationCaseStudyPage";
 import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -23,6 +24,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="case-studies/snowflake-ingestion" element={<SnowflakeCaseStudyPage />} />
+        <Route path="case-studies/legacy-etl-migration" element={<EtlMigrationCaseStudyPage />} />
         <Route element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="platforms/:slug" element={<PlatformPage />} />

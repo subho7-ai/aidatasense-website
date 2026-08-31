@@ -165,6 +165,18 @@ export const databricksContent: PlatformContent = {
       title: "Customer Analytics at Scale",
       body: "A retail company collects customer data from its website, mobile app, in-store POS systems, and loyalty program — each in a different format, spread across separate databases. Using Databricks, the company ingests all of this into a single lakehouse, where data engineers clean and unify it with Delta Live Tables. Data scientists then build a customer segmentation model using MLflow, identifying high-value shopper groups. Marketing teams query these segments directly through Databricks SQL to launch targeted campaigns, while executives track results on live dashboards — all from one governed platform, with Unity Catalog ensuring only the right teams see the right data.",
     },
+    {
+      title: "Migrating a Legacy ETL System Before a Hard Deadline",
+      body: [
+        "A bank's finance and procurement ETL system — a 5-year-old SQL Server/SSIS pipeline feeding six external systems — needed a new home before its data center's decommission at end of 2026, with zero tolerance for downtime. The team's skillset was C#, SQL, and SSIS; Databricks was still under evaluation, with its DevOps tooling months away from ready and the team not yet trained on Azure.",
+        "Rather than rewrite 45 cascading SSIS packages for an unfamiliar platform under deadline pressure, the migration was phased: Phase 1 lifts the existing SSIS logic onto the Azure-SSIS Integration Runtime, unchanged, meeting the deadline with the lowest-risk path available. Phase 2 modernizes into Databricks deliberately, source system by source system, once the DevOps tooling and the team's Azure skills are both actually ready — not forced to arrive at the same time as the deadline.",
+        "The logic: a platform rewrite is the right call eventually, but it's the wrong call under a fixed, non-negotiable deadline with a team that hasn't used the target platform yet. Lift-and-shift first buys the time to modernize safely instead of gambling business continuity on a rushed rewrite.",
+      ],
+      internalLink: {
+        label: "Read the full case study →",
+        to: "/case-studies/legacy-etl-migration",
+      },
+    },
   ],
   deepDiveSections: [
     {
