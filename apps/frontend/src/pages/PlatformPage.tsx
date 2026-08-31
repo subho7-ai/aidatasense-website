@@ -219,6 +219,8 @@ export function PlatformPage() {
             {useCase.internalLink && (
               <Link
                 to={useCase.internalLink.to}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
               >
                 {useCase.internalLink.label}
