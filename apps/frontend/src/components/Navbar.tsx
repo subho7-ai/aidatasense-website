@@ -8,6 +8,7 @@ const navItems = [
   { to: "/platforms/databricks", label: "Databricks" },
   { to: "/platforms/snowflake", label: "Snowflake" },
   { to: "/platforms/azure-fabric", label: "Azure Fabric" },
+  { to: "/platforms/gateway", label: "Gateway" },
   { to: "/ai-progress", label: "AI Progress" },
   { to: "/courses", label: "Courses" },
   { to: "/about", label: "About" },

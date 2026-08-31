@@ -58,7 +58,7 @@ const CARD_TITLE: Record<string, string> = {
   databricks: "Databricks",
   snowflake: "Snowflake",
   "azure-fabric": "Azure Fabric",
-  gateway: "AI Gateway",
+  gateway: "Gateway",
   "ai-progress": "AI Progress",
 };
 
