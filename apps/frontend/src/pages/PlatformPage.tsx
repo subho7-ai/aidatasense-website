@@ -10,7 +10,7 @@ import { SectionBlock } from "../components/SectionBlock";
 import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
 
-const SIDE_NAV_SLUGS = ["databricks", "snowflake", "azure-fabric"];
+const SIDE_NAV_SLUGS = ["databricks", "snowflake", "azure-fabric", "gateway"];
 
 export function PlatformPage() {
   const { slug } = useParams<{ slug: string }>();

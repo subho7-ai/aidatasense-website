@@ -36,6 +36,14 @@ const CARD_THEME: Record<string, CardTheme> = {
     linkText: "text-teal-600",
     linkHover: "hover:text-teal-500",
   },
+  gateway: {
+    hex: "#7C3AED",
+    border: "border-t-violet-500",
+    hoverText: "hover:text-violet-600",
+    dotText: "text-violet-500",
+    linkText: "text-violet-600",
+    linkHover: "hover:text-violet-500",
+  },
   "ai-progress": {
     hex: "#3b82f6",
     border: "border-t-blue-400",
@@ -50,6 +58,7 @@ const CARD_TITLE: Record<string, string> = {
   databricks: "Databricks",
   snowflake: "Snowflake",
   "azure-fabric": "Azure Fabric",
+  gateway: "AI Gateway",
   "ai-progress": "AI Progress",
 };
 
