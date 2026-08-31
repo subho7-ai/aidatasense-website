@@ -346,6 +346,46 @@ table.decision tr:last-child td {
   font-size: 14px;
 }
 
+/* Honest part — deliberately quieter than the Outcome section above it:
+   no white card, no shadow, no bright accent color on the kicker. */
+.honestKicker {
+  color: var(--muted);
+}
+.honestList {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  max-width: 720px;
+}
+.honestItem {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 20px;
+}
+.honestItem:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.honestTerm {
+  margin: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.honestBody {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .honestItem {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
 /* CTA */
 .cta {
   display: flex;

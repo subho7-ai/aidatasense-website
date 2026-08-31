@@ -217,6 +217,47 @@ export function SnowflakeCaseStudyPage() {
 
       <section className={styles.section}>
         <div className={styles.wrap}>
+          <div className={styles.sectionHead}>
+            <span className={`${styles.kicker} ${styles.honestKicker}`}>The honest part</span>
+            <h2>What we'd still watch closely in production</h2>
+            <p>No pipeline is risk-free on day one. These are the things worth validating before — and after — go-live.</p>
+          </div>
+          <ul className={styles.honestList}>
+            <li className={styles.honestItem}>
+              <p className={styles.honestTerm}>Duplicate records</p>
+              <p className={styles.honestBody}>
+                Kinesis guarantees at-least-once delivery, and SFTP files can be re-delivered.
+                Merge logic needs testing against replays, not just clean data.
+              </p>
+            </li>
+            <li className={styles.honestItem}>
+              <p className={styles.honestTerm}>Silent ingestion failures</p>
+              <p className={styles.honestBody}>
+                A stalled pipe or paused stream can quietly stop new data from landing. Active
+                monitoring, not assumption, catches this.
+              </p>
+            </li>
+            <li className={styles.honestItem}>
+              <p className={styles.honestTerm}>Schema drift</p>
+              <p className={styles.honestBody}>
+                VARIANT columns absorb structural changes without erroring at load time, so
+                validation needs to live in the pipeline, not just at the door.
+              </p>
+            </li>
+            <li className={styles.honestItem}>
+              <p className={styles.honestTerm}>Where the 30-minute clock actually starts</p>
+              <p className={styles.honestBody}>
+                True SLA verification means timestamping from the moment data is received, not
+                from when it lands in Snowflake — component metrics can look fast while still
+                missing the real deadline.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.wrap}>
           <div className={styles.cta}>
             <div>
               <h3>Want the full technical breakdown?</h3>
