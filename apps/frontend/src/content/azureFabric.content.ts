@@ -39,6 +39,13 @@ export const azureFabricContent: PlatformContent = {
   ],
   sections: [
     {
+      heading: "Why an End-to-End Platform",
+      body: [
+        "Ingesting, preparing, governing, and analyzing data at scale usually means stitching together disconnected tools across separate teams. Increasingly, that same data also needs to be ready for AI workloads — machine learning models, Copilots, and intelligent agents. Managing all of this across separate systems creates complexity, governance gaps, and duplicated effort.",
+        "Microsoft Fabric addresses this by providing one integrated environment across the entire data lifecycle, built on OneLake as the single, unified data lake beneath every workload. Because all data is ingested, prepared, and governed within Fabric, the same data that powers your reports and dashboards is also directly available to Copilot, data agents, and Fabric IQ — the governance work you do once supports both analytics and your organization's AI initiatives.",
+      ],
+    },
+    {
       heading: "Key Technical Specs",
       body: "Fabric is provisioned through Fabric Capacity Units (CUs), sold in SKUs (F2, F4, F8, and up) that pool compute across every workload in a tenant rather than billing each tool separately. Data lives in OneLake as open Delta Parquet, directly readable by non-Fabric engines and compatible with existing ADLS Gen2 tooling. As a native Azure service, Fabric integrates directly with Azure Active Directory for identity and Microsoft Purview for governance, and can virtually mount external Azure data (SQL, Cosmos DB) into OneLake via shortcuts without physically copying it.",
     },
