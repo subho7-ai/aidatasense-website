@@ -7,11 +7,15 @@ export const azureFabricContent: PlatformContent = {
   logoUrl: microsoftFabricLogo,
   tagline: "The Unified Analytics Platform",
   heroSummary:
-    "Microsoft Fabric brings data engineering, warehousing, and business intelligence together on one SaaS platform, unified by OneLake as the common storage layer.",
+    "Microsoft Fabric is an end-to-end analytics platform that brings data engineering, data integration, data warehousing, real-time intelligence, data science, and Power BI together on a unified SaaS platform.",
   architectureBullets: [
-    "OneLake provides a single, organization-wide data lake — no more data silos across tools",
-    "Synapse Data Engineering enables large-scale data transformation with familiar Spark-based tooling",
-    "Deep, native integration with Power BI turns governed data directly into interactive dashboards",
+    "OneLake: Unified data lake for the organization",
+    "Data Engineering: Spark-based data transformation",
+    "Data Factory: Data integration and pipelines",
+    "Lakehouse: Combines data lake flexibility with analytics",
+    "Warehouse: SQL-based analytics",
+    "Power BI: Reporting and visualization",
+    "Real-Time Intelligence: Real-time data and analytics",
   ],
   sections: [
     {
