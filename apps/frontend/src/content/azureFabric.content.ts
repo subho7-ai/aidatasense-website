@@ -37,6 +37,36 @@ export const azureFabricContent: PlatformContent = {
       imageUrl: oneLakeArchitecture,
     },
   ],
+  architectureExtraSections: [
+    {
+      heading: "OneLake in Depth",
+      body: "OneLake is Fabric's centralized storage architecture — it unifies your data across regions and clouds into a single logical lake, without moving or duplicating it, so every team works from the same copy instead of collaborating around it.",
+      bullets: [
+        "Built on ADLS Gen2 — supports Delta, Parquet, CSV, and JSON, with every Fabric compute engine writing tabular data as Delta Parquet so all engines interact with it seamlessly.",
+        "Automatic storage — every Fabric workload stores its data in OneLake by default, making it directly accessible with no separate movement or duplication step.",
+        "Shortcuts — references to files or locations inside OneLake or external sources (ADLS, Amazon S3, Dataverse) that let you access existing data without copying it, staying in sync with the source.",
+        "One governed copy for AI — because all workloads store data in OneLake using an open format, Copilot and data agents access the same governed data as your reports and dashboards, with no separate data-prep pipeline for AI.",
+      ],
+    },
+    {
+      heading: "Workspaces",
+      body: "Workspaces are logical containers for organizing and managing your data, reports, and other assets — giving each project or team a clear separation of resources for access control and security.",
+      bullets: [
+        "Per-workspace permissions — each workspace has its own permission set, so only authorized users can view or modify its contents, supporting collaboration without loosening access control.",
+        "Compute management — configure a workspace's compute settings directly to balance performance and cost for what it actually runs.",
+        "Git integration — connect a workspace to Git to track changes, collaborate on code, and keep a version history of your work.",
+      ],
+    },
+    {
+      heading: "Administration and Governance",
+      body: "OneLake is centrally governed and open for collaboration — data is secured and governed in one place, so users can find and access what they need without hunting across systems. Fabric administration itself is centralized in the Admin portal.",
+      bullets: [
+        "Admin portal — manage groups and permissions, configure data sources and gateways, and monitor usage and performance from one place.",
+        "Admin APIs and SDKs — automate common administrative tasks and integrate Fabric with other systems programmatically.",
+        "OneLake catalog — surfaces sensitivity labels, item metadata, and data refresh status, giving you a direct view into governance status and what needs attention.",
+      ],
+    },
+  ],
   sections: [
     {
       heading: "Why an End-to-End Platform",
