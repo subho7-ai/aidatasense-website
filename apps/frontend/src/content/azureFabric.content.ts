@@ -9,14 +9,14 @@ export const azureFabricContent: PlatformContent = {
   heroSummary:
     "Microsoft Fabric is an end-to-end analytics platform that brings data engineering, data integration, data warehousing, real-time intelligence, data science, and Power BI together on a unified SaaS platform.",
   architectureBullets: [
-    "OneLake: A single logical data lake for the whole organization — every workload reads and writes the same copy of data.",
-    "Data Engineering: Spark-based notebooks and pipelines for large-scale transformation, with autoscaling compute built into OneLake.",
-    "Data Factory: Over 200 built-in connectors for building and orchestrating data integration pipelines.",
-    "Lakehouse: Combines data lake flexibility with warehouse structure, using Delta Lake tables queryable by both Spark and SQL.",
-    "Warehouse: A fully transactional, SQL-based analytics warehouse built on the same Delta Lake format as the Lakehouse.",
-    "Data Science: Notebook-based ML training and experimentation with MLflow-compatible tracking, integrated with OneLake.",
-    "Power BI: Reporting and visualization with native OneLake integration — DirectLake queries data directly, no import step.",
-    "Real-Time Intelligence: Ingest, query, and act on streaming event data using KQL databases and the Real-Time hub.",
+    "OneLake: A single logical data lake for the whole organization, shared by every workload.",
+    "Data Engineering: Spark-based notebooks and pipelines for large-scale transformation, with autoscaling compute.",
+    "Data Factory: 200+ built-in connectors for building and orchestrating data pipelines.",
+    "Lakehouse: Combines data lake flexibility with warehouse structure via Delta Lake tables.",
+    "Warehouse: A fully transactional, SQL-based analytics warehouse on the same Delta Lake format.",
+    "Data Science: Notebook-based ML training and experimentation with MLflow-compatible tracking.",
+    "Power BI: Native OneLake integration — DirectLake queries data directly, no import step.",
+    "Real-Time Intelligence: Ingest, query, and act on streaming data using KQL databases.",
   ],
   sections: [
     {
