@@ -9,13 +9,14 @@ export const azureFabricContent: PlatformContent = {
   heroSummary:
     "Microsoft Fabric is an end-to-end analytics platform that brings data engineering, data integration, data warehousing, real-time intelligence, data science, and Power BI together on a unified SaaS platform.",
   architectureBullets: [
-    "OneLake: Unified data lake for the organization",
-    "Data Engineering: Spark-based data transformation",
-    "Data Factory: Data integration and pipelines",
-    "Lakehouse: Combines data lake flexibility with analytics",
-    "Warehouse: SQL-based analytics",
-    "Power BI: Reporting and visualization",
-    "Real-Time Intelligence: Real-time data and analytics",
+    "OneLake: A single logical data lake for the entire organization, built on Azure Data Lake Storage — every workload reads and writes the same copy of data instead of duplicating it across tools.",
+    "Data Engineering: Spark-based notebooks and pipelines for large-scale data transformation, with autoscaling compute that's natively integrated with OneLake.",
+    "Data Factory: Over 200 built-in connectors for building and orchestrating data integration pipelines, carrying forward the familiar Azure Data Factory pipeline experience.",
+    "Lakehouse: Combines data lake flexibility with warehouse structure — data is stored as Delta Lake tables that both Spark and SQL engines can query directly, without copying it.",
+    "Warehouse: A fully transactional, SQL-based analytics warehouse built on the same Delta Lake format, so its tables are automatically queryable from the Lakehouse and vice versa.",
+    "Data Science: Notebook-based ML model training and experimentation with MLflow-compatible tracking, integrated directly with OneLake data.",
+    "Power BI: Reporting and visualization with native OneLake integration — DirectLake mode queries Fabric data directly, without a separate import step.",
+    "Real-Time Intelligence: Ingest, query, and act on streaming event data using KQL databases and the Real-Time hub, powering live dashboards and alerts.",
   ],
   sections: [
     {
