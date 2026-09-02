@@ -82,6 +82,10 @@ export const azureFabricContent: PlatformContent = {
   ],
   aiSections: [
     {
+      heading: "It Takes the Whole Data Team",
+      body: "Every role on the data team shapes how well AI actually works. Data engineers who keep OneLake clean and governed build the foundation Copilot and AI agents depend on. Analytics engineers who build consistent semantic models give AI the business context to answer accurately.",
+    },
+    {
       heading: "Fabric IQ Data Agents & Copilot",
       body: [
         "Fabric IQ data agents can query your lakehouse tables through the SQL analytics endpoint, translating natural language questions into SQL queries that return accurate answers. The quality of those answers depends directly on how well you structure and document your data.",
