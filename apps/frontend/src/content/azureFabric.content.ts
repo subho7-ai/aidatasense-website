@@ -1,5 +1,6 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import microsoftFabricLogo from "../assets/microsoft-fabric-logo.png";
+import oneLakeArchitecture from "../assets/onelake-architecture.png";
 
 export const azureFabricContent: PlatformContent = {
   slug: "azure-fabric",
@@ -18,11 +19,25 @@ export const azureFabricContent: PlatformContent = {
     "Power BI: Native OneLake integration — DirectLake queries data directly, no import step.",
     "Real-Time Intelligence: Ingest, query, and act on streaming data using KQL databases.",
   ],
-  sections: [
+  architectureDiagram: {
+    summaryBullets: [
+      "Compute engines — Data Factory, Data Engineering, Data Science, Data Warehousing, Real-Time Intelligence, and Power BI all sit above the same OneLake storage layer, instead of each keeping its own copy of data.",
+      "Serverless compute — Spark, T-SQL, KQL, and Analysis Services each read and write OneLake directly, so switching engines doesn't mean re-ingesting data.",
+      "OneLake storage — data lives in domain-organized folders (e.g. Customer 360, Finance, Service Telemetry) as open Delta Parquet, one copy shared by every engine above it.",
+      "Shortcuts — virtualizes external data from Azure, Amazon S3, Google Cloud, Dataverse, and on-premises sources into OneLake without physically copying it.",
+      "Mirroring — continuously replicates operational databases like Azure SQL DB into OneLake in near real time, for read-only analytics without touching the source system.",
+    ],
+  },
+  references: [
     {
-      heading: "Architecture Overview",
-      body: "Microsoft Fabric is built around OneLake, a single, tenant-wide data lake (built on ADLS Gen2 and the open Delta Parquet format) that every Fabric workload reads from and writes to by default. Rather than Data Factory, Synapse, and Power BI each keeping their own copy of data, they all operate on the same OneLake-managed tables — a dataset ingested once is immediately queryable, transformable, and reportable across the whole suite. This \"one copy of data, many engines\" model is the core idea that separates Fabric from a set of separately-integrated Azure services.",
+      title: "Microsoft Fabric OneLake Architecture",
+      description:
+        "How OneLake unifies every Fabric compute engine over one shared data lake, with Shortcuts and Mirroring pulling in external and operational data without copying it.",
+      url: "https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview",
+      imageUrl: oneLakeArchitecture,
     },
+  ],
+  sections: [
     {
       heading: "Key Technical Specs",
       body: "Fabric is provisioned through Fabric Capacity Units (CUs), sold in SKUs (F2, F4, F8, and up) that pool compute across every workload in a tenant rather than billing each tool separately. Data lives in OneLake as open Delta Parquet, directly readable by non-Fabric engines and compatible with existing ADLS Gen2 tooling. As a native Azure service, Fabric integrates directly with Azure Active Directory for identity and Microsoft Purview for governance, and can virtually mount external Azure data (SQL, Cosmos DB) into OneLake via shortcuts without physically copying it.",
