@@ -86,6 +86,17 @@ export const azureFabricContent: PlatformContent = {
       body: "Every role on the data team shapes how well AI actually works. Data engineers who keep OneLake clean and governed build the foundation Copilot and AI agents depend on. Analytics engineers who build consistent semantic models give AI the business context to answer accurately.",
     },
     {
+      heading: "Who Does What",
+      body: "Fabric unifies analytics tools into one SaaS platform, so different roles collaborate without duplicating work.",
+      bullets: [
+        "Data Engineers — Ingest, transform, and load data into OneLake using Pipelines, storing it in Lakehouses as Delta-Parquet; Notebooks handle complex transformations.",
+        "Analytics Engineers — Curate lakehouse data assets, ensure data quality, and build Power BI semantic models for self-service analytics.",
+        "Data Analysts — Transform data upstream with dataflows, connect directly via Direct Lake mode, and build reports faster in Power BI.",
+        "Data Scientists — Build and test ML models in Python/Spark notebooks and integrate with Azure Machine Learning; their predictions can also ground Copilot and AI agents.",
+        "Citizen Developers — Discover curated datasets in the OneLake catalog, build reports from Power BI templates, run simple ETL with dataflows, or just ask Copilot in natural language.",
+      ],
+    },
+    {
       heading: "Fabric IQ Data Agents & Copilot",
       body: [
         "Fabric IQ data agents can query your lakehouse tables through the SQL analytics endpoint, translating natural language questions into SQL queries that return accurate answers. The quality of those answers depends directly on how well you structure and document your data.",
