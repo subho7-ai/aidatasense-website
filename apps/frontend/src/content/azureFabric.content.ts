@@ -88,6 +88,7 @@ export const azureFabricContent: PlatformContent = {
         "Data analysts — query OneLake directly via Direct Lake mode and build reports in Power BI.",
         "Data scientists — train models in Python/Spark notebooks and integrate with Azure ML; predictions can ground Copilot and AI agents.",
         "Citizen developers — discover datasets in the OneLake catalog and build dashboards with Power BI templates or Copilot's natural language queries.",
+        "Every role feeds the same foundation: clean data and consistent semantic models are what make Copilot and AI agents accurate.",
       ],
     },
   ],
