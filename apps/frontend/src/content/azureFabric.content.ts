@@ -79,6 +79,17 @@ export const azureFabricContent: PlatformContent = {
       heading: "Key Technical Specs",
       body: "Fabric is provisioned through Fabric Capacity Units (CUs), sold in SKUs (F2, F4, F8, and up) that pool compute across every workload in a tenant rather than billing each tool separately. Data lives in OneLake as open Delta Parquet, directly readable by non-Fabric engines and compatible with existing ADLS Gen2 tooling. As a native Azure service, Fabric integrates directly with Azure Active Directory for identity and Microsoft Purview for governance, and can virtually mount external Azure data (SQL, Cosmos DB) into OneLake via shortcuts without physically copying it.",
     },
+    {
+      heading: "Built for Team Collaboration",
+      body: "Fabric unifies tools into one SaaS platform so every role works from the same data, without duplicating effort.",
+      bullets: [
+        "Data engineers — ingest and transform data into OneLake using Pipelines and Notebooks, storing it in Delta-Parquet lakehouses.",
+        "Analytics engineers — curate lakehouse data and build Power BI semantic models for self-service analytics.",
+        "Data analysts — query OneLake directly via Direct Lake mode and build reports in Power BI.",
+        "Data scientists — train models in Python/Spark notebooks and integrate with Azure ML; predictions can ground Copilot and AI agents.",
+        "Citizen developers — discover datasets in the OneLake catalog and build dashboards with Power BI templates or Copilot's natural language queries.",
+      ],
+    },
   ],
   aiSections: [
     {
