@@ -24,13 +24,16 @@ export const azureFabricContent: PlatformContent = {
       "Compute engines — Data Factory, Data Engineering, Data Science, Data Warehousing, Real-Time Intelligence, and Power BI all sit above the same OneLake storage layer, instead of each keeping its own copy of data.",
       "Serverless compute — Spark, T-SQL, KQL, and Analysis Services each read and write OneLake directly, so switching engines doesn't mean re-ingesting data.",
       "OneLake storage — data lives in domain-organized folders (e.g. Customer 360, Finance, Service Telemetry) as open Delta Parquet, one copy shared by every engine above it.",
-      "Shortcuts — virtualizes external data from Azure, Amazon S3, Google Cloud, Dataverse, and on-premises sources into OneLake without physically copying it.",
+      "Built on ADLS Gen2 — supports Delta, Parquet, CSV, and JSON, with every Fabric compute engine writing tabular data as Delta Parquet so all engines interact with it seamlessly.",
+      "Automatic storage — every Fabric workload stores its data in OneLake by default, making it directly accessible with no separate movement or duplication step.",
+      "Shortcuts — virtualizes external data from Azure, Amazon S3, Google Cloud, Dataverse, and on-premises sources into OneLake without physically copying it, staying in sync with the source.",
       "Mirroring — continuously replicates operational databases like Azure SQL DB into OneLake in near real time, for read-only analytics without touching the source system.",
+      "One governed copy for AI — because all workloads store data in OneLake using an open format, Copilot and data agents access the same governed data as your reports and dashboards, with no separate data-prep pipeline for AI.",
     ],
   },
   references: [
     {
-      title: "Microsoft Fabric OneLake Architecture",
+      title: "OneLake Architecture",
       description:
         "How OneLake unifies every Fabric compute engine over one shared data lake, with Shortcuts and Mirroring pulling in external and operational data without copying it.",
       url: "https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview",
@@ -38,16 +41,6 @@ export const azureFabricContent: PlatformContent = {
     },
   ],
   architectureExtraSections: [
-    {
-      heading: "OneLake in Depth",
-      body: "OneLake is Fabric's centralized storage architecture — it unifies your data across regions and clouds into a single logical lake, without moving or duplicating it, so every team works from the same copy instead of collaborating around it.",
-      bullets: [
-        "Built on ADLS Gen2 — supports Delta, Parquet, CSV, and JSON, with every Fabric compute engine writing tabular data as Delta Parquet so all engines interact with it seamlessly.",
-        "Automatic storage — every Fabric workload stores its data in OneLake by default, making it directly accessible with no separate movement or duplication step.",
-        "Shortcuts — references to files or locations inside OneLake or external sources (ADLS, Amazon S3, Dataverse) that let you access existing data without copying it, staying in sync with the source.",
-        "One governed copy for AI — because all workloads store data in OneLake using an open format, Copilot and data agents access the same governed data as your reports and dashboards, with no separate data-prep pipeline for AI.",
-      ],
-    },
     {
       heading: "Workspaces",
       body: "Workspaces are logical containers for organizing and managing your data, reports, and other assets — giving each project or team a clear separation of resources for access control and security.",
