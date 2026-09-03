@@ -88,24 +88,31 @@ export const azureFabricContent: PlatformContent = {
   aiSections: [
     {
       heading: "It Takes the Whole Data Team",
-      body: "Every role on the data team shapes how well AI actually works. Data engineers who keep OneLake clean and governed build the foundation Copilot and AI agents depend on. Analytics engineers who build consistent semantic models give AI the business context to answer accurately.",
+      body: "Every role on the data team shapes how well AI performs — the same clean, governed data that powers your reports is what Copilot and Fabric IQ reason over.",
     },
     {
-      heading: "Who Does What",
-      body: "Fabric unifies analytics tools into one SaaS platform, so different roles collaborate without duplicating work.",
+      heading: "Fabric IQ",
+      body: [
+        "Fabric IQ (preview) unifies data across OneLake and organizes it according to the language of your business. Its core item is the ontology, which defines your business concepts, relationships, and rules so AI agents can reason across domains using consistent business language rather than raw table schemas.",
+        "Fabric IQ is one of three IQ workloads Microsoft provides, each giving agents access to a different kind of organizational context — standalone, but usable together for comprehensive coverage:",
+      ],
       bullets: [
-        "Data Engineers — Ingest, transform, and load data into OneLake using Pipelines, storing it in Lakehouses as Delta-Parquet; Notebooks handle complex transformations.",
-        "Analytics Engineers — Curate lakehouse data assets, ensure data quality, and build Power BI semantic models for self-service analytics.",
-        "Data Analysts — Transform data upstream with dataflows, connect directly via Direct Lake mode, and build reports faster in Power BI.",
-        "Data Scientists — Build and test ML models in Python/Spark notebooks and integrate with Azure Machine Learning; their predictions can also ground Copilot and AI agents.",
-        "Citizen Developers — Discover curated datasets in the OneLake catalog, build reports from Power BI templates, run simple ETL with dataflows, or just ask Copilot in natural language.",
+        "Fabric IQ — models business data (ontologies, semantic models, graphs) so agents can reason over analytics in OneLake and Power BI.",
+        "Foundry IQ — connects structured and unstructured data across Azure, SharePoint, OneLake, and the web, giving agents permission-aware access to enterprise knowledge.",
+        "Work IQ — captures collaboration signals from documents, meetings, chats, and workflows, giving agents insight into how your organization actually operates.",
       ],
     },
     {
-      heading: "Fabric IQ Data Agents & Copilot",
-      body: [
-        "Fabric IQ data agents can query your lakehouse tables through the SQL analytics endpoint, translating natural language questions into SQL queries that return accurate answers. The quality of those answers depends directly on how well you structure and document your data.",
-        "Copilot capabilities in Fabric also benefit from well-structured lakehouse data. Copilot in Power BI can generate reports and answer business questions when it can reason over clearly defined tables and relationships. The same lakehouse data can feed semantic models that support natural language exploration across Microsoft 365 experiences.",
+      heading: "Fabric Data Agents",
+      body: "Data agents let users ask questions about organizational data in natural language, translating those questions into structured queries across lakehouses, warehouses, and semantic models. Within Fabric IQ, data agents can connect to your ontology as a source — so they understand and use your business concepts, not just raw schemas, when answering.",
+    },
+    {
+      heading: "Copilot Across Workloads",
+      body: "Microsoft Copilot in Fabric is a generative AI assistant available across every Fabric workload:",
+      bullets: [
+        "Code completion and generation — intelligent code suggestions in notebooks, SQL queries generated from natural language, and KQL translation for real-time analysis.",
+        "Data transformation guidance — in Data Factory, code generation and plain-language explanations of complex transformation logic, for both citizen and professional data wranglers.",
+        "Report and insight generation — in Power BI, automatic report generation, page summaries, and natural language Q&A over your data.",
       ],
     },
   ],
