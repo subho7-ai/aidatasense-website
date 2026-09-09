@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HeroStackGraphic } from "../components/HeroStackGraphic";
 import { PlatformSection } from "../components/PlatformSection";
 import { allPlatforms } from "../content";
 
@@ -29,6 +30,7 @@ export function LandingPage() {
             the frontier of agentic AI, we help you design a platform that actually works for your
             team, not against it.
           </p>
+          <HeroStackGraphic />
           <p className="mt-4 text-lg text-slate-600">
             But we don't stop at the enterprise side. aidatasense also provides remote educational
             classes for students of all ages — anyone who can run a keyboard and mouse can start
