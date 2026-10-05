@@ -86,21 +86,6 @@ export function Footer() {
           </form>
         </div>
 
-        {/* Call banner */}
-        <div className="border-b border-white/10 py-6 text-center text-sm text-slate-400">
-          Call us today at{" "}
-          <a href="tel:+12027873835" className="font-semibold text-white transition-colors hover:text-indigo-300">
-            +1 202 787 3835
-          </a>{" "}
-          or Email us at{" "}
-          <a
-            href="mailto:info@aidatasense.com"
-            className="font-semibold text-white transition-colors hover:text-indigo-300"
-          >
-            info@aidatasense.com
-          </a>
-        </div>
-
         {/* Columns */}
         <div className="grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           <div>

@@ -1,25 +1,64 @@
 import type { ContentSection } from "@aidatasense/shared";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ComparisonTable } from "./ComparisonTable";
 import { ReferenceLinkCard } from "./ReferenceLinkCard";
 import { ZoomableImage } from "./ZoomableImage";
+
+// Renders the small inline markup allowed in body text: **bold** and
+// [label](url) links, where the label may itself be **bold**.
+function renderInline(text: string): ReactNode[] {
+  const pattern = /\[(\*\*)?(.+?)\1\]\((.+?)\)|\*\*(.+?)\*\*/g;
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  for (const match of text.matchAll(pattern)) {
+    const [whole, boldLabel, label, url, boldText] = match;
+    nodes.push(text.slice(lastIndex, match.index));
+    if (url) {
+      nodes.push(
+        <a
+          key={match.index}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`text-indigo-600 underline decoration-indigo-300 underline-offset-2 hover:text-indigo-500 ${
+            boldLabel ? "font-semibold" : ""
+          }`}
+        >
+          {label}
+        </a>,
+      );
+    } else {
+      nodes.push(
+        <strong key={match.index} className="font-semibold text-slate-900">
+          {boldText}
+        </strong>,
+      );
+    }
+    lastIndex = match.index + whole.length;
+  }
+  nodes.push(text.slice(lastIndex));
+  return nodes;
+}
 
 export function SectionBlock({ section }: { section: ContentSection }) {
   const bodyContent = Array.isArray(section.body) ? (
     section.body.map((paragraph, index) => (
       <p key={index} className="mt-3 text-slate-600">
-        {paragraph}
+        {renderInline(paragraph)}
       </p>
     ))
   ) : (
-    section.body && <p className="mt-3 text-slate-600">{section.body}</p>
+    section.body && <p className="mt-3 text-slate-600">{renderInline(section.body)}</p>
   );
 
   const sideBySideImage = section.imageSideBySide && section.imageUrl;
+  const sideBySideDiagram = section.diagramSideBySide && section.diagram;
 
   return (
     <div className="border-t border-slate-200 py-8">
-      <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>
-      {!sideBySideImage && bodyContent}
+      {!sideBySideDiagram && <h2 className="text-2xl font-semibold text-slate-900">{section.heading}</h2>}
+      {!sideBySideImage && !sideBySideDiagram && bodyContent}
       {sideBySideImage && (
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
           <ZoomableImage
@@ -30,14 +69,42 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           <div className="[&>p:first-child]:mt-0">{bodyContent}</div>
         </div>
       )}
-      {section.diagram && (
+      {sideBySideDiagram && (
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            {section.diagram!.imageUrl && (
+              <ZoomableImage
+                src={section.diagram!.imageUrl}
+                alt={section.diagram!.title}
+                className="w-full rounded-xl border border-slate-200"
+              />
+            )}
+            <h2 className="mt-3 text-center text-base font-normal text-slate-700">{section.heading}</h2>
+          </div>
+          <div className="[&>p:first-child]:mt-0">
+            {bodyContent}
+            {section.diagramBrief && <p className="mt-3 text-slate-600">{section.diagramBrief}</p>}
+          </div>
+        </div>
+      )}
+      {section.diagram && !sideBySideDiagram && (
         <div className="mt-4 grid gap-6 sm:grid-cols-2">
           <ReferenceLinkCard {...section.diagram} className="mt-0 max-w-none" />
           {section.diagramBrief && <p className="text-slate-600">{section.diagramBrief}</p>}
         </div>
       )}
       {!section.diagram && !sideBySideImage && section.imageUrl && (
-        <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
+        section.imageZoomable ? (
+          <div className="mt-4">
+            <ZoomableImage
+              src={section.imageUrl}
+              alt={section.imageCaption ?? section.heading}
+              className="w-full rounded-xl border border-slate-200"
+            />
+          </div>
+        ) : (
+          <img src={section.imageUrl} alt={section.heading} className="mt-4 w-full rounded-xl border border-slate-200" />
+        )
       )}
       {!section.diagram && !sideBySideImage && section.imageCaption && (
         <p className="mt-2 text-sm font-semibold text-slate-900">{section.imageCaption}</p>
@@ -109,6 +176,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           )}
         </>
       )}
+      {section.comparisonTable && <ComparisonTable {...section.comparisonTable} embedded />}
     </div>
   );
 }

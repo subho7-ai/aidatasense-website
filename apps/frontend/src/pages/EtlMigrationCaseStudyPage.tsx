@@ -33,14 +33,14 @@ export function EtlMigrationCaseStudyPage() {
             <span className={styles.kicker}>The system today</span>
             <h2>One ETL pipeline, six external systems, zero room for downtime.</h2>
             <p>
-              &quot;Magellan M4G&quot; is the system of record feeding back-office finance systems — payments,
+              &quot;Money Manager M4M&quot; is the system of record feeding back-office finance systems — payments,
               invoices, contingent worker data, master reference data — moving via SFTP and API in CSV, cXML, and
               JSON.
             </p>
           </div>
           <div className={styles.sysmap}>
             <div className={styles.sysmapRow}>
-              <span className={`${styles.chip} ${styles.core}`}>Magellan M4G</span>
+              <span className={`${styles.chip} ${styles.core}`}>Money Manager M4M</span>
               <span className={styles.chip}>SQL Server 2017 + SSIS</span>
               <span className={styles.chip}>45 cascading packages</span>
               <span className={styles.chip}>C# / .NET</span>

@@ -1,9 +1,13 @@
+import type { ContentSection } from "@aidatasense/shared";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Accordion } from "../components/Accordion";
 import { ApimTokenGovernanceDeepDive } from "../components/ApimTokenGovernanceDeepDive";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
+import { DatabricksDevOpsFlow } from "../components/DatabricksDevOpsFlow";
+import { DatabricksObjectHierarchy } from "../components/DatabricksObjectHierarchy";
+import { DatabricksWorkspaceArchitecture } from "../components/DatabricksWorkspaceArchitecture";
 import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
@@ -24,12 +28,14 @@ export function PlatformPage() {
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
   const isDatabricks = content.slug === "databricks";
   const isGateway = content.slug === "gateway";
+  const hasDevOps = Boolean(content.devOpsNavHeading);
   const hasAiSection = Boolean(content.aiSections?.length);
   const hasDeepDive = Boolean(content.deepDiveSections?.length);
 
   const navItems = [
     { id: "overview", label: "Overview" },
     { id: "architecture", label: "Architecture" },
+    ...(hasDevOps ? [{ id: "devops", label: "DevOps" }] : []),
     ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
     { id: "use-case", label: "Use case" },
     ...(hasDeepDive ? [{ id: "deep-dive", label: "Deep Dive" }] : []),
@@ -138,6 +144,8 @@ export function PlatformPage() {
       {content.architectureExtraSections?.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
+      {isDatabricks && <DatabricksWorkspaceArchitecture />}
+      {isDatabricks && <DatabricksObjectHierarchy />}
     </div>
   );
 
@@ -167,7 +175,30 @@ export function PlatformPage() {
     <div id="use-case" className="scroll-mt-[180px] border-t border-slate-200 py-8">
       <h2 className="text-2xl font-semibold text-slate-900">Use case</h2>
       {content.useCases && content.useCases.length > 0 ? (
-        content.useCases.map((useCase, useCaseIndex) => (
+        content.useCases.map((useCase, useCaseIndex) =>
+          useCase.summaryCard && useCase.internalLink ? (
+            <div key={useCase.title} className={useCaseIndex > 0 ? "mt-8 border-t border-slate-200 pt-8" : undefined}>
+              <Link
+                to={useCase.internalLink.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-6 block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600">Case study</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-900 group-hover:text-indigo-700">
+                  {useCase.title}
+                </h3>
+                {(Array.isArray(useCase.body) ? useCase.body : [useCase.body]).map((paragraph, index) => (
+                  <p key={index} className="mt-2 text-slate-600">
+                    {paragraph}
+                  </p>
+                ))}
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 group-hover:text-indigo-500">
+                  {useCase.internalLink.label}
+                </span>
+              </Link>
+            </div>
+          ) : (
           <div key={useCase.title} className={useCaseIndex > 0 ? "mt-8 border-t border-slate-200 pt-8" : undefined}>
             <h3 className="mt-6 text-lg font-semibold text-slate-900">{useCase.title}</h3>
             {(Array.isArray(useCase.body) ? useCase.body : [useCase.body]).map((paragraph, index) => (
@@ -229,7 +260,8 @@ export function PlatformPage() {
               </Link>
             )}
           </div>
-        ))
+          ),
+        )
       ) : (
         <p className="mt-3 text-slate-600">
           [Placeholder] Real-world {content.name} use cases will go here — replace with real content.
@@ -238,11 +270,26 @@ export function PlatformPage() {
     </div>
   );
 
+  // Side nav targets inside the AI block: "AI" lands on aiNavHeading (default:
+  // first AI section) and "DevOps" on devOpsNavHeading.
+  const aiNavHeading = content.aiNavHeading ?? content.aiSections?.[0]?.heading;
+  const aiBlockAnchors: Record<string, string> = {
+    ...(aiNavHeading ? { [aiNavHeading]: "ai" } : {}),
+    ...(content.devOpsNavHeading ? { [content.devOpsNavHeading]: "devops" } : {}),
+  };
+  const renderSection = (section: ContentSection) =>
+    section.customBlock === "databricks-devops" ? <DatabricksDevOpsFlow /> : <SectionBlock section={section} />;
   const aiBlock = hasAiSection && (
-    <div id="ai" className="scroll-mt-[180px]">
-      {content.aiSections!.map((section) => (
-        <SectionBlock key={section.heading} section={section} />
-      ))}
+    <div>
+      {content.aiSections!.map((section) =>
+        aiBlockAnchors[section.heading] ? (
+          <div key={section.heading} id={aiBlockAnchors[section.heading]} className="scroll-mt-[180px]">
+            {renderSection(section)}
+          </div>
+        ) : (
+          <div key={section.heading}>{renderSection(section)}</div>
+        ),
+      )}
     </div>
   );
 
@@ -273,6 +320,9 @@ export function PlatformPage() {
   const sidebarContent = (
     <>
       {content.videos && <VideoSection videos={content.videos} />}
+      {content.sidebarReferences?.map((reference) => (
+        <ReferenceLinkCard key={reference.url} {...reference} className="mt-6" showIcon={false} />
+      ))}
       {content.sidebarSections?.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
@@ -281,13 +331,15 @@ export function PlatformPage() {
   );
 
   if (hasSideNav) {
-    const hasSidebar = Boolean(content.videos || content.sidebarSections?.length || content.comparisonTable);
+    const hasSidebar = Boolean(
+      content.videos || content.sidebarReferences?.length || content.sidebarSections?.length || content.comparisonTable,
+    );
     return (
       <div className="relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <NetworkPatternBackground />
         </div>
-        <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_320px]" : "lg:grid-cols-[180px_1fr]"}`}>
+        <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_224px]" : "lg:grid-cols-[180px_1fr]"}`}>
           <PlatformSideNav items={navItems} />
           <div>
             {header}

@@ -16,16 +16,21 @@ export interface IntegrationsData {
 
 export interface ContentSection {
   heading: string;
+  /** Render a purpose-built component in this section's place instead of the generic layout. */
+  customBlock?: "databricks-devops";
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;
   imageCaption?: string;
   imageSideBySide?: boolean;
+  imageZoomable?: boolean;
   diagram?: ReferenceLink;
   diagramBrief?: string;
+  diagramSideBySide?: boolean;
   diagramAttribution?: { label: string; url: string };
   internalLink?: { label: string; to: string };
   integrations?: IntegrationsData;
+  comparisonTable?: ComparisonTableData;
 }
 
 export interface VideoResource {
@@ -83,7 +88,12 @@ export interface PlatformContent {
   architectureExtraSections?: ContentSection[];
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
+  sidebarReferences?: ReferenceLink[];
   aiSections?: ContentSection[];
+  /** Heading of the AI section the side nav's "AI" link should land on; defaults to the first. */
+  aiNavHeading?: string;
+  /** Heading of the AI section the side nav's "DevOps" link lands on; no link when unset. */
+  devOpsNavHeading?: string;
   deepDiveSections?: ContentSection[];
   useCases?: {
     title: string;
@@ -96,6 +106,8 @@ export interface PlatformContent {
       attribution?: { label: string; url: string };
     };
     internalLink?: { label: string; to: string };
+    /** Show `body` as a short synopsis inside a card that links to `internalLink` as a whole. */
+    summaryCard?: boolean;
   }[];
   comparisonTable?: ComparisonTableData;
   references?: ReferenceLink[];

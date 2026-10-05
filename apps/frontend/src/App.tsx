@@ -8,12 +8,14 @@ import { AiProgressPage } from "./pages/AiProgressPage";
 import { ContactPage } from "./pages/ContactPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { EtlMigrationCaseStudyPage } from "./pages/EtlMigrationCaseStudyPage";
+import { M4mDatabricksCaseStudyPage } from "./pages/M4mDatabricksCaseStudyPage";
 import { LandingPage } from "./pages/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { PlatformPage } from "./pages/PlatformPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { RefundPolicyPage } from "./pages/RefundPolicyPage";
+import { RetailCustomerAnalyticsCaseStudyPage } from "./pages/RetailCustomerAnalyticsCaseStudyPage";
 import { SignupPage } from "./pages/SignupPage";
 import { SnowflakeCaseStudyPage } from "./pages/SnowflakeCaseStudyPage";
 import { TermsPage } from "./pages/TermsPage";
@@ -25,6 +27,8 @@ export default function App() {
       <Routes>
         <Route path="case-studies/snowflake-ingestion" element={<SnowflakeCaseStudyPage />} />
         <Route path="case-studies/legacy-etl-migration" element={<EtlMigrationCaseStudyPage />} />
+        <Route path="case-studies/m4m-databricks-modernization" element={<M4mDatabricksCaseStudyPage />} />
+        <Route path="case-studies/retail-customer-analytics" element={<RetailCustomerAnalyticsCaseStudyPage />} />
         <Route element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="platforms/:slug" element={<PlatformPage />} />
