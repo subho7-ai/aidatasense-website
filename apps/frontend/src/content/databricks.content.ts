@@ -146,10 +146,6 @@ export const databricksContent: PlatformContent = {
       ],
     },
     {
-      heading: "Materialized Views",
-      body: "When querying frequently-accessed data, materialized views are typically the best choice for performance on both Databricks and Snowflake — they pre-compute and store query results, refreshing automatically as underlying data changes, so repeated queries don't have to reprocess raw data every time.",
-    },
-    {
       heading: "Data Skew vs. Time Skew",
       body: "Data skew happens when data is unevenly distributed across partitions — some partitions end up with far more data than others, often caused by low-cardinality join keys, null-heavy columns, or a few \"celebrity\" values dominating a dataset. Time skew is the resulting performance symptom: certain tasks take substantially longer to finish than others, either because of that underlying data skew or because of uneven computational complexity between tasks. Since a Spark stage only completes when its slowest task finishes, a handful of skewed tasks can stall an entire job — engineers detect this by watching for tasks running 5-10x longer than the median, or a stage stuck at 99% completion. Fixes include enabling Adaptive Query Execution (AQE) to auto-split skewed partitions, salting skewed join keys, handling nulls explicitly, and pre-aggregating data before joins.",
     },

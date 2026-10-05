@@ -1,4 +1,5 @@
 import type { ReferenceLink } from "@aidatasense/shared";
+import { ZoomableImage } from "./ZoomableImage";
 
 export function ReferenceLinkCard({
   title,
@@ -14,7 +15,7 @@ export function ReferenceLinkCard({
       <div
         className={`${className} ${fillHeight ? "flex h-full flex-col" : ""} rounded-xl border border-slate-200 p-4`}
       >
-        <img src={imageUrl} alt={title} className="w-full rounded-lg border border-slate-200" />
+        <ZoomableImage src={imageUrl} alt={title} className="w-full rounded-lg border border-slate-200" />
         <p className="mt-3 text-sm font-semibold text-slate-900">{title}</p>
         <p className="mt-1 text-sm text-slate-600">{description}</p>
         <a
