@@ -6,7 +6,9 @@ import { ApimTokenGovernanceDeepDive } from "../components/ApimTokenGovernanceDe
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
+import { DatabricksAdlsSetup } from "../components/DatabricksAdlsSetup";
 import { DatabricksDataConsumers } from "../components/DatabricksDataConsumers";
+import { DatabricksDeltaTable } from "../components/DatabricksDeltaTable";
 import { DatabricksDevOpsFlow } from "../components/DatabricksDevOpsFlow";
 import { DatabricksGovernance } from "../components/DatabricksGovernance";
 import { DatabricksObjectHierarchy } from "../components/DatabricksObjectHierarchy";
@@ -18,6 +20,12 @@ import { SnowflakeGovernance } from "../components/SnowflakeGovernance";
 import { SnowflakeObjectHierarchy } from "../components/SnowflakeObjectHierarchy";
 import { SnowflakePillars } from "../components/SnowflakePillars";
 import { SnowflakePlatformArchitecture } from "../components/SnowflakePlatformArchitecture";
+import { FabricDataConsumers } from "../components/FabricDataConsumers";
+import { FabricDevOpsFlow } from "../components/FabricDevOpsFlow";
+import { FabricGovernance } from "../components/FabricGovernance";
+import { FabricObjectHierarchy } from "../components/FabricObjectHierarchy";
+import { FabricOverview } from "../components/FabricOverview";
+import { FabricPlatformArchitecture } from "../components/FabricPlatformArchitecture";
 import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
@@ -30,7 +38,14 @@ const SIDE_NAV_SLUGS = ["databricks", "snowflake", "azure-fabric", "gateway"];
 // Purpose-built sections that close out the Architecture area, per platform. The last one
 // on each list is the Data Consumers section, which gets its own "Consumers" nav link.
 const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
-  databricks: [DatabricksWorkspaceArchitecture, DatabricksObjectHierarchy, DatabricksGovernance, DatabricksDataConsumers],
+  databricks: [
+    DatabricksWorkspaceArchitecture,
+    DatabricksObjectHierarchy,
+    DatabricksAdlsSetup,
+    DatabricksGovernance,
+    DatabricksDataConsumers,
+  ],
+  "azure-fabric": [FabricPlatformArchitecture, FabricObjectHierarchy, FabricGovernance, FabricDataConsumers],
   snowflake: [
     SnowflakePlatformArchitecture,
     SnowflakeObjectHierarchy,
@@ -43,6 +58,7 @@ const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
 // Extra side-nav links for sections inside the Architecture area, listed in page order.
 const ARCHITECTURE_NAV: Record<string, { id: string; label: string }[]> = {
   databricks: [{ id: "governance", label: "Governance" }],
+  "azure-fabric": [{ id: "governance", label: "Governance" }],
   snowflake: [
     { id: "data-engineering", label: "Data engineering" },
     { id: "governance", label: "Governance" },
@@ -52,6 +68,9 @@ const ARCHITECTURE_NAV: Record<string, { id: string; label: string }[]> = {
 // Components a content section can stand in for, via its customBlock key.
 const CUSTOM_BLOCKS: Record<NonNullable<ContentSection["customBlock"]>, ComponentType> = {
   "databricks-devops": DatabricksDevOpsFlow,
+  "databricks-delta-table": DatabricksDeltaTable,
+  "fabric-devops": FabricDevOpsFlow,
+  "fabric-overview": FabricOverview,
   "snowflake-devops": SnowflakeDevOpsFlow,
   "snowflake-pillars": SnowflakePillars,
 };

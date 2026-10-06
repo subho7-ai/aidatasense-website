@@ -35,6 +35,8 @@ export type ConsumersConfig = {
   decisions: [string, string, string][];
   ruleOfThumb: ReactNode;
   ariaLabel: string;
+  /** Optional extra content shown right after the flow diagram, e.g. a credited docs figure. */
+  afterFlow?: ReactNode;
 };
 
 const ROW_GAP = 118;
@@ -200,6 +202,7 @@ export function DataConsumersSection({ platform, config }: { platform: string; c
       <p className="mt-3 text-slate-600">{config.intro}</p>
 
       <ConsumersFlow config={config} />
+      {config.afterFlow}
 
       <h3 className="mt-8 text-lg font-semibold text-slate-900">Internal and external tools</h3>
       <p className="mt-3 text-slate-600">

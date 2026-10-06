@@ -112,12 +112,8 @@ export const databricksContent: PlatformContent = {
     },
     {
       heading: "What Is a Delta Table",
-      body: "A Delta table is the open storage format that makes the lakehouse possible: a set of Parquet files plus a transaction log that together add database-like guarantees to data sitting in ordinary cloud storage, with no separate database required.",
-      bullets: [
-        "ACID transactions — safe concurrent reads and writes, no partial or corrupted data",
-        "Schema enforcement — bad or mismatched data gets rejected, not silently written",
-        "Time travel — query or roll back to a previous version of a table",
-      ],
+      customBlock: "databricks-delta-table",
+      body: "",
     },
   ],
   devOpsNavHeading: "CI/CD for Data Engineers with Azure DevOps",

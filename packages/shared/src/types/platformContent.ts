@@ -17,7 +17,13 @@ export interface IntegrationsData {
 export interface ContentSection {
   heading: string;
   /** Render a purpose-built component in this section's place instead of the generic layout. */
-  customBlock?: "databricks-devops" | "snowflake-devops" | "snowflake-pillars";
+  customBlock?:
+    | "databricks-devops"
+    | "databricks-delta-table"
+    | "snowflake-devops"
+    | "snowflake-pillars"
+    | "fabric-overview"
+    | "fabric-devops";
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;
