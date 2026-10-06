@@ -44,7 +44,7 @@ const CARD_THEME: Record<string, CardTheme> = {
     linkText: "text-violet-600",
     linkHover: "hover:text-violet-500",
   },
-  "ai-progress": {
+  "ai-landscape": {
     hex: "#3b82f6",
     border: "border-t-blue-400",
     hoverText: "hover:text-blue-600",
@@ -59,11 +59,11 @@ const CARD_TITLE: Record<string, string> = {
   snowflake: "Snowflake",
   "azure-fabric": "Azure Fabric",
   gateway: "Gateway",
-  "ai-progress": "AI Progress",
+  "ai-landscape": "AI Landscape",
 };
 
 export function PlatformSection({ content }: { content: PlatformContent }) {
-  const to = content.slug === "ai-progress" ? "/ai-progress" : `/platforms/${content.slug}`;
+  const to = content.slug === "ai-landscape" ? "/ai-landscape" : `/platforms/${content.slug}`;
   const theme = CARD_THEME[content.slug];
   const title = CARD_TITLE[content.slug] ?? content.tagline;
   const tiltCardRef = useRef<HTMLDivElement>(null);

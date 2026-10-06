@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { AboutPage } from "./pages/AboutPage";
 import { AccountPage } from "./pages/AccountPage";
-import { AiProgressPage } from "./pages/AiProgressPage";
+import { AiLandscapePage } from "./pages/AiLandscapePage";
 import { ContactPage } from "./pages/ContactPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { EtlMigrationCaseStudyPage } from "./pages/EtlMigrationCaseStudyPage";
@@ -32,7 +32,9 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="platforms/:slug" element={<PlatformPage />} />
-          <Route path="ai-progress" element={<AiProgressPage />} />
+          <Route path="ai-landscape" element={<AiLandscapePage />} />
+          {/* Old address, kept so existing links still work */}
+          <Route path="ai-progress" element={<Navigate to="/ai-landscape" replace />} />
           <Route path="courses" element={<CoursesPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />

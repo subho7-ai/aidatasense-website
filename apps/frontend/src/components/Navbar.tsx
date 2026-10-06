@@ -9,7 +9,7 @@ const navItems = [
   { to: "/platforms/snowflake", label: "Snowflake" },
   { to: "/platforms/azure-fabric", label: "Azure Fabric" },
   { to: "/platforms/gateway", label: "Gateway" },
-  { to: "/ai-progress", label: "AI Progress" },
+  { to: "/ai-landscape", label: "AI Landscape" },
   { to: "/courses", label: "Courses" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },

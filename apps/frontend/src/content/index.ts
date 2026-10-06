@@ -1,5 +1,5 @@
 import type { PlatformContent } from "@aidatasense/shared";
-import { aiProgressContent } from "./aiProgress.content";
+import { aiLandscapeContent } from "./aiLandscape.content";
 import { azureFabricContent } from "./azureFabric.content";
 import { databricksContent } from "./databricks.content";
 import { gatewayContent } from "./gateway.content";
@@ -17,7 +17,7 @@ export const allPlatforms: PlatformContent[] = [
   snowflakeContent,
   azureFabricContent,
   gatewayContent,
-  aiProgressContent,
+  aiLandscapeContent,
 ];
 
-export { aiProgressContent };
+export { aiLandscapeContent };

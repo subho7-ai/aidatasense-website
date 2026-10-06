@@ -1,8 +1,8 @@
-import type { AiProgressContent } from "@aidatasense/shared";
+import type { AiLandscapeContent } from "@aidatasense/shared";
 import agenticAiLogo from "../assets/agentic-ai-logo.png";
 
-export const aiProgressContent: AiProgressContent = {
-  slug: "ai-progress",
+export const aiLandscapeContent: AiLandscapeContent = {
+  slug: "ai-landscape",
   name: "Agentic AI & Model Platforms",
   logoUrl: agenticAiLogo,
   tagline: "The frontier of agentic AI",

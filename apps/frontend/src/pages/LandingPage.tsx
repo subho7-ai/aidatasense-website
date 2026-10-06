@@ -49,7 +49,7 @@ export function LandingPage() {
               Browse Courses
             </Link>
             <Link
-              to="/ai-progress"
+              to="/ai-landscape"
               className="rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
             >
               Explore Agentic AI

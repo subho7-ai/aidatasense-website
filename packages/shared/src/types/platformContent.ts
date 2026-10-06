@@ -130,6 +130,6 @@ export interface NewsArticle {
   publishedDate: string;
 }
 
-export interface AiProgressContent extends PlatformContent {
+export interface AiLandscapeContent extends PlatformContent {
   articles: NewsArticle[];
 }
