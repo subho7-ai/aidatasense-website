@@ -1,6 +1,9 @@
 import type { PlatformContent } from "@aidatasense/shared";
 import snowflakeArchitectureOverview from "../assets/snowflake-architecture-overview.png";
-import snowflakeHierarchy from "../assets/snowflake-hierarchy.png";
+import snowflakeCdpLifecycle from "../assets/snowflake-docs-cdp-lifecycle.png";
+import snowflakeDataSharing from "../assets/snowflake-docs-data-sharing-overview.png";
+import snowflakeMlOverview from "../assets/snowflake-docs-ml-overview.png";
+import snowflakeMicroPartitions from "../assets/snowflake-docs-tables-clustered1.png";
 
 export const snowflakeContent: PlatformContent = {
   slug: "snowflake",
@@ -14,44 +17,175 @@ export const snowflakeContent: PlatformContent = {
     "Storage and compute scale independently — pay only for the compute you actually use",
     "Native support for structured and semi-structured data, with built-in AI/ML via Snowflake Cortex",
   ],
-  sections: [
-    {
-      heading: "Architecture Overview",
-      body: "",
-      diagram: {
-        title: "Snowflake's Official Architecture Overview",
-        description:
-          "Cloud Services, Compute (Virtual Warehouses), and Database Storage supporting structured, semi-structured, and unstructured data.",
-        url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
-        imageUrl: snowflakeArchitectureOverview,
-      },
-      diagramBrief:
-        "Snowflake's architecture splits into three independently scalable layers. The storage layer holds all data in a compressed, columnar format managed entirely by Snowflake, with a single copy shared across every workload. The compute layer consists of virtual warehouses — independent clusters that resize or suspend in seconds — so multiple teams can query the same data without competing for resources. Above both sits the cloud services layer, handling authentication, query optimization, and metadata management, which is what gives the platform its \"no tuning required\" feel.",
-      diagramAttribution: {
-        label: "Source: Snowflake Documentation",
-        url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
-      },
+  architectureDiagram: {
+    summaryBullets: [
+      "Sources — files, SaaS apps, operational databases, and event streams produce the raw data.",
+      "Ingest — Snowpipe auto-ingests files from cloud storage, Snowpipe Streaming and the Kafka connector land rows within seconds, and connectors pull from databases and SaaS apps.",
+      "Transform — dynamic tables, streams and tasks, Snowpark, and dbt clean and reshape data inside Snowflake, with no separate processing engine.",
+      "Store — one copy of every table in Snowflake-managed storage, or as Apache Iceberg tables in your own bucket.",
+      "Serve — virtual warehouses power BI, apps, and APIs, and Secure Data Sharing delivers live data to other accounts.",
+      "Govern — Snowflake Horizon applies roles, masking and row access policies, tags, and lineage across every stage.",
+    ],
+    accordion: {
+      heading: "ETL Breakdown",
+      items: [
+        {
+          title: "Extract",
+          body: "Getting data in: COPY INTO for bulk loads, Snowpipe for continuous file ingestion from a stage, Snowpipe Streaming and the Kafka connector for low-latency rows, and connectors that replicate from databases and SaaS applications.",
+        },
+        {
+          title: "Transform",
+          body: "Shaping data inside Snowflake: dynamic tables that refresh to a target lag, streams and tasks for change-driven steps, Snowpark for Python, Java, or Scala logic, and dbt for SQL models — all running on Snowflake compute.",
+        },
+        {
+          title: "Load",
+          body: "Delivering curated data: gold tables and secure views queried by BI tools through virtual warehouses, Streamlit apps, Secure Data Sharing to other accounts, and unloads to cloud storage for systems that need files.",
+        },
+      ],
     },
+  },
+  architectureExtraSections: [
     {
-      heading: "Key Technical Specs",
-      body: "Snowflake supports secure data sharing through Snowgrid, letting organizations share live, governed data across accounts, regions, or clouds without copying it. It natively handles structured data as well as semi-structured formats like JSON, Avro, ORC, Parquet, and XML, queryable directly via the VARIANT type. Snowpark extends the platform with a developer framework for writing pipelines and ML workflows in Python, Java, or Scala that execute inside Snowflake's own compute layer, without moving data to an external engine.",
+      heading: "Integrations",
+      body: "Snowflake connects with a broad ecosystem of technology partners — from ingestion tools like Fivetran, to BI platforms like Tableau and Power BI, to governance tools like Collibra and Alation. Partner Connect sets up trial integrations in a few clicks, and native drivers and connectors cover everything else.",
+      integrations: {
+        categories: [
+          { label: "Partner Connect", url: "https://docs.snowflake.com/en/user-guide/ecosystem-partner-connect" },
+          { label: "Drivers", url: "https://docs.snowflake.com/en/developer-guide/drivers" },
+          { label: "Kafka Connector", url: "https://docs.snowflake.com/en/user-guide/kafka-connector" },
+          { label: "Spark Connector", url: "https://docs.snowflake.com/en/user-guide/spark-connector" },
+          { label: "dbt Projects", url: "https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake" },
+          { label: "Snowpark", url: "https://docs.snowflake.com/en/developer-guide/snowpark/index" },
+        ],
+        viewAllUrl: "https://docs.snowflake.com/en/user-guide/ecosystem-all",
+        callout: {
+          title: "Power BI Integration",
+          body: "Power BI connects to Snowflake with its built-in connector, in either import or DirectQuery mode, and supports single sign-on through Microsoft Entra ID — so report access follows the same identities as the data.",
+        },
+      },
     },
   ],
+  references: [
+    {
+      title: "Snowflake Key Concepts and Architecture",
+      description:
+        "The official overview of Snowflake's three layers — cloud services, compute (virtual warehouses), and database storage for structured, semi-structured, and unstructured data.",
+      url: "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+      imageUrl: snowflakeArchitectureOverview,
+    },
+  ],
+  sections: [
+    {
+      heading: "The Data Cloud",
+      customBlock: "snowflake-pillars",
+      body: "",
+    },
+    {
+      heading: "Structured, Semi-Structured, and Unstructured Data",
+      body: "Snowflake stores relational tables alongside semi-structured formats — JSON, Avro, ORC, Parquet, and XML — which load into a VARIANT column and can be queried directly with dot notation and FLATTEN, no upfront schema required. Unstructured files such as PDFs and images sit in stages and can be processed with Snowpark or Cortex AI functions.",
+      bullets: [
+        "VARIANT — holds any semi-structured value; Snowflake stores common paths in columnar form, so queries stay fast",
+        "Schema on read — load first, decide the structure later, without breaking ingestion when a new field appears",
+        "Unstructured data — files in stages, with directory tables to catalog them and secure URLs to share them",
+      ],
+    },
+    {
+      heading: "Apache Iceberg Tables",
+      body: "Iceberg tables let Snowflake store data in the open Apache Iceberg format, in a bucket you own, through an external volume. Snowflake can manage the table and its catalog itself, or work with tables managed by an external catalog — so the same data can be read by Spark, Trino, or Flink without copying it out of Snowflake.",
+      bullets: [
+        "Open format — Parquet data files plus Iceberg metadata, readable by any Iceberg-compatible engine",
+        "Your storage — data lives in your S3, Azure, or Google Cloud bucket rather than Snowflake-managed storage",
+        "Same governance — Snowflake-managed Iceberg tables get roles, masking, and Time Travel like any other table",
+      ],
+      diagramAttribution: {
+        label: "Learn more →",
+        url: "https://docs.snowflake.com/en/user-guide/tables-iceberg",
+      },
+    },
+    {
+      heading: "Time Travel and Fail-safe",
+      body: [
+        "Every change to a permanent table is recoverable for a while. During the Time Travel window — 1 day by default, up to 90 days on Enterprise edition — you can query data as it was at a point in the past, clone it from that moment, or UNDROP a table you deleted. After Time Travel ends, Fail-safe keeps the data for 7 more days, recoverable only by Snowflake support as a last resort.",
+        "This is also why staging tables are often transient: they skip Fail-safe and keep at most one day of Time Travel, so you don't pay to store history you'll never need.",
+      ],
+      imageUrl: snowflakeCdpLifecycle,
+      imageZoomable: true,
+      imageCaption: "Continuous Data Protection lifecycle",
+      diagramAttribution: {
+        label: "Source: Snowflake documentation — Understanding & using Time Travel",
+        url: "https://docs.snowflake.com/en/user-guide/data-time-travel",
+      },
+    },
+  ],
+  devOpsNavHeading: "CI/CD for Data Engineers with Azure DevOps",
+  aiNavHeading: "Snowflake: Cortex + Cortex AI Gateway",
   aiSections: [
     {
-      heading: "What Is a Gateway?",
-      body: "A gateway is a common cloud/API pattern — but traditional gateways aren't built for AI.",
-      internalLink: {
-        label: "Read the full explanation on the Databricks page →",
-        to: "/platforms/databricks#ai",
+      heading: "Zero-Copy Cloning and Secure Data Sharing",
+      body: [
+        "Because Snowflake separates storage from compute, copying data doesn't have to mean duplicating it. A zero-copy clone of a table, schema, or whole database is created in seconds and shares the original's storage until either side changes — ideal for spinning up a test environment from production data.",
+        "Secure Data Sharing takes the same idea across accounts: a provider shares live, read-only tables with consumer accounts, and consumers query them with their own compute. Nothing is copied or moved, access can be revoked at any time, and listings and the Marketplace extend sharing across regions and clouds.",
+      ],
+      imageUrl: snowflakeDataSharing,
+      imageZoomable: true,
+      imageCaption: "Providers share databases with consumer accounts — shared databases are read-only",
+      diagramAttribution: {
+        label: "Source: Snowflake documentation — About Secure Data Sharing",
+        url: "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
       },
+    },
+    {
+      heading: "Micro-partitions and Clustering",
+      body: [
+        "Snowflake doesn't ask you to define partitions. Every table is automatically split into micro-partitions — contiguous units of 50 to 500 MB of uncompressed data, stored by column — and Snowflake records the range of values in each. Queries then skip every micro-partition that can't contain a match, a technique called pruning.",
+        "Pruning works best when related rows sit together. Data loaded in date order is naturally clustered by date; for very large tables queried on other columns, a clustering key tells Snowflake to keep rows with similar values together, and automatic clustering maintains it in the background.",
+      ],
+      bullets: [
+        "Micro-partitions — automatic, immutable, columnar, with min/max metadata per column",
+        "Pruning — filters on well-clustered columns read a small fraction of the table",
+        "Clustering keys — only for multi-terabyte tables whose filters don't match load order; maintenance costs credits",
+        "Search optimization — a separate service for fast point lookups on high-cardinality columns",
+      ],
+      imageUrl: snowflakeMicroPartitions,
+      imageZoomable: true,
+      imageCaption: "A table's logical rows stored physically across micro-partitions",
+      diagramAttribution: {
+        label: "Source: Snowflake documentation — Micro-partitions & data clustering",
+        url: "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+      },
+    },
+    {
+      heading: "CI/CD for Data Engineers with Azure DevOps",
+      customBlock: "snowflake-devops",
+      body: "",
     },
     {
       heading: "Snowflake: Cortex + Cortex AI Gateway",
       body: [
-        "Snowflake takes the same layered approach. Cortex is Snowflake's suite of built-in AI capabilities, letting teams build and run AI directly on their data. And just like Databricks, Snowflake has its own equivalent control plane: Cortex AI Gateway, a centralized layer that governs how AI agents access models, tools, and enterprise data — tracking cost, enforcing security policies, and auditing every AI interaction, regardless of which agent or platform it came from.",
-        "The takeaway: both platforms recognized the same gap — a normal API gateway isn't enough for AI — and built a dedicated governance layer to close it.",
+        "Cortex is Snowflake's suite of built-in AI capabilities — large language models, AI SQL functions, and agents — that let teams build and run AI directly on their governed data, without moving it to an outside service.",
+        "As AI workloads grow, a traditional API gateway isn't enough: it can route a request and check a login, but it can't count tokens, track which model answered, or enforce spending limits on an LLM call. Cortex AI Gateway is Snowflake's centralized layer for this — governing how AI agents access models, tools, and enterprise data, tracking cost, enforcing security policies, and auditing every AI interaction.",
+        "The takeaway: Databricks and Snowflake both recognized the same gap — a normal API gateway isn't enough for AI — and built a dedicated governance layer to close it.",
       ],
+    },
+    {
+      heading: "Snowflake ML",
+      body: [
+        "Snowflake ML is Snowflake's integrated set of capabilities for end-to-end machine learning on top of governed data. Data scientists develop in Snowflake Notebooks or their own IDE, train on the Container Runtime with CPUs or GPUs and familiar libraries like PyTorch, XGBoost, and scikit-learn, and take models to production without moving data out of Snowflake.",
+      ],
+      bullets: [
+        "Develop & iterate — Snowflake ML APIs and Experiments to record and compare training runs",
+        "Orchestrate & automate — ML Jobs to run pipelines on the Container Runtime, from Snowflake or an external IDE",
+        "Manage — the Feature Store for reusable features and the Model Registry for every model version",
+        "Deploy & serve — Model Serving on Snowpark Container Services for inference at scale",
+        "Monitor — ML Observability for drift and performance, with explainability and end-to-end ML Lineage",
+      ],
+      imageUrl: snowflakeMlOverview,
+      imageZoomable: true,
+      imageCaption: "Snowflake ML — from batch data, streams, and any model to apps, dashboards, and APIs",
+      diagramAttribution: {
+        label: "Source: Snowflake documentation — Snowflake ML overview",
+        url: "https://docs.snowflake.com/en/developer-guide/snowflake-ml/overview",
+      },
     },
     {
       heading: "The Bigger Picture: The LLM Mesh",
@@ -63,41 +197,27 @@ export const snowflakeContent: PlatformContent = {
   useCases: [
     {
       title: "Multi-Source Ingestion: Batch SFTP + Real-Time Kinesis Streaming",
-      body: [
-        "A client needs the same downstream tables fed from two very different sources, both within a 30-minute SLA from the moment data is received. Batch files arrive over SFTP twice a day, each under 1 GB compressed; a Kinesis stream delivers the same JSON-formatted records in near real time. Both need to land in the same final, transformed Snowflake tables through one consistent pipeline, not two parallel one-off builds.",
-        "For the SFTP path, an intermediary service (such as AWS Transfer Family) lands each incoming file into a cloud storage stage. Snowpipe's auto-ingest picks files up the moment they arrive — no polling schedule, no manual COPY INTO — and loads them into a raw landing table. For the Kinesis stream, Snowpipe Streaming writes records directly into an equivalent raw table within seconds of being published, skipping the file-staging step entirely.",
-        "Because both sources deliver the same JSON structure, both raw tables feed one shared Stream-and-Task (or Dynamic Table) transformation pipeline. The business logic that shapes the final tables — parsing, validation, deduplication, merges — is written once and applied identically regardless of which path the data took. With Snowpipe's typical sub-minute file-ingestion latency, near-instant streaming ingestion, and a Task cadence of a few minutes, the 30-minute SLA has comfortable margin on both paths under normal conditions.",
-      ],
-      bulletsHeading: "Key considerations to validate in testing and production",
-      bullets: [
-        "Idempotency and deduplication — SFTP files can be re-delivered and Kinesis guarantees at-least-once delivery, so the merge logic needs to be tested against replayed and duplicate records, not just the happy path.",
-        "Snowpipe and streaming failure visibility — a stalled pipe, a failed cloud storage event notification, or a paused streaming channel can silently stop new data from landing; needs active monitoring (e.g. SYSTEM$PIPE_STATUS) and alerting, not just an assumption that ingestion is always running.",
-        "SFTP-to-stage dependency — the intermediary service that moves files from SFTP into cloud storage is outside Snowflake entirely; its own reliability, file-naming consistency, and handling of partial or interrupted transfers all need to be verified independently.",
-        "Kinesis backpressure — a burst of records beyond normal volume could outrun the streaming client's throughput or trigger Snowflake-side throttling, risking the 30-minute SLA specifically during traffic spikes rather than steady-state load.",
-        "Schema drift — VARIANT columns absorb structural changes at ingestion without erroring, but the transformation logic downstream can break silently if an expected field disappears or changes type, so schema validation and alerting need to sit in the pipeline, not just at load time.",
-        "Stream staleness — a Stream that isn't consumed within its retention window goes stale and needs to be recreated, which would create a silent gap in the transformed data if a Task fails repeatedly without being noticed.",
-        "End-to-end SLA monitoring — the 30-minute clock starts at \"data received,\" not \"file landed in Snowflake,\" so verifying the SLA in production requires timestamps captured at the true point of receipt, not just component-level ingestion metrics that look fast in isolation.",
-      ],
+      summaryCard: true,
+      body: "A client needs the same Snowflake tables fed from twice-daily SFTP batch files and a real-time Kinesis stream, both within a 30-minute SLA. Snowpipe auto-ingest and Snowpipe Streaming land each source, and one shared transformation pipeline applies the business logic once — with the testing and monitoring needed to keep the SLA in production.",
       internalLink: {
         label: "Read the full case study →",
         to: "/case-studies/snowflake-ingestion",
       },
     },
   ],
-  deepDiveSections: [
+  videos: [
     {
-      heading: "Object Hierarchy",
-      body: "Every Snowflake organization contains one or more accounts. Each account organizes data through a Database (Schema → Table, View, Materialized View, Stored Procedure, Function) and Warehouses for compute, with a separate Access & Sharing layer covering Users/Roles and cross-account Shares.",
-      imageUrl: snowflakeHierarchy,
-      imageSideBySide: true,
+      title: "Snowflake Native App Framework",
+      youtubeId: "IrKgLGOsUsc",
+      description: "Snowflake Developers on building and distributing apps that run inside Snowflake, next to the data.",
     },
+  ],
+  sidebarReferences: [
     {
-      heading: "Materialized Views",
-      body: "When querying frequently-accessed data, materialized views are typically the best choice for performance on both Databricks and Snowflake — they pre-compute and store query results, refreshing automatically as underlying data changes, so repeated queries don't have to reprocess raw data every time.",
-    },
-    {
-      heading: "Data Skew vs. Time Skew",
-      body: "Data skew happens when data is unevenly distributed across partitions — some partitions end up with far more data than others, often caused by low-cardinality join keys, null-heavy columns, or a few \"celebrity\" values dominating a dataset. Time skew is the resulting performance symptom: certain tasks take substantially longer to finish than others, either because of that underlying data skew or because of uneven computational complexity between tasks. Since a Spark stage only completes when its slowest task finishes, a handful of skewed tasks can stall an entire job — engineers detect this by watching for tasks running 5-10x longer than the median, or a stage stuck at 99% completion. Fixes include enabling Adaptive Query Execution (AQE) to auto-split skewed partitions, salting skewed join keys, handling nulls explicitly, and pre-aggregating data before joins.",
+      title: "Snowflake Data Cloud Architecture",
+      description:
+        "Snowflake's own overview of the Data Cloud and its four architectural layers: optimized storage, elastic compute, cloud services, and Snowgrid.",
+      url: "https://www.snowflake.com/en/why-snowflake/what-is-data-cloud/data-cloud-architecture/",
     },
   ],
   learnMoreUrl: "https://docs.snowflake.com/",

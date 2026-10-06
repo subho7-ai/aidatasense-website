@@ -473,7 +473,7 @@ function UnityCatalogObjectModel() {
   );
 }
 
-function InheritanceDiagram() {
+export function InheritanceDiagram() {
   const levels = [
     { label: "Catalog prod", tone: "border-indigo-300 bg-indigo-50 text-indigo-700", granted: true },
     { label: "Schemas sales, finance", tone: "border-sky-300 bg-sky-50 text-sky-700" },
@@ -918,14 +918,14 @@ export function DatabricksObjectHierarchy() {
         acceptable.
       </p>
 
-      <h3 className="mt-8 text-lg font-semibold text-slate-900">Governance with Unity Catalog</h3>
-      <p className="mt-3 text-slate-600">
-        Unity Catalog centralizes governance across every workspace. It provides fine-grained access control on
-        catalogs, schemas, and tables, and also manages non-data objects such as storage credentials and external
-        locations. Crucially, privileges are inherited: a permission granted on a catalog or schema applies to
-        everything inside it.
+      <p className="mt-8 rounded-lg border border-indigo-200 bg-indigo-50/60 px-4 py-3 text-sm text-slate-700">
+        <strong className="font-semibold text-slate-900">Who can see what?</strong> Grants, inherited permissions, row
+        filters, column masks, encryption, and sensitive-data handling are covered in{" "}
+        <a href="#governance" className="font-semibold text-indigo-600 hover:text-indigo-500">
+          Data Governance
+        </a>
+        .
       </p>
-      <InheritanceDiagram />
 
       <h3 className="mt-8 text-lg font-semibold text-slate-900">Workspace-level assets</h3>
       <p className="mt-3 text-slate-600">

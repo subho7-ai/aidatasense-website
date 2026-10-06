@@ -1,13 +1,23 @@
 import type { ContentSection } from "@aidatasense/shared";
+import type { ComponentType } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Accordion } from "../components/Accordion";
 import { ApimTokenGovernanceDeepDive } from "../components/ApimTokenGovernanceDeepDive";
 import { ArchitectureBulletList } from "../components/ArchitectureBulletList";
 import { ArchitectureDiagram } from "../components/ArchitectureDiagram";
 import { ComparisonTable } from "../components/ComparisonTable";
+import { DatabricksDataConsumers } from "../components/DatabricksDataConsumers";
 import { DatabricksDevOpsFlow } from "../components/DatabricksDevOpsFlow";
+import { DatabricksGovernance } from "../components/DatabricksGovernance";
 import { DatabricksObjectHierarchy } from "../components/DatabricksObjectHierarchy";
 import { DatabricksWorkspaceArchitecture } from "../components/DatabricksWorkspaceArchitecture";
+import { SnowflakeDataConsumers } from "../components/SnowflakeDataConsumers";
+import { SnowflakeDataEngineering } from "../components/SnowflakeDataEngineering";
+import { SnowflakeDevOpsFlow } from "../components/SnowflakeDevOpsFlow";
+import { SnowflakeGovernance } from "../components/SnowflakeGovernance";
+import { SnowflakeObjectHierarchy } from "../components/SnowflakeObjectHierarchy";
+import { SnowflakePillars } from "../components/SnowflakePillars";
+import { SnowflakePlatformArchitecture } from "../components/SnowflakePlatformArchitecture";
 import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
@@ -16,6 +26,40 @@ import { VideoSection } from "../components/VideoSection";
 import { platformContentBySlug } from "../content";
 
 const SIDE_NAV_SLUGS = ["databricks", "snowflake", "azure-fabric", "gateway"];
+
+// Purpose-built sections that close out the Architecture area, per platform. The last one
+// on each list is the Data Consumers section, which gets its own "Consumers" nav link.
+const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
+  databricks: [DatabricksWorkspaceArchitecture, DatabricksObjectHierarchy, DatabricksGovernance, DatabricksDataConsumers],
+  snowflake: [
+    SnowflakePlatformArchitecture,
+    SnowflakeObjectHierarchy,
+    SnowflakeDataEngineering,
+    SnowflakeGovernance,
+    SnowflakeDataConsumers,
+  ],
+};
+
+// Extra side-nav links for sections inside the Architecture area, listed in page order.
+const ARCHITECTURE_NAV: Record<string, { id: string; label: string }[]> = {
+  databricks: [{ id: "governance", label: "Governance" }],
+  snowflake: [
+    { id: "data-engineering", label: "Data engineering" },
+    { id: "governance", label: "Governance" },
+  ],
+};
+
+// Components a content section can stand in for, via its customBlock key.
+const CUSTOM_BLOCKS: Record<NonNullable<ContentSection["customBlock"]>, ComponentType> = {
+  "databricks-devops": DatabricksDevOpsFlow,
+  "snowflake-devops": SnowflakeDevOpsFlow,
+  "snowflake-pillars": SnowflakePillars,
+};
+
+function renderSection(section: ContentSection) {
+  const Custom = section.customBlock && CUSTOM_BLOCKS[section.customBlock];
+  return Custom ? <Custom /> : <SectionBlock section={section} />;
+}
 
 export function PlatformPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -26,7 +70,7 @@ export function PlatformPage() {
   }
 
   const hasSideNav = SIDE_NAV_SLUGS.includes(content.slug);
-  const isDatabricks = content.slug === "databricks";
+  const architectureBlocks = ARCHITECTURE_BLOCKS[content.slug] ?? [];
   const isGateway = content.slug === "gateway";
   const hasDevOps = Boolean(content.devOpsNavHeading);
   const hasAiSection = Boolean(content.aiSections?.length);
@@ -35,6 +79,8 @@ export function PlatformPage() {
   const navItems = [
     { id: "overview", label: "Overview" },
     { id: "architecture", label: "Architecture" },
+    ...(ARCHITECTURE_NAV[content.slug] ?? []),
+    ...(architectureBlocks.length > 0 ? [{ id: "consumers", label: "Consumers" }] : []),
     ...(hasDevOps ? [{ id: "devops", label: "DevOps" }] : []),
     ...(hasAiSection ? [{ id: "ai", label: "AI" }] : []),
     { id: "use-case", label: "Use case" },
@@ -52,11 +98,12 @@ export function PlatformPage() {
     (section) => !section.heading.toLowerCase().includes("architecture"),
   );
 
-  // Databricks wants its first Overview section (Data Intelligence Platform)
-  // to appear before Architecture, with the rest after — a different flow
-  // than Snowflake/Fabric, where all Overview content precedes Architecture.
-  const preArchitectureSections = isDatabricks ? overviewSections.slice(0, 1) : overviewSections;
-  const postArchitectureSections = isDatabricks ? overviewSections.slice(1) : [];
+  // Platforms with purpose-built architecture sections (Databricks, Snowflake) show their
+  // first Overview section before Architecture and the rest after it; elsewhere all
+  // Overview content precedes Architecture.
+  const splitsOverview = architectureBlocks.length > 0;
+  const preArchitectureSections = splitsOverview ? overviewSections.slice(0, 1) : overviewSections;
+  const postArchitectureSections = splitsOverview ? overviewSections.slice(1) : [];
 
   const header = (
     <>
@@ -144,8 +191,9 @@ export function PlatformPage() {
       {content.architectureExtraSections?.map((section) => (
         <SectionBlock key={section.heading} section={section} />
       ))}
-      {isDatabricks && <DatabricksWorkspaceArchitecture />}
-      {isDatabricks && <DatabricksObjectHierarchy />}
+      {architectureBlocks.map((Block, index) => (
+        <Block key={index} />
+      ))}
     </div>
   );
 
@@ -158,7 +206,7 @@ export function PlatformPage() {
       )}
 
       {preArchitectureSections.map((section) => (
-        <SectionBlock key={section.heading} section={section} />
+        <div key={section.heading}>{renderSection(section)}</div>
       ))}
     </>
   );
@@ -166,7 +214,7 @@ export function PlatformPage() {
   const postArchitectureBlock = (
     <>
       {postArchitectureSections.map((section) => (
-        <SectionBlock key={section.heading} section={section} />
+        <div key={section.heading}>{renderSection(section)}</div>
       ))}
     </>
   );
@@ -277,8 +325,6 @@ export function PlatformPage() {
     ...(aiNavHeading ? { [aiNavHeading]: "ai" } : {}),
     ...(content.devOpsNavHeading ? { [content.devOpsNavHeading]: "devops" } : {}),
   };
-  const renderSection = (section: ContentSection) =>
-    section.customBlock === "databricks-devops" ? <DatabricksDevOpsFlow /> : <SectionBlock section={section} />;
   const aiBlock = hasAiSection && (
     <div>
       {content.aiSections!.map((section) =>

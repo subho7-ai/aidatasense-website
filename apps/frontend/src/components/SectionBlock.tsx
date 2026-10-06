@@ -154,7 +154,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
               <a
                 key={category.label}
                 href={category.url}
-                target="databricks-integrations-docs"
+                target="integrations-docs"
                 className="rounded-full border border-indigo-200 bg-white px-4 py-1.5 text-sm font-semibold text-indigo-700 shadow-sm transition-colors hover:bg-indigo-50"
               >
                 {category.label}
@@ -163,7 +163,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           </div>
           <a
             href={section.integrations.viewAllUrl}
-            target="databricks-integrations-docs"
+            target="integrations-docs"
             className="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
           >
             View all integrations →
