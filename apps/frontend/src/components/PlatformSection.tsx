@@ -57,7 +57,7 @@ const CARD_THEME: Record<string, CardTheme> = {
 const CARD_TITLE: Record<string, string> = {
   databricks: "Databricks",
   snowflake: "Snowflake",
-  "azure-fabric": "Azure Fabric",
+  "azure-fabric": "Microsoft Fabric",
   gateway: "Gateway",
   "ai-landscape": "AI Landscape",
 };

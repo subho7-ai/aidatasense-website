@@ -92,6 +92,8 @@ export interface PlatformContent {
   architectureBullets: string[];
   architectureDiagram?: ArchitectureDiagramData;
   architectureExtraSections?: ContentSection[];
+  /** Keep every Overview section before Architecture, instead of splitting after the first. */
+  keepOverviewSectionsTogether?: boolean;
   sections: ContentSection[];
   sidebarSections?: ContentSection[];
   sidebarReferences?: ReferenceLink[];

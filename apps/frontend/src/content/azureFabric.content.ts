@@ -20,6 +20,7 @@ export const azureFabricContent: PlatformContent = {
     "Power BI: Native OneLake integration — Direct Lake queries data directly, no import step.",
     "Real-Time Intelligence: Ingest, query, and act on streaming data using KQL databases.",
   ],
+  keepOverviewSectionsTogether: true,
   architectureDiagram: {
     summaryBullets: [
       "Compute engines — Data Factory, Data Engineering, Data Science, Data Warehousing, Real-Time Intelligence, and Power BI all sit above the same OneLake storage layer, instead of each keeping its own copy of data.",
@@ -211,6 +212,32 @@ export const azureFabricContent: PlatformContent = {
       title: "What is Microsoft Fabric?",
       description: "Microsoft's overview of Fabric: the SaaS foundation, every workload, OneLake, and how they fit together.",
       url: "https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview",
+    },
+  ],
+  deepDiveSections: [
+    {
+      heading: "Delta Time Travel in Fabric",
+      body: [
+        "Delta Lake keeps a transaction log of every change to a table, so a lakehouse table can be queried as it existed at an earlier point, not just its current state. DESCRIBE HISTORY table_name lists each version with its timestamp and the operation that produced it, and a query can target a specific point with VERSION AS OF or TIMESTAMP AS OF — for example, SELECT * FROM orders VERSION AS OF 12 or SELECT * FROM orders TIMESTAMP AS OF '2026-01-01'.",
+        "How far back you can go depends on how much history is still retained: running VACUUM permanently removes files older than its retention threshold, so once a version's files are vacuumed, that version can no longer be queried, even though it still appears in the table's log.",
+      ],
+      bullets: [
+        "DESCRIBE HISTORY — lists a table's versions, timestamps, and operations.",
+        "VERSION AS OF / TIMESTAMP AS OF — query the table as it existed at a specific version or point in time.",
+        "VACUUM limits the window — once old files are vacuumed, those versions are no longer queryable.",
+      ],
+    },
+    {
+      heading: "Full vs. Incremental Loads",
+      body: [
+        "A full load reloads an entire table every run — simple to reason about, but it gets slower and more expensive as the source table grows, and it can momentarily disrupt readers while the table is rebuilt. An incremental load instead picks up only the rows that changed since the last run, usually tracked with a watermark — a column like an updated-at timestamp or an incrementing ID that marks how far the last run got.",
+        "Full loads suit small reference tables or sources with no reliable change-tracking column. Incremental loads suit large, frequently updated tables where reprocessing everything every run isn't practical. In Fabric, both patterns show up across the same tools: a Data Factory pipeline or Dataflow Gen2 can filter source rows by a watermark column, Dataflow Gen2 also supports incremental refresh natively, and a notebook can express the same idea in Spark with a MERGE statement that upserts only the changed rows into the target Delta table.",
+      ],
+      bullets: [
+        "Full load — reloads the entire table every run; simplest, but doesn't scale to large tables.",
+        "Incremental load — loads only what changed since the last run, tracked by a watermark column.",
+        "In Fabric — pipelines and Dataflow Gen2 filter by watermark; notebooks express the same pattern with a Spark MERGE.",
+      ],
     },
   ],
   learnMoreUrl: "https://learn.microsoft.com/fabric/",

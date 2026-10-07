@@ -120,7 +120,7 @@ export function PlatformPage() {
   // Platforms with purpose-built architecture sections (Databricks, Snowflake) show their
   // first Overview section before Architecture and the rest after it; elsewhere all
   // Overview content precedes Architecture.
-  const splitsOverview = architectureBlocks.length > 0;
+  const splitsOverview = architectureBlocks.length > 0 && !content.keepOverviewSectionsTogether;
   const preArchitectureSections = splitsOverview ? overviewSections.slice(0, 1) : overviewSections;
   const postArchitectureSections = splitsOverview ? overviewSections.slice(1) : [];
 
@@ -400,7 +400,11 @@ export function PlatformPage() {
       content.videos || content.sidebarReferences?.length || content.sidebarSections?.length || content.comparisonTable,
     );
     return (
-      <div className="relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div
+        className={`relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 ${
+          content.slug === "azure-fabric" ? "overflow-x-clip" : ""
+        }`}
+      >
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <NetworkPatternBackground />
         </div>

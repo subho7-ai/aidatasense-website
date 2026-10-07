@@ -7,7 +7,7 @@ const navItems = [
   { to: "/", label: "Home", end: true },
   { to: "/platforms/databricks", label: "Databricks" },
   { to: "/platforms/snowflake", label: "Snowflake" },
-  { to: "/platforms/azure-fabric", label: "Azure Fabric" },
+  { to: "/platforms/azure-fabric", label: "Microsoft Fabric" },
   { to: "/platforms/gateway", label: "Gateway" },
   { to: "/ai-landscape", label: "AI Landscape" },
   { to: "/courses", label: "Courses" },
