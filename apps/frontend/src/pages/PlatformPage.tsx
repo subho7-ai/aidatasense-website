@@ -27,6 +27,7 @@ import { FabricGovernance } from "../components/FabricGovernance";
 import { FabricObjectHierarchy } from "../components/FabricObjectHierarchy";
 import { FabricOverview } from "../components/FabricOverview";
 import { FabricPlatformArchitecture } from "../components/FabricPlatformArchitecture";
+import { GatewayArchitectureDiagram } from "../components/GatewayArchitectureDiagram";
 import { GatewayDataConsumers } from "../components/GatewayDataConsumers";
 import { GatewayDevOpsFlow } from "../components/GatewayDevOpsFlow";
 import { GatewayGovernance } from "../components/GatewayGovernance";
@@ -87,6 +88,7 @@ const CUSTOM_BLOCKS: Record<NonNullable<ContentSection["customBlock"]>, Componen
   "databricks-delta-table": DatabricksDeltaTable,
   "fabric-devops": FabricDevOpsFlow,
   "fabric-overview": FabricOverview,
+  "gateway-architecture-diagram": GatewayArchitectureDiagram,
   "gateway-devops": GatewayDevOpsFlow,
   "gateway-overview": GatewayOverview,
   "snowflake-devops": SnowflakeDevOpsFlow,
@@ -233,7 +235,7 @@ export function PlatformPage() {
         <SectionBlock key={section.heading} section={section} />
       ))}
       {content.architectureExtraSections?.map((section) => (
-        <SectionBlock key={section.heading} section={section} />
+        <div key={section.heading}>{renderSection(section)}</div>
       ))}
       {architectureBlocks.map((Block, index) => (
         <Block key={index} />
@@ -427,14 +429,16 @@ export function PlatformPage() {
     return (
       <div
         className={`relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 ${
-          content.slug === "azure-fabric" || content.slug === "databricks" ? "overflow-x-clip" : ""
+          content.slug === "azure-fabric" || content.slug === "databricks" || content.slug === "gateway"
+            ? "overflow-x-clip"
+            : ""
         }`}
       >
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <NetworkPatternBackground />
         </div>
         <div
-          className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_minmax(0,1fr)_224px]" : "lg:grid-cols-[180px_minmax(0,1fr)]"}`}
+          className={`grid grid-cols-1 gap-10 ${hasSidebar ? "lg:grid-cols-[180px_minmax(0,1fr)_224px]" : "lg:grid-cols-[180px_minmax(0,1fr)]"}`}
         >
           <PlatformSideNav items={navItems} />
           <div>

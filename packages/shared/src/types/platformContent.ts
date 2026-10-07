@@ -25,7 +25,8 @@ export interface ContentSection {
     | "fabric-overview"
     | "fabric-devops"
     | "gateway-overview"
-    | "gateway-devops";
+    | "gateway-devops"
+    | "gateway-architecture-diagram";
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;

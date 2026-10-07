@@ -16,6 +16,11 @@ export const gatewayContent: PlatformContent = {
   keepOverviewSectionsTogether: true,
   architectureExtraSections: [
     {
+      heading: "AI Gateway Architecture Diagram",
+      customBlock: "gateway-architecture-diagram",
+      body: "",
+    },
+    {
       heading: "Vendor Comparison",
       body: "",
       comparisonTable: {
