@@ -425,7 +425,9 @@ export function PlatformPage() {
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <NetworkPatternBackground />
         </div>
-        <div className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_1fr_224px]" : "lg:grid-cols-[180px_1fr]"}`}>
+        <div
+          className={`grid gap-10 ${hasSidebar ? "lg:grid-cols-[180px_minmax(0,1fr)_224px]" : "lg:grid-cols-[180px_minmax(0,1fr)]"}`}
+        >
           <PlatformSideNav items={navItems} />
           <div>
             {header}
