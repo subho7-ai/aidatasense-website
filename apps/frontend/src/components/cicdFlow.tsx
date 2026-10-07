@@ -42,6 +42,8 @@ export type PipelineFlowConfig = {
   /** Ends the "one source of truth" band: "…only the ___ changes." */
   whatChanges: string;
   ariaLabel: string;
+  /** Omit the "match the walkthrough below" sentence when there's no numbered walkthrough on the page. */
+  hasWalkthroughBelow?: boolean;
 };
 
 function StepBadge({ n, x, y }: { n: number; x: number; y: number }) {
@@ -305,8 +307,9 @@ export function PipelineFlow({ config }: { config: PipelineFlowConfig }) {
         <span className="font-mono">main</span> is deployed to Test/Cert, then Prod — only the {config.whatChanges} changes.
       </div>
       <figcaption className="mt-3 text-center text-sm text-slate-500">
-        A feature&apos;s path from a developer&apos;s branch to production. Steps ① to ⑥ match the walkthrough below.
-        Scroll sideways on small screens.
+        A feature&apos;s path from a developer&apos;s branch to production.
+        {config.hasWalkthroughBelow !== false && " Steps ① to ⑥ match the walkthrough below."} Scroll sideways on
+        small screens.
       </figcaption>
     </figure>
   );

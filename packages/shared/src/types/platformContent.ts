@@ -23,7 +23,9 @@ export interface ContentSection {
     | "snowflake-devops"
     | "snowflake-pillars"
     | "fabric-overview"
-    | "fabric-devops";
+    | "fabric-devops"
+    | "gateway-overview"
+    | "gateway-devops";
   body: string | string[];
   bullets?: string[];
   imageUrl?: string;

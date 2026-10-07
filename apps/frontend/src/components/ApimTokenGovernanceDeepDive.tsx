@@ -10,7 +10,7 @@ export function ApimTokenGovernanceDeepDive() {
           topology.
         </h1>
         <p className={styles.sub}>
-          Write <code>token-limit = 100k TPM</code> on Classic Premium&apos;s multi-region gateway, and the system
+          Write <code>llm-token-limit = 100k TPM</code> on Classic Premium&apos;s multi-region gateway, and the system
           quietly admits 300k. Write the same line on Premium v2, and it means exactly what it says. Same policy,
           same intent — the topology decides whether it&apos;s honest.
         </p>
@@ -99,7 +99,7 @@ export function ApimTokenGovernanceDeepDive() {
                   Gateway · East US
                 </text>
                 <text x="34" y="72" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="var(--muted)">
-                  token-limit = 100k TPM (local)
+                  llm-token-limit = 100k (local)
                 </text>
               </g>
               <g>
@@ -108,7 +108,7 @@ export function ApimTokenGovernanceDeepDive() {
                   Gateway · W. Europe
                 </text>
                 <text x="284" y="72" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="var(--muted)">
-                  token-limit = 100k TPM (local)
+                  llm-token-limit = 100k (local)
                 </text>
               </g>
               <g>
@@ -117,7 +117,7 @@ export function ApimTokenGovernanceDeepDive() {
                   Gateway · SE Asia
                 </text>
                 <text x="534" y="72" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="var(--muted)">
-                  token-limit = 100k TPM (local)
+                  llm-token-limit = 100k (local)
                 </text>
               </g>
               <path d="M130,94 L 130,120 M410,94 L 410,120 M630,94 L 630,120" stroke="#C7C2DE" strokeWidth="1.5" />
@@ -213,7 +213,7 @@ export function ApimTokenGovernanceDeepDive() {
                 Gateway · single instance
               </text>
               <text x="34" y="72" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="var(--muted)">
-                token-limit = 100k TPM (instance-wide)
+                llm-token-limit = 100k TPM (instance-wide)
               </text>
               <path d="M150,94 L150,120" stroke="var(--violet)" strokeWidth="1.8" />
               <rect x="20" y="126" width="260" height="42" rx="8" fill="var(--good-soft)" stroke="var(--good)" strokeWidth="1.2" />

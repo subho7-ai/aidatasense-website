@@ -13,7 +13,66 @@ export const gatewayContent: PlatformContent = {
     "Cost and usage tracked centrally, so a runaway agent or an expensive model call doesn't go unnoticed",
     "Every AI interaction is audited — which agent called which model, on which data, and why",
   ],
+  keepOverviewSectionsTogether: true,
+  architectureExtraSections: [
+    {
+      heading: "Vendor Comparison",
+      body: "",
+      comparisonTable: {
+        title: "Databricks vs. Snowflake vs. Azure API Management",
+        headers: ["", "Databricks (Unity AI Gateway)", "Snowflake (Cortex AI Gateway)", "Azure API Management"],
+        rows: [
+          ["Where it runs", "Built into the workspace, as part of Unity Catalog", "Built into the account — one gateway object, provisioned automatically", "A separate Azure resource (an APIM instance) placed in front of model endpoints"],
+          ["What it governs", "Model services, external model providers, MCP servers, and agents", "Model inference calls from any client that can reach its endpoint", "Any OpenAI-, Anthropic-, or Vertex AI-compatible API, plus MCP servers and A2A agent APIs"],
+          ["How limits are enforced", "Rate limits, budgets, and per-user quotas on model services", "Budgets and per-user quotas on gateway spend", "llm-token-limit — tokens-per-minute or a token quota, per subscription key or a custom counter"],
+          ["Guardrails / content safety", "Sensitive Data Detection guardrail (Beta) — blocks or redacts PII in requests and responses", "Enforced through Cortex's existing governance and masking policies", "Azure AI Content Safety moderation policy on prompts and completions"],
+          ["Logging / audit", "Unified trace table (Beta) — every request and response, in OpenTelemetry format", "Traces and spans for every request — models called, step timing, token counts, errors", "Prompts and completions logged to Azure Monitor, with a built-in analytics dashboard"],
+          ["Supported model providers", "Databricks-hosted models, plus external providers (OpenAI, Anthropic, Amazon Bedrock) registered as governed securables", "Any model reachable through an OpenAI- or Anthropic-compatible base URL", "Azure OpenAI / Microsoft Foundry, Anthropic, Google Vertex AI, Amazon Bedrock, and self-hosted endpoints"],
+        ],
+      },
+    },
+    {
+      heading: "Gateway Capabilities",
+      body: "",
+      bullets: [
+        "Token limits — cap consumption per key, user, or app as a rate (tokens per minute) or a quota over a period",
+        "Token metrics — emit per-request token counts as custom metrics, with dimensions to filter by caller",
+        "Semantic caching — reuse a cached response for a new prompt that's semantically close to a prior one",
+        "Load balancing and circuit breakers — distribute requests across model backends and stop sending to one that's failing",
+        "Content safety — moderate prompts and completions before they reach a model or a caller",
+        "Prompt/response logging — capture full request and response bodies for audit and troubleshooting",
+      ],
+    },
+    {
+      heading: "Illustrative APIM Policy",
+      body: "A policy file combining three AI gateway capabilities on one API: a token limit, a token metric emitted to Application Insights, and a semantic cache lookup before the request reaches the backend.",
+      code: {
+        title: "policy.xml · token limit, token metrics, semantic cache (illustrative)",
+        content: `<policies>
+  <inbound>
+    <llm-token-limit counter-key="@(context.Subscription.Id)"
+        tokens-per-minute="500" estimate-prompt-tokens="false"
+        remaining-tokens-variable-name="remainingTokens" />
+    <llm-semantic-cache-lookup score-threshold="0.05"
+        embeddings-backend-id="embeddings-backend" />
+    <llm-emit-token-metric namespace="llm-metrics">
+      <dimension name="API ID" value="@(context.Api.Id)" />
+      <dimension name="Subscription" value="@(context.Subscription.Id)" />
+    </llm-emit-token-metric>
+  </inbound>
+  <outbound>
+    <llm-semantic-cache-store duration="300" />
+  </outbound>
+</policies>`,
+      },
+    },
+  ],
   sections: [
+    {
+      heading: "Gateway at a Glance",
+      customBlock: "gateway-overview",
+      body: "",
+    },
     {
       heading: "Why a Normal API Gateway Isn't Enough",
       body: [
@@ -27,11 +86,18 @@ export const gatewayContent: PlatformContent = {
       bullets: [
         "Databricks — Unity AI Gateway sits in front of every model endpoint, governed by the same Unity Catalog permissions that already control table access, so a Genie agent's data access and model access are policed by one system, not two.",
         "Snowflake — Cortex AI Gateway governs how agents built on Cortex reach models, tools, and enterprise data, tracking cost and auditing every AI interaction regardless of which agent or platform it originated from.",
-        "Microsoft Fabric — Fabric IQ and Copilot's governance layer extend OneLake's existing data permissions to natural-language queries and Copilot-driven access in Power BI, so a Copilot query is bound by the same rules as a direct SQL query would be.",
+        "Microsoft — Azure API Management's AI gateway capabilities sit in front of Azure OpenAI and Microsoft Foundry model deployments, enforcing token limits, content safety, and centralized logging across every app, agent, or Copilot that calls a model — including Fabric's Copilot and data agents, which consume governed models through the same kind of policy layer.",
       ],
     },
   ],
+  devOpsNavHeading: "Gateway Policies as Code",
+  aiNavHeading: "What Gets Governed That a Normal Gateway Misses",
   aiSections: [
+    {
+      heading: "Gateway Policies as Code",
+      customBlock: "gateway-devops",
+      body: "",
+    },
     {
       heading: "What Gets Governed That a Normal Gateway Misses",
       body: [
@@ -48,12 +114,12 @@ export const gatewayContent: PlatformContent = {
   ],
   comparisonTable: {
     title: "AI Gateway, Vendor by Vendor",
-    headers: ["Capability", "Databricks", "Snowflake", "Microsoft Fabric"],
+    headers: ["Capability", "Databricks", "Snowflake", "Microsoft (Azure API Management)"],
     rows: [
-      ["Control plane", "Unity AI Gateway", "Cortex AI Gateway", "Fabric IQ + Copilot governance"],
-      ["Natural-language access", "Genie", "Cortex Analyst / Cortex Search", "Copilot in Power BI"],
-      ["Governs", "Models, agents, tools", "Models, agents, tools", "Copilot + data agent queries"],
-      ["Built on top of", "Unity Catalog", "Snowflake governed tables", "OneLake lakehouse tables"],
+      ["Control plane", "Unity AI Gateway", "Cortex AI Gateway", "Azure API Management (AI gateway)"],
+      ["Natural-language access", "Genie", "Cortex Analyst / Cortex Search", "Copilot in Power BI, Fabric data agents (as consumers)"],
+      ["Governs", "Models, agents, tools", "Models, agents, tools", "Models, agents, tools (Azure OpenAI / Microsoft Foundry)"],
+      ["Built on top of", "Unity Catalog", "Snowflake governed tables", "Microsoft Entra ID + API Management policies"],
     ],
   },
   useCases: [

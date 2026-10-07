@@ -27,6 +27,10 @@ import { FabricGovernance } from "../components/FabricGovernance";
 import { FabricObjectHierarchy } from "../components/FabricObjectHierarchy";
 import { FabricOverview } from "../components/FabricOverview";
 import { FabricPlatformArchitecture } from "../components/FabricPlatformArchitecture";
+import { GatewayDataConsumers } from "../components/GatewayDataConsumers";
+import { GatewayDevOpsFlow } from "../components/GatewayDevOpsFlow";
+import { GatewayGovernance } from "../components/GatewayGovernance";
+import { GatewayOverview } from "../components/GatewayOverview";
 import { NetworkPatternBackground } from "../components/NetworkPatternBackground";
 import { PlatformSideNav } from "../components/PlatformSideNav";
 import { ReferenceLinkCard } from "../components/ReferenceLinkCard";
@@ -60,6 +64,7 @@ const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
     SnowflakeGovernance,
     SnowflakeDataConsumers,
   ],
+  gateway: [GatewayGovernance, GatewayDataConsumers],
 };
 
 // Extra side-nav links for sections inside the Architecture area, listed in page order.
@@ -73,6 +78,7 @@ const ARCHITECTURE_NAV: Record<string, { id: string; label: string }[]> = {
     { id: "data-engineering", label: "Data engineering" },
     { id: "governance", label: "Governance" },
   ],
+  gateway: [{ id: "governance", label: "Governance" }],
 };
 
 // Components a content section can stand in for, via its customBlock key.
@@ -81,6 +87,8 @@ const CUSTOM_BLOCKS: Record<NonNullable<ContentSection["customBlock"]>, Componen
   "databricks-delta-table": DatabricksDeltaTable,
   "fabric-devops": FabricDevOpsFlow,
   "fabric-overview": FabricOverview,
+  "gateway-devops": GatewayDevOpsFlow,
+  "gateway-overview": GatewayOverview,
   "snowflake-devops": SnowflakeDevOpsFlow,
   "snowflake-pillars": SnowflakePillars,
 };
