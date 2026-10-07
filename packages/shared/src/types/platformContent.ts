@@ -37,6 +37,8 @@ export interface ContentSection {
   internalLink?: { label: string; to: string };
   integrations?: IntegrationsData;
   comparisonTable?: ComparisonTableData;
+  /** An illustrative code sample, rendered after the body text. */
+  code?: { title: string; content: string };
 }
 
 export interface VideoResource {

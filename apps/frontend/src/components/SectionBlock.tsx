@@ -2,6 +2,7 @@ import type { ContentSection } from "@aidatasense/shared";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ComparisonTable } from "./ComparisonTable";
+import { Code } from "./cicdFlow";
 import { ReferenceLinkCard } from "./ReferenceLinkCard";
 import { ZoomableImage } from "./ZoomableImage";
 
@@ -129,6 +130,7 @@ export function SectionBlock({ section }: { section: ContentSection }) {
           {section.diagramAttribution.label}
         </a>
       )}
+      {section.code && <Code title={section.code.title}>{section.code.content}</Code>}
       {section.bullets && (
         <ul className="mt-3 space-y-1.5 text-slate-600">
           {section.bullets.map((bullet) => {

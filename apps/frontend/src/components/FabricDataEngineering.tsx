@@ -66,10 +66,34 @@ const STAGES: { name: string; icon: IconName; color: string; soft: string; summa
     summary: "Develop, deploy, and watch pipelines like software.",
     items: [
       ["Git integration", "Version every item and deploy from a branch"],
-      ["Deployment Pipelines", "Promote content Dev → Test → Production (see the DevOps tab)"],
+      ["fabric-cicd or deployment pipelines", "Promote Dev → Test → Prod (see the DevOps tab)"],
       ["Scheduled & event triggers", "Run a pipeline on a schedule or when an Eventstream fires"],
       ["Monitoring hub", "Run history, status, and alerts for every item in the tenant"],
     ],
+  },
+];
+
+const MEDALLION_LAYERS: { name: string; tone: string; text: string; writtenBy: string; body: string }[] = [
+  {
+    name: "Bronze",
+    tone: "border-amber-300 bg-amber-50/60",
+    text: "text-amber-800",
+    writtenBy: "Data Factory, Mirroring, Eventstreams",
+    body: "Raw data landed exactly as it arrived — unprocessed, in its own lakehouse or schema.",
+  },
+  {
+    name: "Silver",
+    tone: "border-slate-300 bg-slate-100/60",
+    text: "text-slate-700",
+    writtenBy: "Notebooks (Spark)",
+    body: "Cleaned, deduped, and conformed into a shared shape other tables can join against.",
+  },
+  {
+    name: "Gold",
+    tone: "border-yellow-300 bg-yellow-50/60",
+    text: "text-yellow-800",
+    writtenBy: "Warehouse (T-SQL), or a notebook",
+    body: "Business-ready aggregates — often a star schema in a Warehouse that Power BI queries directly.",
   },
 ];
 
@@ -167,6 +191,58 @@ df = spark.read.json("Files/raw/orders/*.json")
         straightforward reshaping — it covers a lot of ground with no code. Move to a Notebook when the logic is
         complex, the data is large, or you need something Power Query can&apos;t express; use Warehouse T-SQL when
         the team is already SQL-first and the data's already landed there.
+      </p>
+
+      <h3 className="mt-8 text-lg font-semibold text-slate-900">Real-Time Intelligence</h3>
+      <p className="mt-3 text-slate-600">
+        Not every pipeline is batch. For data that needs to be queried or acted on within seconds of arriving,
+        Real-Time Intelligence skips the batch tools above: <strong className="font-semibold text-slate-900">Eventstreams</strong>{" "}
+        ingest and lightly transform streaming sources — Event Hubs, Kafka, IoT, CDC feeds — into an{" "}
+        <strong className="font-semibold text-slate-900">Eventhouse</strong>&apos;s KQL database, which stores and
+        indexes events for fast time-series queries. <strong className="font-semibold text-slate-900">Real-Time Dashboards</strong>{" "}
+        and <strong className="font-semibold text-slate-900">Data Activator</strong> then query or act on that data
+        directly — alerting, messaging, or triggering a pipeline when a condition is met.
+      </p>
+      <Code title="KQL · events per minute over the last hour (illustrative)">{`OrdersEvents
+| where Timestamp > ago(1h)
+| summarize EventCount = count() by bin(Timestamp, 1m)
+| order by Timestamp asc`}</Code>
+      <p className="mt-4 text-slate-600">
+        <strong className="font-semibold text-slate-900">Rule of thumb:</strong> reach for Real-Time Intelligence when
+        freshness is measured in seconds — alerting, live dashboards, IoT and telemetry. If the question can tolerate
+        minutes of latency, land the same stream in a lakehouse through an Eventstream or Mirroring instead, and
+        transform it with the regular pipeline tools above.
+      </p>
+
+      <h3 className="mt-8 text-lg font-semibold text-slate-900">Medallion architecture in Fabric</h3>
+      <p className="mt-3 text-slate-600">
+        Most Fabric lakehouses land data in three layers, often as three separate lakehouses — or three schemas in
+        one — so each layer can have its own lifecycle and permissions.
+      </p>
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+        {MEDALLION_LAYERS.flatMap((layer, index) => {
+          const card = (
+            <div key={layer.name} className={`flex-1 rounded-xl border p-4 ${layer.tone}`}>
+              <p className={`font-semibold ${layer.text}`}>{layer.name}</p>
+              <p className="mt-1 text-sm text-slate-700">{layer.body}</p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Typically written by</p>
+              <p className="text-xs text-slate-600">{layer.writtenBy}</p>
+            </div>
+          );
+          if (index === MEDALLION_LAYERS.length - 1) return [card];
+          return [
+            card,
+            <span key={`${layer.name}-arrow`} className="hidden text-xl text-slate-400 sm:block" aria-hidden="true">
+              →
+            </span>,
+          ];
+        })}
+      </div>
+      <p className="mt-4 text-slate-600">
+        <strong className="font-semibold text-slate-900">Gold often means a Warehouse:</strong> SQL-first teams
+        frequently model gold as Warehouse tables with T-SQL, since multi-table transactions and familiar SQL tooling
+        make star schemas easier to build and govern there — though a lakehouse&apos;s SQL analytics endpoint can
+        serve gold too.
       </p>
     </div>
   );

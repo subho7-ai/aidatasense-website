@@ -200,6 +200,47 @@ stages:
         sourceUrl={MANAGE_DEPLOYMENT_URL}
       />
 
+      <h3 className="mt-8 text-lg font-semibold text-slate-900">Monitoring</h3>
+      <p className="mt-3 text-slate-600">
+        Once something is deployed, the same tenant surfaces how it&apos;s running. The{" "}
+        <strong className="font-semibold text-slate-900">Monitoring hub</strong> lists every pipeline, dataflow, and
+        notebook run across the tenant — status, duration, and who triggered it — in one place instead of per item.
+        For capacity problems rather than a single run, the{" "}
+        <strong className="font-semibold text-slate-900">Fabric Capacity Metrics app</strong> shows CU usage and
+        throttling per capacity over time, which is usually where an "everything feels slow" complaint gets
+        diagnosed. And for one specific slow job, a notebook or pipeline run&apos;s own{" "}
+        <strong className="font-semibold text-slate-900">Spark run details</strong> break down stage timings and data
+        read and written.
+      </p>
+      <ul className="mt-3 space-y-1.5 text-slate-600">
+        <li className="flex gap-2">
+          <span className="text-indigo-500">•</span>
+          <span>
+            <strong className="font-semibold text-slate-900">Monitoring hub</strong> — every pipeline, dataflow, and
+            notebook run across the tenant, with status and duration
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="text-indigo-500">•</span>
+          <span>
+            <strong className="font-semibold text-slate-900">Fabric Capacity Metrics app</strong> — CU usage and
+            throttling per capacity, for diagnosing tenant-wide slowness
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="text-indigo-500">•</span>
+          <span>
+            <strong className="font-semibold text-slate-900">Spark run details</strong> — stage-by-stage timings for
+            one notebook or pipeline run, for diagnosing a single slow job
+          </span>
+        </li>
+      </ul>
+      <p className="mt-4 text-slate-600">
+        <strong className="font-semibold text-slate-900">Rule of thumb:</strong> start at the Monitoring hub for "did
+        it run and when," move to Capacity Metrics when everything is slow at once, and drop into Spark run details
+        when one job in particular is slow.
+      </p>
+
       <h3 className="mt-8 text-lg font-semibold text-slate-900">Guardrails that make it safe</h3>
       <Guardrails
         items={[

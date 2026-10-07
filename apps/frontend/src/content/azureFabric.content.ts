@@ -22,7 +22,6 @@ export const azureFabricContent: PlatformContent = {
   ],
   keepOverviewSectionsTogether: true,
   architectureDiagram: {
-    summaryBulletsHeading: "How OneLake ties it together",
     summaryBullets: [
       "Sources — operational databases, SaaS apps, files in other clouds, and streaming sources all land in OneLake through pipelines, mirroring, shortcuts, or Eventstreams.",
       "Ingest — Data Factory pipelines, Dataflow Gen2, Mirroring, OneLake shortcuts, and Eventstreams bring data in without every engine needing its own copy.",
@@ -200,6 +199,16 @@ export const azureFabricContent: PlatformContent = {
         "Delta Lake keeps a transaction log of every change to a table, so a lakehouse table can be queried as it existed at an earlier point, not just its current state. DESCRIBE HISTORY table_name lists each version with its timestamp and the operation that produced it, and a query can target a specific point with VERSION AS OF or TIMESTAMP AS OF — for example, SELECT * FROM orders VERSION AS OF 12 or SELECT * FROM orders TIMESTAMP AS OF '2026-01-01'.",
         "How far back you can go depends on how much history is still retained: running VACUUM permanently removes files older than its retention threshold, so once a version's files are vacuumed, that version can no longer be queried, even though it still appears in the table's log.",
       ],
+      code: {
+        title: "Spark SQL · history, time travel, and rollback (illustrative)",
+        content: `DESCRIBE HISTORY orders;
+
+SELECT * FROM orders VERSION AS OF 12;
+SELECT * FROM orders TIMESTAMP AS OF '2026-01-01';
+
+-- Roll the table back to an earlier version
+RESTORE TABLE orders TO VERSION AS OF 12;`,
+      },
       bullets: [
         "DESCRIBE HISTORY — lists a table's versions, timestamps, and operations.",
         "VERSION AS OF / TIMESTAMP AS OF — query the table as it existed at a specific version or point in time.",
@@ -212,6 +221,17 @@ export const azureFabricContent: PlatformContent = {
         "A full load reloads an entire table every run — simple to reason about, but it gets slower and more expensive as the source table grows, and it can momentarily disrupt readers while the table is rebuilt. An incremental load instead picks up only the rows that changed since the last run, usually tracked with a watermark — a column like an updated-at timestamp or an incrementing ID that marks how far the last run got.",
         "Full loads suit small reference tables or sources with no reliable change-tracking column. Incremental loads suit large, frequently updated tables where reprocessing everything every run isn't practical. In Fabric, both patterns show up across the same tools: a Data Factory pipeline or Dataflow Gen2 can filter source rows by a watermark column, Dataflow Gen2 also supports incremental refresh natively, and a notebook can express the same idea in Spark with a MERGE statement that upserts only the changed rows into the target Delta table.",
       ],
+      code: {
+        title: "Notebook (Spark SQL) · incremental upsert with a watermark column (illustrative)",
+        content: `MERGE INTO orders_silver AS target
+USING (
+  SELECT * FROM orders_raw
+  WHERE updated_at > (SELECT max(updated_at) FROM orders_silver)
+) AS changes
+ON target.order_id = changes.order_id
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *`,
+      },
       bullets: [
         "Full load — reloads the entire table every run; simplest, but doesn't scale to large tables.",
         "Incremental load — loads only what changed since the last run, tracked by a watermark column.",
@@ -238,12 +258,6 @@ export const azureFabricContent: PlatformContent = {
         "Deployment pipelines — Fabric's built-in Dev → Test → Prod promotion",
         "Variable library — per-environment values for CI/CD",
       ],
-    },
-  ],
-  videos: [
-    {
-      title: "Microsoft Fabric — Learn Together (official playlist)",
-      youtubeId: "videoseries?list=PL1N57mwBHtN0-AJVURyfqbdmX65JMXSVv",
     },
   ],
   learnMoreUrl: "https://learn.microsoft.com/fabric/",
