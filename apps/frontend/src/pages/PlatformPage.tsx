@@ -419,7 +419,7 @@ export function PlatformPage() {
     return (
       <div
         className={`relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 ${
-          content.slug === "azure-fabric" ? "overflow-x-clip" : ""
+          content.slug === "azure-fabric" || content.slug === "databricks" ? "overflow-x-clip" : ""
         }`}
       >
         <div className="absolute inset-0 -z-10 overflow-hidden">

@@ -365,10 +365,7 @@ function SharingMetastoreReference() {
 
 function UnityCatalogObjectModel() {
   return (
-    // On large screens this diagram extends into the page's right sidebar column
-    // (224px + 40px gap), which is empty this far down the Databricks page.
     <DiagramCard
-      className="lg:-mr-[264px]"
       title="Unity Catalog object model: your company holds a Databricks account; inside it, each environment flows from its workspace to its own catalog, while one shared metastore governs them all. Binding a catalog to a workspace is optional, but recommended for isolating environments."
     >
       <OrganizationFrame>
