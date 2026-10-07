@@ -59,6 +59,8 @@ export interface ArchitectureDiagramData {
   layers?: ArchitectureLayer[];
   summary?: string;
   summaryBullets?: string[];
+  /** Heading shown above summaryBullets; omit for no heading. */
+  summaryBulletsHeading?: string;
   accordion?: {
     heading: string;
     items: AccordionItem[];

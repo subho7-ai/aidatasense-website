@@ -22,14 +22,14 @@ export const azureFabricContent: PlatformContent = {
   ],
   keepOverviewSectionsTogether: true,
   architectureDiagram: {
+    summaryBulletsHeading: "How OneLake ties it together",
     summaryBullets: [
-      "Compute engines — Data Factory, Data Engineering, Data Science, Data Warehousing, Real-Time Intelligence, and Power BI all sit above the same OneLake storage layer, instead of each keeping its own copy of data.",
-      "Serverless compute — Spark, T-SQL, KQL, and Analysis Services each read and write OneLake directly, so switching engines doesn't mean re-ingesting data.",
-      "OneLake storage — data lives in workspace and item folders (e.g. Customer 360, Finance, Service Telemetry) as open Delta Parquet, one copy shared by every engine above it.",
-      "Built on ADLS Gen2 — supports Delta, Parquet, CSV, and JSON, with every Fabric compute engine writing tabular data as Delta Parquet so all engines interact with it seamlessly.",
-      "Shortcuts — virtualize data in Azure, Amazon S3, Google Cloud Storage, Dataverse, and on-premises sources into OneLake without copying it.",
-      "Mirroring — continuously replicates operational databases such as Azure SQL Database into OneLake in near real time, for analytics without touching the source system.",
-      "One governed copy for AI — Copilot and data agents work over the same governed data as your reports and dashboards, with no separate data-prep pipeline for AI.",
+      "Sources — operational databases, SaaS apps, files in other clouds, and streaming sources all land in OneLake through pipelines, mirroring, shortcuts, or Eventstreams.",
+      "Ingest — Data Factory pipelines, Dataflow Gen2, Mirroring, OneLake shortcuts, and Eventstreams bring data in without every engine needing its own copy.",
+      "Transform — Spark notebooks, Dataflow Gen2, and Warehouse T-SQL all read and write the same Delta Parquet in OneLake, so switching engines doesn't mean re-ingesting data.",
+      "Store — every workload's output lands in workspace and item folders (e.g. Customer 360, Finance, Service Telemetry) as open Delta Parquet, one copy shared by everything above it.",
+      "Serve — the SQL analytics endpoint, Direct Lake semantic models, and data agents all read that same governed copy, with no separate data-prep pipeline for BI or AI.",
+      "Govern — workspace roles, OneLake security, and Microsoft Purview apply to the data once, rather than once per engine.",
     ],
     accordion: {
       heading: "ETL Breakdown",
@@ -50,6 +50,25 @@ export const azureFabricContent: PlatformContent = {
     },
   },
   architectureExtraSections: [
+    {
+      heading: "Shortcuts and Mirroring",
+      body: [
+        "Fabric has two ways to bring outside data into OneLake, and they work very differently. A shortcut is a pointer: the data stays where it is — in another workspace, in ADLS Gen2, Amazon S3, Google Cloud Storage, or Dataverse — and appears in OneLake as if it were local. Mirroring makes a continuously updated replica of an operational database, such as Azure SQL Database, SQL Server, Azure Cosmos DB, or Snowflake, as Delta tables in OneLake.",
+        "Use shortcuts for data already in files or Delta tables that you don't want to move. Use mirroring when the source is a database you shouldn't run analytics against, but want near-real-time copies of.",
+      ],
+      bullets: [
+        "Shortcuts — no copy, no storage cost in OneLake, always as fresh as the source",
+        "Mirroring — a managed, near-real-time replica as Delta, with no pipelines to build",
+        "Both — show up in the lakehouse like any other table, readable by every Fabric engine",
+      ],
+      imageUrl: fabricShortcuts,
+      imageZoomable: true,
+      imageCaption: "Shortcuts connect data across workspaces and clouds without copying it",
+      diagramAttribution: {
+        label: "Source: Microsoft Learn — OneLake, the OneDrive for data",
+        url: "https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview",
+      },
+    },
     {
       heading: "Integrations",
       body: "Fabric connects to hundreds of sources and destinations through Data Factory, mirrors operational databases into OneLake, references external storage through shortcuts, and brings streaming sources in through the Real-Time hub — with Power BI built in rather than bolted on.",
@@ -86,25 +105,6 @@ export const azureFabricContent: PlatformContent = {
       body: "",
     },
     {
-      heading: "Shortcuts and Mirroring",
-      body: [
-        "Fabric has two ways to bring outside data into OneLake, and they work very differently. A shortcut is a pointer: the data stays where it is — in another workspace, in ADLS Gen2, Amazon S3, Google Cloud Storage, or Dataverse — and appears in OneLake as if it were local. Mirroring makes a continuously updated replica of an operational database, such as Azure SQL Database, SQL Server, Azure Cosmos DB, or Snowflake, as Delta tables in OneLake.",
-        "Use shortcuts for data already in files or Delta tables that you don't want to move. Use mirroring when the source is a database you shouldn't run analytics against, but want near-real-time copies of.",
-      ],
-      bullets: [
-        "Shortcuts — no copy, no storage cost in OneLake, always as fresh as the source",
-        "Mirroring — a managed, near-real-time replica as Delta, with no pipelines to build",
-        "Both — show up in the lakehouse like any other table, readable by every Fabric engine",
-      ],
-      imageUrl: fabricShortcuts,
-      imageZoomable: true,
-      imageCaption: "Shortcuts connect data across workspaces and clouds without copying it",
-      diagramAttribution: {
-        label: "Source: Microsoft Learn — OneLake, the OneDrive for data",
-        url: "https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview",
-      },
-    },
-    {
       heading: "Key Technical Specs",
       body: "Fabric is provisioned through capacities measured in capacity units (CUs), sold as F SKUs from F2 upward, which pool compute across every workload instead of billing each tool separately. Data lives in OneLake as open Delta Parquet, readable by non-Fabric engines through an ADLS Gen2-compatible API. As a Microsoft service, Fabric uses Microsoft Entra ID for identity and Microsoft Purview for governance, references external storage through shortcuts, and brings in databases such as Azure SQL Database and Azure Cosmos DB through mirroring.",
     },
@@ -120,48 +120,10 @@ export const azureFabricContent: PlatformContent = {
         "Every role feeds the same foundation: clean data and consistent semantic models are what make Copilot and AI agents accurate.",
       ],
     },
-    {
-      heading: "Fabric Terms Every Architect Should Know",
-      body: "",
-      bullets: [
-        "V-Order — a write-time optimization of Parquet files that speeds up reads by every Fabric engine",
-        "VertiPaq — the in-memory columnar engine behind Power BI semantic models",
-        "Direct Lake — a semantic model mode that reads Delta tables from OneLake on demand, without importing them",
-        "XMLA endpoint — programmatic management and querying of semantic models",
-        "Semantic link — connects Fabric notebooks to Power BI semantic models",
-        "SQL analytics endpoint — the read-only T-SQL view automatically created for every lakehouse",
-        "Mirrored database — a near-real-time replica of an operational database in OneLake",
-        "OneLake shortcuts — pointers to data in other locations, without copying it",
-        "Eventstreams — low-code real-time ingestion and transformation",
-        "Eventhouse and KQL database — the store and query engine for telemetry and real-time analytics",
-        "Kusto Query Language (KQL) — the query language for real-time, log, and time-series data",
-        "OneLake catalog — the place to discover, govern, and reuse Fabric items",
-        "Domains — groups of workspaces by business area, with delegated governance",
-        "Deployment pipelines — Fabric's built-in Dev → Test → Prod promotion",
-        "Variable library — per-environment values for CI/CD",
-      ],
-    },
   ],
   devOpsNavHeading: "CI/CD for Data Engineers with Azure DevOps",
   aiNavHeading: "It Takes the Whole Data Team",
   aiSections: [
-    {
-      heading: "V-Order and Direct Lake",
-      body: [
-        "Fabric's answer to partitioning and micro-partitions starts at write time. V-Order sorts, encodes, and compresses Parquet files as Fabric writes them, so every engine — Spark, SQL, and Power BI — reads less data, while the files stay standard Parquet that any tool can open.",
-        "Direct Lake builds on that: instead of importing data into a Power BI model and refreshing it on a schedule, a Direct Lake semantic model loads only the columns a report needs, straight from the Delta tables in OneLake. Reports get import-like speed with data that's as fresh as the last write.",
-      ],
-      bullets: [
-        "V-Order — on by default for Fabric writes; still fully compatible Parquet and Delta",
-        "OPTIMIZE — compacts small files in a lakehouse table, applying V-Order as it goes",
-        "Direct Lake — no import copy and no scheduled refresh for the model's data",
-        "Fallback — if a query can't run in Direct Lake, the model can fall back to the SQL endpoint",
-      ],
-      diagramAttribution: {
-        label: "Learn more →",
-        url: "https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview",
-      },
-    },
     {
       heading: "CI/CD for Data Engineers with Azure DevOps",
       customBlock: "fabric-devops",
@@ -216,6 +178,23 @@ export const azureFabricContent: PlatformContent = {
   ],
   deepDiveSections: [
     {
+      heading: "V-Order and Direct Lake",
+      body: [
+        "Fabric's answer to partitioning and micro-partitions starts at write time. V-Order sorts, encodes, and compresses Parquet files as Fabric writes them, so every engine — Spark, SQL, and Power BI — reads less data, while the files stay standard Parquet that any tool can open.",
+        "Direct Lake builds on that: instead of importing data into a Power BI model and refreshing it on a schedule, a Direct Lake semantic model loads only the columns a report needs, straight from the Delta tables in OneLake. Reports get import-like speed with data that's as fresh as the last write.",
+      ],
+      bullets: [
+        "V-Order — applied by default in many workspaces, depending on the workspace's Spark settings — check them before relying on it; files stay fully compatible Parquet and Delta",
+        "OPTIMIZE — compacts small files in a lakehouse table, applying V-Order as it goes",
+        "Direct Lake — no import copy and no scheduled refresh for the model's data",
+        "Fallback — if a query can't run in Direct Lake, the model can fall back to the SQL endpoint",
+      ],
+      diagramAttribution: {
+        label: "Learn more →",
+        url: "https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview",
+      },
+    },
+    {
       heading: "Delta Time Travel in Fabric",
       body: [
         "Delta Lake keeps a transaction log of every change to a table, so a lakehouse table can be queried as it existed at an earlier point, not just its current state. DESCRIBE HISTORY table_name lists each version with its timestamp and the operation that produced it, and a query can target a specific point with VERSION AS OF or TIMESTAMP AS OF — for example, SELECT * FROM orders VERSION AS OF 12 or SELECT * FROM orders TIMESTAMP AS OF '2026-01-01'.",
@@ -238,6 +217,33 @@ export const azureFabricContent: PlatformContent = {
         "Incremental load — loads only what changed since the last run, tracked by a watermark column.",
         "In Fabric — pipelines and Dataflow Gen2 filter by watermark; notebooks express the same pattern with a Spark MERGE.",
       ],
+    },
+    {
+      heading: "Fabric Terms Every Architect Should Know",
+      body: "",
+      bullets: [
+        "V-Order — a write-time optimization of Parquet files that speeds up reads by every Fabric engine",
+        "VertiPaq — the in-memory columnar engine behind Power BI semantic models",
+        "Direct Lake — a semantic model mode that reads Delta tables from OneLake on demand, without importing them",
+        "XMLA endpoint — programmatic management and querying of semantic models",
+        "Semantic link — connects Fabric notebooks to Power BI semantic models",
+        "SQL analytics endpoint — the read-only T-SQL view automatically created for every lakehouse",
+        "Mirrored database — a near-real-time replica of an operational database in OneLake",
+        "OneLake shortcuts — pointers to data in other locations, without copying it",
+        "Eventstreams — low-code real-time ingestion and transformation",
+        "Eventhouse and KQL database — the store and query engine for telemetry and real-time analytics",
+        "Kusto Query Language (KQL) — the query language for real-time, log, and time-series data",
+        "OneLake catalog — the place to discover, govern, and reuse Fabric items",
+        "Domains — groups of workspaces by business area, with delegated governance",
+        "Deployment pipelines — Fabric's built-in Dev → Test → Prod promotion",
+        "Variable library — per-environment values for CI/CD",
+      ],
+    },
+  ],
+  videos: [
+    {
+      title: "Microsoft Fabric — Learn Together (official playlist)",
+      youtubeId: "videoseries?list=PL1N57mwBHtN0-AJVURyfqbdmX65JMXSVv",
     },
   ],
   learnMoreUrl: "https://learn.microsoft.com/fabric/",

@@ -7,6 +7,12 @@ const ONELAKE_SECURITY_URL = "https://learn.microsoft.com/en-us/fabric/onelake/s
 
 const CONFIG: GovernanceConfig = {
   service: "Microsoft Fabric with Microsoft Purview",
+  levelsCaption: (
+    <>
+      Control at every level, from the whole tenant down to a single row or column — enforced by Fabric&apos;s
+      permissions, with Microsoft Purview adding labels, DLP, and audit.
+    </>
+  ),
   serviceLogo: fabricLogo,
   serviceWhere:
     "Governance is built into the Fabric tenant — admin portal, domains, workspace roles, OneLake security, and the OneLake catalog — with Microsoft Purview adding sensitivity labels, data loss prevention, audit, and the enterprise catalog.",

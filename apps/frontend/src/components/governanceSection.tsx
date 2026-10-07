@@ -28,6 +28,8 @@ export type GovernanceConfig = {
   compliance: ReactNode;
   audit: ReactNode;
   ruleOfThumb: ReactNode;
+  /** Override the default caption under the levels diagram. */
+  levelsCaption?: ReactNode;
 };
 
 const LEVEL_TONES = [
@@ -41,7 +43,15 @@ const LEVEL_TONES = [
 ];
 
 // An inverted pyramid: the widest level (account) on top, narrowing to a single column or row.
-function LevelsDiagram({ levels, service }: { levels: GovernanceLevel[]; service: string }) {
+function LevelsDiagram({
+  levels,
+  service,
+  caption,
+}: {
+  levels: GovernanceLevel[];
+  service: string;
+  caption?: ReactNode;
+}) {
   return (
     <figure className="mt-6 rounded-xl border border-slate-200 bg-white p-4 sm:p-6">
       <div className="flex flex-col items-center gap-1.5">
@@ -64,7 +74,9 @@ function LevelsDiagram({ levels, service }: { levels: GovernanceLevel[]; service
         })}
       </div>
       <figcaption className="mt-4 text-center text-sm text-slate-500">
-        Control at every level, from the whole account down to a single row or column — all enforced by {service}.
+        {caption ?? (
+          <>Control at every level, from the whole account down to a single row or column — all enforced by {service}.</>
+        )}
       </figcaption>
     </figure>
   );
@@ -107,7 +119,7 @@ export function GovernanceSection({ platform, config }: { platform: string; conf
         Governance in {platform} is layered. Each level below can be secured on its own, and controls set higher up
         flow down to everything beneath them.
       </p>
-      <LevelsDiagram levels={config.levels} service={config.service} />
+      <LevelsDiagram levels={config.levels} service={config.service} caption={config.levelsCaption} />
 
       <h3 className="mt-8 text-lg font-semibold text-slate-900">Access control (RBAC)</h3>
       <p className="mt-3 text-slate-600">{config.rbacIntro}</p>

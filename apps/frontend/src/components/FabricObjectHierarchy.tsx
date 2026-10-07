@@ -149,6 +149,17 @@ const ITEM_COMPARISON = {
   ],
 };
 
+const STORAGE_MODES = {
+  title: "Semantic model storage modes",
+  headers: ["", "Import", "DirectQuery", "Direct Lake"],
+  rows: [
+    ["Where data lives", "Copied into the model (VertiPaq)", "Stays in the source, queried live", "Reads OneLake Delta files directly — no copy"],
+    ["Refresh needed", "Yes, on a schedule", "No — always current", "No — always current"],
+    ["Query speed", "Fastest, fully in-memory", "Depends on the source system", "Near-Import speed, with no import step"],
+    ["Best for", "Smaller datasets where max performance matters most", "Very large or frequently changing sources", "Large OneLake tables that need Import-like speed without the copy"],
+  ],
+};
+
 function Example({ variant, children }: { variant: "avoid" | "do"; children: ReactNode }) {
   const isDo = variant === "do";
   return (
@@ -260,6 +271,12 @@ export function FabricObjectHierarchy() {
         clean data in a lakehouse; SQL-first teams model the gold layer in a warehouse. Many teams use both — a
         lakehouse for raw and silver, a warehouse for gold — reading each other through OneLake without copies.
       </p>
+
+      <p className="mt-8 text-slate-600">
+        A Power BI semantic model built on Fabric data can connect to that data in three ways, trading off freshness,
+        speed, and whether the data is copied at all.
+      </p>
+      <ComparisonTable {...STORAGE_MODES} embedded />
 
       <p className="mt-8 rounded-lg border border-indigo-200 bg-indigo-50/60 px-4 py-3 text-sm text-slate-700">
         <strong className="font-semibold text-slate-900">Who can see what?</strong> Workspace roles, item sharing,

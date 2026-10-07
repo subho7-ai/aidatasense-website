@@ -21,6 +21,7 @@ import { SnowflakeObjectHierarchy } from "../components/SnowflakeObjectHierarchy
 import { SnowflakePillars } from "../components/SnowflakePillars";
 import { SnowflakePlatformArchitecture } from "../components/SnowflakePlatformArchitecture";
 import { FabricDataConsumers } from "../components/FabricDataConsumers";
+import { FabricDataEngineering } from "../components/FabricDataEngineering";
 import { FabricDevOpsFlow } from "../components/FabricDevOpsFlow";
 import { FabricGovernance } from "../components/FabricGovernance";
 import { FabricObjectHierarchy } from "../components/FabricObjectHierarchy";
@@ -45,7 +46,13 @@ const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
     DatabricksGovernance,
     DatabricksDataConsumers,
   ],
-  "azure-fabric": [FabricPlatformArchitecture, FabricObjectHierarchy, FabricGovernance, FabricDataConsumers],
+  "azure-fabric": [
+    FabricPlatformArchitecture,
+    FabricObjectHierarchy,
+    FabricDataEngineering,
+    FabricGovernance,
+    FabricDataConsumers,
+  ],
   snowflake: [
     SnowflakePlatformArchitecture,
     SnowflakeObjectHierarchy,
@@ -58,7 +65,10 @@ const ARCHITECTURE_BLOCKS: Record<string, ComponentType[]> = {
 // Extra side-nav links for sections inside the Architecture area, listed in page order.
 const ARCHITECTURE_NAV: Record<string, { id: string; label: string }[]> = {
   databricks: [{ id: "governance", label: "Governance" }],
-  "azure-fabric": [{ id: "governance", label: "Governance" }],
+  "azure-fabric": [
+    { id: "data-engineering", label: "Data engineering" },
+    { id: "governance", label: "Governance" },
+  ],
   snowflake: [
     { id: "data-engineering", label: "Data engineering" },
     { id: "governance", label: "Governance" },
@@ -166,14 +176,21 @@ export function PlatformPage() {
               )}
             </div>
             {content.architectureDiagram.summaryBullets ? (
-              <ul className="space-y-2 text-slate-600">
-                {content.architectureDiagram.summaryBullets.map((bullet) => (
-                  <li key={bullet} className="flex gap-2">
-                    <span className="text-indigo-500">•</span>
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+              <div>
+                {content.architectureDiagram.summaryBulletsHeading && (
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    {content.architectureDiagram.summaryBulletsHeading}
+                  </h3>
+                )}
+                <ul className={`space-y-2 text-slate-600 ${content.architectureDiagram.summaryBulletsHeading ? "mt-3" : ""}`}>
+                  {content.architectureDiagram.summaryBullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-2">
+                      <span className="text-indigo-500">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ) : content.architectureDiagram.summary ? (
               <p className="text-slate-600">{content.architectureDiagram.summary}</p>
             ) : (
