@@ -273,7 +273,7 @@ export function ApimTokenGovernanceDeepDive() {
                   explaining why — otherwise the next engineer &quot;fixes&quot; it back upward.
                 </li>
                 <li>
-                  Treat <code>azure-openai-emit-token-metric</code> as the source of truth for total consumption —
+                  Treat <code>llm-emit-token-metric</code> as the source of truth for total consumption —
                   it&apos;s the only place the true cross-region figure appears.
                 </li>
                 <li>Size gateway units on concurrent streams, not requests per second — a streaming response holds its connection for the whole generation.</li>

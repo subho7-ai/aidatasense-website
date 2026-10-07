@@ -51,7 +51,7 @@ const BEST_PRACTICES: { title: string; why: string; avoid: ReactNode; do: ReactN
 export function GatewayGovernance() {
   return (
     <div id="governance" className="scroll-mt-[180px] border-t border-slate-200 py-8">
-      <h2 className="text-2xl font-semibold text-slate-900">Data Governance</h2>
+      <h2 className="text-2xl font-semibold text-slate-900">AI Governance</h2>
       <p className="mt-3 text-slate-600">
         AI traffic is governed in layers, from the whole organization down to the content of a single prompt. Each
         layer controls something different, and a gap at any one of them is a gap in the whole chain.
@@ -94,7 +94,7 @@ export function GatewayGovernance() {
       <h3 className="mt-8 text-lg font-semibold text-slate-900">Audit logging</h3>
       <p className="mt-3 text-slate-600">
         Every platform's gateway can log who called what, with which model, and what it cost — not just that a
-        request happened. Azure API Management logs prompts and completions to Azure Monitor; Databricks' Unity
+        request happened. Azure API Management logs prompts and completions to Azure Monitor; Databricks' Unity AI
         Gateway writes every request and response into a unified trace table (Beta) in OpenTelemetry format;
         Snowflake's Cortex AI Gateway records traces and spans for every request, including the models called, step
         timing, token counts, and errors.

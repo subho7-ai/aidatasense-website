@@ -117,16 +117,6 @@ export const gatewayContent: PlatformContent = {
       ],
     },
   ],
-  comparisonTable: {
-    title: "AI Gateway, Vendor by Vendor",
-    headers: ["Capability", "Databricks", "Snowflake", "Microsoft (Azure API Management)"],
-    rows: [
-      ["Control plane", "Unity AI Gateway", "Cortex AI Gateway", "Azure API Management (AI gateway)"],
-      ["Natural-language access", "Genie", "Cortex Analyst / Cortex Search", "Copilot in Power BI, Fabric data agents (as consumers)"],
-      ["Governs", "Models, agents, tools", "Models, agents, tools", "Models, agents, tools (Azure OpenAI / Microsoft Foundry)"],
-      ["Built on top of", "Unity Catalog", "Snowflake governed tables", "Microsoft Entra ID + API Management policies"],
-    ],
-  },
   useCases: [
     {
       title: "Governing a Multi-Agent Deployment Across Platforms",

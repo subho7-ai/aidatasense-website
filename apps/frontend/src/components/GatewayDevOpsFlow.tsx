@@ -16,6 +16,8 @@ const FLOW: PipelineFlowConfig = {
   ariaLabel:
     "CI/CD flow: a developer branches out to edit policy files against a dev APIM instance and commits to Git; a pull request runs validation; merging to main deploys the policy to the Test APIM instance with Bicep or Terraform; after approval the same artifact deploys to the Prod APIM instance as a service principal",
   hasWalkthroughBelow: false,
+  featureBranchName: "feature/token-limit-update",
+  prodNote: "Deployed by SP",
 };
 
 const TOOLCHAIN: Tool[] = [

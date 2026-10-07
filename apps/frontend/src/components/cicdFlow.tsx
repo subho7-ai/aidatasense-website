@@ -44,6 +44,10 @@ export type PipelineFlowConfig = {
   ariaLabel: string;
   /** Omit the "match the walkthrough below" sentence when there's no numbered walkthrough on the page. */
   hasWalkthroughBelow?: boolean;
+  /** Feature branch name shown in the git graph; defaults to "feature/loyalty-tier". */
+  featureBranchName?: string;
+  /** Note shown under the Prod environment; defaults to "Scheduled · runs as {identityShort}". */
+  prodNote?: string;
 };
 
 function StepBadge({ n, x, y }: { n: number; x: number; y: number }) {
@@ -240,7 +244,7 @@ export function PipelineFlow({ config }: { config: PipelineFlowConfig }) {
           </text>
           <path d="M160 225 C186 225 186 172 212 172 H640" fill="none" stroke={COLOR.dev} strokeWidth={2.5} />
           <text x={222} y={164} fontSize="10.5" fontFamily="ui-monospace, monospace" fontWeight="700" fill={COLOR.dev}>
-            feature/loyalty-tier
+            {config.featureBranchName ?? "feature/loyalty-tier"}
           </text>
           {[300, 420, 535].map((cx) => (
             <circle key={cx} cx={cx} cy={172} r={5.5} fill="#fff" stroke={COLOR.dev} strokeWidth={2.5} />
@@ -299,7 +303,7 @@ export function PipelineFlow({ config }: { config: PipelineFlowConfig }) {
           <text x={1108} y={382} fontSize="10" fontWeight="600" fill={COLOR.prod}>
             {config.identity}
           </text>
-          <EnvironmentNode x={1110} y={420} logo={config.platformLogo} name={env("Prod")} containerNoun={config.containerNoun} container={config.containers[2]} note={`Scheduled · runs as ${config.identityShort}`} color={COLOR.prod} soft={COLOR.prodSoft} />
+          <EnvironmentNode x={1110} y={420} logo={config.platformLogo} name={env("Prod")} containerNoun={config.containerNoun} container={config.containers[2]} note={config.prodNote ?? `Scheduled · runs as ${config.identityShort}`} color={COLOR.prod} soft={COLOR.prodSoft} />
         </svg>
       </div>
       <div className="mt-3 rounded-lg bg-slate-900 px-3 py-2 text-center text-xs text-slate-200">
